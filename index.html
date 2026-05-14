@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PearBrowser — the browser for the peer-to-peer web</title>
+  <meta name="description" content="Browse, run, and publish on the P2P web. macOS, Windows, Linux. No accounts. No servers. Sites pinned 24/7 on the HiveRelay backbone — they don't go down when you do." />
+  <meta name="theme-color" content="#0a0d12" />
+  <meta property="og:title" content="PearBrowser — the browser for the peer-to-peer web" />
+  <meta property="og:description" content="No accounts, no servers, no DNS. Sites are public keys. Apps install from decentralized catalogs. Multiplayer games run with no backend." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      color-scheme: dark;
+      --bg: #0a0d12;
+      --bg-elev: #11161e;
+      --fg: #e6edf3;
+      --fg-soft: #adbac7;
+      --muted: #8b949e;
+      --dim: #6e7681;
+      --line: #1f2630;
+      --line-hi: #2d3540;
+      --green: #3fb950;
+      --green-soft: #7ee787;
+      --green-glow: rgba(63,185,80,0.35);
+      --blue: #58a6ff;
+      --amber: #ffa940;
+      --accent: var(--green-soft);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", system-ui, sans-serif;
+      font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(circle 800px at 15% 0%, rgba(63,185,80,0.08), transparent 50%),
+        radial-gradient(circle 600px at 90% 30%, rgba(88,166,255,0.06), transparent 50%);
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    a { color: var(--green-soft); text-decoration: none; }
+    a:hover { color: #b6f5b9; text-decoration: underline; }
+    code, pre, kbd { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; }
+    code { background: rgba(2,6,12,0.6); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; color: var(--accent); }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav.top {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10,13,18,0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav.top .inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); font-weight: 600; }
+    .brand:hover { text-decoration: none; }
+    .brand-logo { display: block; filter: drop-shadow(0 0 14px rgba(63,185,80,0.5)); }
+    nav.top .links { display: flex; gap: 22px; align-items: center; }
+    nav.top .links a { color: var(--muted); font-size: 14px; font-weight: 500; }
+    nav.top .links a:hover { color: var(--fg); text-decoration: none; }
+    nav.top .cta {
+      background: linear-gradient(180deg, #2ea043, #1e7a30);
+      color: #fff !important;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    nav.top .cta:hover { filter: brightness(1.08); text-decoration: none; }
+    @media (max-width: 720px) { nav.top .links a:not(.cta) { display: none; } }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    header.hero { padding: 80px 24px 60px; text-align: center; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px;
+      background: rgba(63,185,80,0.06);
+      border: 1px solid rgba(63,185,80,0.25);
+      border-radius: 999px;
+      font-size: 12px; color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero-tag-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 12px var(--green);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.04;
+      letter-spacing: -1.6px;
+      font-weight: 800;
+      max-width: 880px;
+      margin: 0 auto 22px;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, #7ee787 0%, #58a6ff 65%, #a371f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      color: var(--fg-soft);
+      font-size: clamp(16px, 1.6vw, 19px);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+    .hero-sub strong { color: var(--fg); font-weight: 600; }
+    .hero-cmd {
+      display: inline-flex; align-items: center; gap: 8px;
+      max-width: 720px; width: 100%;
+      background: rgba(2,6,12,0.72);
+      border: 1px solid var(--line-hi);
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.55);
+      font-family: "SF Mono", ui-monospace, Menlo, monospace;
+      font-size: 13px;
+      text-align: left;
+    }
+    .hero-cmd::before { content: "$"; color: var(--dim); }
+    .hero-cmd code {
+      flex: 1; background: transparent; border: 0; padding: 0;
+      color: var(--green-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .copy-btn {
+      background: #1f2630; color: var(--fg);
+      border: 1px solid var(--line-hi);
+      padding: 5px 12px; border-radius: 6px;
+      font-size: 12px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+      transition: all 0.12s ease;
+    }
+    .copy-btn:hover { background: #2d3540; }
+    .copy-btn.copied { background: rgba(63,185,80,0.15); color: var(--green); border-color: var(--green); }
+    .hero-actions {
+      display: flex; gap: 10px; justify-content: center;
+      margin-top: 20px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; border: 1px solid transparent;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .btn.primary {
+      background: linear-gradient(180deg, #3fb950, #1e7a30);
+      color: #fff; border-color: #1e7a30;
+    }
+    .btn.primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px -6px var(--green-glow);
+      text-decoration: none; color: #fff;
+    }
+    .btn.subtle {
+      background: rgba(22,27,34,0.6);
+      color: var(--fg);
+      border-color: var(--line-hi);
+    }
+    .btn.subtle:hover { background: rgba(22,27,34,0.9); border-color: #404a55; text-decoration: none; color: var(--fg); }
+    .hero-mini {
+      margin-top: 18px;
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    /* ─── KILLER PROPERTY ────────────────────────────────── */
+    .killer {
+      padding: 60px 0;
+      border-top: 1px solid var(--line);
+    }
+    .killer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 760px) {
+      .killer-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+    .killer h2 {
+      font-size: clamp(26px, 3vw, 36px);
+      letter-spacing: -0.6px;
+      margin-bottom: 16px;
+      line-height: 1.18;
+    }
+    .killer h2 em { color: var(--accent); font-style: normal; }
+    .killer p { color: var(--fg-soft); margin-bottom: 14px; }
+    .killer-vis {
+      position: relative;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .killer-vis-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0;
+      font-size: 13px;
+      color: var(--fg-soft);
+      border-bottom: 1px dashed var(--line);
+    }
+    .killer-vis-row:last-child { border-bottom: 0; }
+    .killer-vis-row .icon {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+    .icon-up { background: rgba(63,185,80,0.15); color: var(--green); }
+    .icon-relay { background: rgba(88,166,255,0.15); color: var(--blue); }
+    .icon-off { background: rgba(248,81,73,0.12); color: #f85149; }
+
+    /* ─── SECTIONS ────────────────────────────────────────── */
+    section.block { padding: 70px 0; border-top: 1px solid var(--line); }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding: 3px 10px;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+    h2.section {
+      font-size: clamp(26px, 3vw, 36px);
+      letter-spacing: -0.6px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    h2.section em { color: var(--accent); font-style: normal; }
+    .lede { color: var(--fg-soft); max-width: 640px; margin-bottom: 32px; }
+
+    /* ─── TILES ───────────────────────────────────────────── */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .tile {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+    .tile:hover {
+      border-color: var(--line-hi);
+      transform: translateY(-2px);
+    }
+    .tile-icon {
+      width: 44px; height: 44px;
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .tile-icon.t1 { background: linear-gradient(135deg, #238636, #3fb950); }
+    .tile-icon.t2 { background: linear-gradient(135deg, #1f6feb, #58a6ff); }
+    .tile-icon.t3 { background: linear-gradient(135deg, #8957e5, #bc8cff); }
+    .tile h3 {
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 10px; letter-spacing: -0.2px;
+    }
+    .tile p { color: var(--fg-soft); font-size: 14px; }
+
+    /* ─── ECOSYSTEM CARDS ─────────────────────────────────── */
+    .ecosystem {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .eco-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .eco-card:hover {
+      border-color: var(--line-hi);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .eco-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; color: #0a0d12;
+      margin-bottom: 14px;
+    }
+    .eco-icon.hw { background: linear-gradient(135deg, #a371f7, #d946ef); color: #fff; }
+    .eco-icon.hr { background: linear-gradient(135deg, #00ff41, #3eaf55); color: #002b0e; }
+    .eco-icon.pb { background: linear-gradient(135deg, #ff6600, #fbbf24); }
+    .eco-icon.hf { background: linear-gradient(135deg, #58a6ff, #79c0ff); }
+    .eco-name {
+      font-size: 16px; font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .eco-desc { font-size: 13px; color: var(--fg-soft); flex: 1; margin-bottom: 14px; }
+    .eco-link {
+      font-family: ui-monospace, monospace;
+      font-size: 11px; color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+    .eco-link strong { color: var(--accent); }
+
+    /* ─── QUICKSTART ─────────────────────────────────────── */
+    .terminal {
+      background: #0d1117;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px -12px rgba(0,0,0,0.55);
+      max-width: 720px;
+    }
+    .terminal-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px;
+      background: rgba(22,27,34,0.7);
+      border-bottom: 1px solid var(--line);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+    .terminal-title { flex: 1; text-align: center; font-size: 11px; color: var(--dim); font-family: ui-monospace, monospace; }
+    .terminal-body { padding: 18px 22px; font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.85; color: var(--fg-soft); }
+    .terminal-body .prompt { color: var(--green); margin-right: 10px; user-select: none; }
+    .terminal-body .comment { color: var(--dim); font-style: italic; }
+    .terminal-body .key { color: var(--blue); }
+    .step-list {
+      counter-reset: step;
+      list-style: none;
+      max-width: 720px;
+      margin-top: 24px;
+    }
+    .step-list li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 38px;
+      margin-bottom: 14px;
+      color: var(--fg-soft);
+    }
+    .step-list li::before {
+      content: counter(step);
+      position: absolute; left: 0; top: -1px;
+      width: 26px; height: 26px;
+      background: var(--bg-elev);
+      border: 1px solid var(--line-hi);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--accent);
+      font-family: ui-monospace, monospace;
+    }
+    .step-list strong { color: var(--fg); }
+
+    /* ─── SPEC TABLE ─────────────────────────────────────── */
+    .spec {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .spec table { width: 100%; border-collapse: collapse; }
+    .spec th, .spec td {
+      padding: 14px 22px;
+      text-align: left;
+      font-size: 14px;
+      vertical-align: top;
+      border-top: 1px solid var(--line);
+    }
+    .spec tr:first-child th, .spec tr:first-child td { border-top: 0; }
+    .spec th {
+      color: var(--muted);
+      font-weight: 600;
+      width: 200px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .spec td { color: var(--fg); }
+    @media (max-width: 600px) {
+      .spec th, .spec td { display: block; width: auto; padding: 6px 16px; }
+      .spec th { padding-top: 14px; }
+      .spec td { padding-bottom: 14px; border-top: 0; }
+      .spec tr { border-top: 1px solid var(--line); }
+      .spec tr:first-child { border-top: 0; }
+    }
+
+    /* ─── FAQ ─────────────────────────────────────────────── */
+    .faq details {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      transition: border-color 0.15s ease;
+    }
+    .faq details[open] { border-color: var(--line-hi); }
+    .faq summary {
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; gap: 14px;
+      font-weight: 600; font-size: 15px;
+      color: var(--fg);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+";
+      color: var(--muted);
+      font-size: 22px; line-height: 1;
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.18s ease;
+      flex-shrink: 0;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); color: var(--accent); }
+    .faq details p {
+      margin-top: 12px;
+      color: var(--fg-soft);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ─── CTA + FOOTER ────────────────────────────────────── */
+    .final {
+      padding: 70px 24px 100px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(circle 600px at 50% 0%, rgba(63,185,80,0.08), transparent 60%);
+    }
+    .final h2 {
+      font-size: clamp(28px, 3.4vw, 40px);
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+    }
+    .final p {
+      color: var(--fg-soft);
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+    footer {
+      padding: 40px 24px 30px;
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--dim);
+      font-size: 13px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+    .footer-title {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    footer ul { list-style: none; }
+    footer li { padding: 4px 0; }
+    .footer-meta {
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 12px;
+      color: var(--dim);
+    }
+    .footer-meta code { font-size: 11px; }
+
+    .key-block {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(2,6,12,0.6);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 10px;
+      overflow-wrap: anywhere;
+      display: inline-block;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="top">
+    <div class="inner">
+      <a class="brand" href="#top">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22">
+          <defs>
+            <radialGradient id="gN" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#7ee787"/>
+              <stop offset="100%" stop-color="#238636"/>
+            </radialGradient>
+          </defs>
+          <circle cx="60" cy="30" r="5" fill="url(#gN)"/>
+          <circle cx="42" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="78" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="60" cy="72" r="7" fill="url(#gN)"/>
+          <circle cx="36" cy="90" r="7.5" fill="url(#gN)"/>
+          <circle cx="84" cy="90" r="7.5" fill="url(#gN)"/>
+        </svg>
+        <span><strong>Pear</strong>Browser</span>
+      </a>
+      <div class="links">
+        <a href="#how">How it works</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="wrap">
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        <span>v0.4.3 · Apache-2.0 · macOS · Windows · Linux</span>
+      </div>
+      <h1>
+        The browser for the
+        <span class="grad">peer-to-peer web</span>.
+      </h1>
+      <p class="hero-sub">
+        Sites that don't go down. Apps that install from public keys. Multiplayer games with no backend.
+        <br/>
+        <strong>No accounts. No DNS. No servers.</strong>
+      </p>
+
+      <div class="hero-cmd" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
+        <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#install">Get running →</a>
+        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">View the source</a>
+      </div>
+
+      <div class="hero-mini">
+        One install, three platforms. Pear downloads the matching native runtime on first launch.
+      </div>
+    </div>
+  </header>
+
+  <!-- KILLER PROPERTY -->
+  <section class="killer">
+    <div class="wrap killer-grid">
+      <div>
+        <span class="eyebrow">The promise</span>
+        <h2>Every site you visit, <em>stays visitable</em>.</h2>
+        <p>
+          Today's web is rented. The site you bookmarked five years ago is probably a 404 by now. The domain expired, the company pivoted, the host shut down — and your link died with it.
+        </p>
+        <p>
+          PearBrowser is built on the <a href="https://pears.com">Pear runtime</a> and the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. Sites are <strong>Hyperdrives addressed by public key</strong>, replicated peer-to-peer, and pinned 24/7 on a relay network you can join too. The publisher's laptop being offline doesn't matter — the relays carry the bytes.
+        </p>
+        <p>
+          When you bookmark a `hyper://` URL, you bookmark <strong>a thing that exists</strong>. Not a thing that resolves to a thing if a company decides to keep paying for it.
+        </p>
+      </div>
+      <div class="killer-vis">
+        <div class="killer-vis-row">
+          <span class="icon icon-up">↑</span>
+          <span><strong style="color:var(--fg)">You publish</strong> — block editor, signed seed-request, <code>hyper://key/</code> in hand.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-relay">⟳</span>
+          <span><strong style="color:var(--fg)">5 relays pin it</strong> automatically, in two regions. 365-day TTL.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-off">⏻</span>
+          <span><strong style="color:var(--fg)">You close your laptop.</strong> The site stays reachable.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-up">✓</span>
+          <span><strong style="color:var(--fg)">Anyone with the key</strong> opens it in PearBrowser — or any web browser via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS / HOW IT WORKS -->
+  <section id="how" class="block">
+    <div class="wrap">
+      <span class="eyebrow">What it is</span>
+      <h2 class="section">Three things in one app — <em>each fully P2P</em>.</h2>
+      <p class="lede">No "P2P module for an existing Chromium." Built bottom-up on the Holepunch stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Ed25519 for identity.</p>
+      <div class="tiles">
+
+        <div class="tile">
+          <div class="tile-icon t1">🌐</div>
+          <h3>Browse <code>hyper://</code></h3>
+          <p>Paste a drive key — hex or z-base-32 — and PearBrowser streams the content directly from peers through the Hyperswarm DHT. Multi-tab, back/forward, bookmarks, history. Devtools when you want them.</p>
+        </div>
+
+        <div class="tile">
+          <div class="tile-icon t2">📦</div>
+          <h3>Run Pear apps</h3>
+          <p>Click a <code>pear://</code> link, the app opens in its own isolated window. Load any decentralised catalog Hyperdrive — browse, install, launch, uninstall. No store gatekeeper. No 30% cut. Featured: <strong>Keet</strong>, <strong>PearPass</strong>, <strong>HiveWorm</strong>.</p>
+        </div>
+
+        <div class="tile">
+          <div class="tile-icon t3">✒️</div>
+          <h3>Publish your own</h3>
+          <p>Built-in block editor — headings, paragraphs, images, lists, quotes, code, raw HTML. Publish creates a Hyperdrive, signs an Ed25519 seed-request, broadcasts to HiveRelay, and waits for at least one relay to actually replicate before saying done. Copy the <code>hyper://</code> URL. Share it. It works.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM (HIVEWORM ETC.) -->
+  <section id="ecosystem" class="block">
+    <div class="wrap">
+      <span class="eyebrow">The ecosystem</span>
+      <h2 class="section">Built around it, from day one.</h2>
+      <p class="lede">PearBrowser isn't shipping into a void. Featured Pear apps and ecosystem sites that already work — pinned, reachable, real.</p>
+      <div class="ecosystem">
+
+        <a class="eco-card" href="pear://d1xbkcpcbi1xa8dexp49rsendra5r67w3qh5a9k8t44oemm4k16y">
+          <div class="eco-icon hw">W</div>
+          <div class="eco-name">HiveWorm</div>
+          <div class="eco-desc">Multiplayer life-sim. You're a worm in a 2D meadow. Eat dots, grow, don't crash. Real-time peer gossip over Hyperswarm — no game server.</div>
+          <div class="eco-link"><strong>pear://</strong>d1xbkcpc…m4k16y</div>
+        </a>
+
+        <a class="eco-card" href="https://github.com/bigdestiny2/P2P-Hiverelay">
+          <div class="eco-icon hr">H</div>
+          <div class="eco-name">HiveRelay</div>
+          <div class="eco-desc">The always-on relay backbone. Blind-encrypted seeding (relay can't read your data). Two regions, five nodes today. Apache-2.0 — run your own.</div>
+          <div class="eco-link"><strong>github</strong>/bigdestiny2/P2P-Hiverelay</div>
+        </a>
+
+        <a class="eco-card" href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">
+          <div class="eco-icon pb">P</div>
+          <div class="eco-name">P2P Builders</div>
+          <div class="eco-desc">Permissionless hacker news for anons who build peer-to-peer. Runs in your terminal. No accounts, no moderators, no servers.</div>
+          <div class="eco-link"><strong>hyper://</strong>f0cd01e3…b3db42a</div>
+        </a>
+
+        <a class="eco-card" href="https://github.com/bigdestiny2/hyper-fetch">
+          <div class="eco-icon hf">F</div>
+          <div class="eco-name">hyper-fetch</div>
+          <div class="eco-desc">~5 KB JS library. Read <code>hyper://</code> drives from any browser via the HiveRelay HTTP gateway. Drop into a blog, a PWA, a link previewer.</div>
+          <div class="eco-link"><strong>github</strong>/bigdestiny2/hyper-fetch</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL / QUICKSTART -->
+  <section id="install" class="block">
+    <div class="wrap">
+      <span class="eyebrow">Quickstart</span>
+      <h2 class="section">Up and running in <em>thirty seconds</em>.</h2>
+      <p class="lede">PearBrowser is a Pear runtime app. Install the runtime once (it auto-fetches the matching native binary), then run PearBrowser by its public key.</p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="terminal-title">~/pearbrowser &mdash; zsh</span>
+        </div>
+        <div class="terminal-body">
+          <span class="comment"># 1. Install Pear (one time, all three OSes)</span><br>
+          <span class="prompt">$</span> npm i -g pear<br>
+          <span class="prompt">$</span> pear <span class="comment"># bootstrap</span><br>
+          <br>
+          <span class="comment"># 2. Launch PearBrowser</span><br>
+          <span class="prompt">$</span> pear run pear://<span class="key">tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span>
+        </div>
+      </div>
+
+      <ol class="step-list">
+        <li><strong>Need Node first?</strong> Install <a href="https://nodejs.org">Node.js 20+</a>. Pear ships through npm.</li>
+        <li><strong>First-launch onboarding</strong> walks you through generating an identity (BIP-39 backed) and picking a first site to visit.</li>
+        <li><strong>Tabs persist across launches</strong> — open today, close, reopen tomorrow, exact same tabs back.</li>
+        <li><strong>Pear runtime updates itself</strong> — when we ship a new PearBrowser release, your next launch hot-syncs the new bytes from the swarm.</li>
+      </ol>
+
+      <p class="lede" style="margin-top: 28px; font-size: 13px; padding: 12px 16px; background: rgba(255,169,64,0.06); border-left: 3px solid var(--amber); border-radius: 4px;">
+        <strong style="color: var(--amber)">Heads-up:</strong> <code>pear run</code> is officially deprecated as of Pear runtime <code>v2.4.0</code>. It still works today and will continue to for the foreseeable future. The longer-term distribution path is signed native installers (.app / .exe / .deb) via <code>pear build</code> — coming soon to a release near you. Nothing breaks until then.
+      </p>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="block">
+    <div class="wrap">
+      <span class="eyebrow">Tech</span>
+      <h2 class="section">The grown-up table.</h2>
+      <p class="lede">For the people who scroll to the bottom first.</p>
+      <div class="spec">
+        <table>
+          <tr><th>Version</th><td>v0.4.3 (released 2026-05-12) · <code>length 4914</code></td></tr>
+          <tr><th>Runtime</th><td>Pear v0.3243+ (Bare + Chromium via <code>pear-electron</code>)</td></tr>
+          <tr><th>Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>p2p-hiverelay 0.8.5</code></td></tr>
+          <tr><th>Identity</th><td>BIP-39 128-bit entropy → SHA-512 seed → Ed25519 publisher keypair. Per-app sub-keys derived per drive.</td></tr>
+          <tr><th>Bridge surface</th><td><code>window.pear.swarm.v1</code> exposes Hyperswarm directly to <code>hyper://</code> pages (see <a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
+          <tr><th>Storage</th><td>Corestore + rocksdb. 1 GB soft cap, LRU eviction at 80%.</td></tr>
+          <tr><th>Platforms</th><td>macOS 14+, Windows 10+, Linux x64 + arm64 — all via Pear Runtime</td></tr>
+          <tr><th>Bundle size</th><td>~50 MB (app) + ~250 MB Pear runtime (shared across all Pear apps you install)</td></tr>
+          <tr><th>Network footprint</th><td>~5-20 KB/s idle (DHT maintenance); scales with replication</td></tr>
+          <tr><th>License</th><td>Apache-2.0 (backend) · MIT (additions)</td></tr>
+          <tr><th>Production key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="block">
+    <div class="wrap">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section">Honest answers.</h2>
+
+      <div class="faq" style="max-width: 760px">
+
+        <details>
+          <summary>How is this different from Beaker Browser?</summary>
+          <p>Beaker pioneered P2P browsing on the original Dat protocol. PearBrowser builds on the current-generation Holepunch / Pear stack — same philosophy, modern transport (UDX + Hyperswarm + DHT-over-WebSocket relays instead of Dat DHT), first-class publishing, and explicit HiveRelay pinning so sites stay up when your laptop doesn't.</p>
+        </details>
+
+        <details>
+          <summary>What happens to my site when I close my laptop?</summary>
+          <p>Nothing — that's the point. When you publish, the relays accept your signed seed-request, replicate the drive's blocks, and serve them to anyone with the key. The publisher (you) can be offline indefinitely. Re-pin once a year to refresh the TTL.</p>
+        </details>
+
+        <details>
+          <summary>Who pays for the relays?</summary>
+          <p>The public HiveRelay network is open source (Apache-2.0) and free to use today. It's a small foundation network — soft replication factor of 3, generous quotas. If you want guaranteed 24/7 availability on hardware you control, the repo ships a one-binary relay you can run on any VPS for the cost of a small Hetzner box.</p>
+        </details>
+
+        <details>
+          <summary>Can I read <code>hyper://</code> from a regular browser?</summary>
+          <p>Yes, via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> — a 5 KB drop-in JS library that talks to the HiveRelay HTTP gateway. Works in every browser, every PWA, every link previewer. The full peer experience (publishing, identity, signed login) still requires PearBrowser.</p>
+        </details>
+
+        <details>
+          <summary>What if I lose my laptop?</summary>
+          <p>If you backed up your 12-word phrase (Settings → Moving to a new device?), you restore your identity on a new machine and everything still works — bookmarks, profile, login grants for sites that recognise you. If you didn't back up: the drives you published stay alive on the relays forever, but you can never update or unseed them. Write the phrase down.</p>
+        </details>
+
+        <details>
+          <summary>Is there a mobile version?</summary>
+          <p>Not yet for the full desktop experience. A PWA viewer built on hyper-fetch is in scope — read any <code>hyper://</code> drive from a phone browser, no install. Native mobile companion with identity sync via shared seed is the next major release.</p>
+        </details>
+
+        <details>
+          <summary>Is it Apple/Google notarised?</summary>
+          <p>Pear runtime itself is signed (the binary the user installs first). PearBrowser runs inside it as a published app — its security model is the Hypercore signing key, not OS-level codesigning. Per-OS notarised installers are on the roadmap when there's reason to ship them; the cross-platform <code>pear://</code> path covers most users.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Ready to take your sites off the cloud?</h2>
+      <p>Run PearBrowser today. Open the Sites tab. Publish your first site — pinned to HiveRelay before you hit save, served by five relays in two regions, signed by your identity, addressable by public key.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#install">Get running →</a>
+        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top" style="margin-bottom: 10px;">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
+            <span><strong>Pear</strong>Browser</span>
+          </a>
+          <p style="margin-top: 10px;">The browser for the peer-to-peer web. Open source. Apache-2.0.</p>
+        </div>
+        <div>
+          <div class="footer-title">The app</div>
+          <ul>
+            <li><a href="#install">Install</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">window.pear.swarm.v1</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Ecosystem</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/hiveworm">HiveWorm</a> — multiplayer game</li>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> — relay backbone</li>
+            <li><a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> — browser library</li>
+            <li><a href="https://pears.com">Pear Runtime</a> — the platform</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        This site is also published as a Hyperdrive. View at <code>hyper://2d6c2be9…/</code> in any P2P client.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const text = btn.closest('[data-copy]')?.dataset.copy || ''
+        try {
+          await navigator.clipboard.writeText(text.trim())
+          const orig = btn.textContent
+          btn.textContent = 'Copied'
+          btn.classList.add('copied')
+          setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied') }, 1500)
+        } catch {
+          btn.textContent = 'Failed'
+          setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+        }
+      })
+    })
+  </script>
+</body>
+</html>
