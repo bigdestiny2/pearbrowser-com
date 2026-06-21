@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PearBrowser — the browser for the peer-to-peer web</title>
-  <meta name="description" content="Browse, run, and publish on the P2P web. macOS, Windows, Linux. No accounts. No servers. Sites pinned 24/7 on the HiveRelay backbone — they don't go down when you do." />
+  <title>PearBrowser — the desktop browser for the peer-to-peer web</title>
+  <meta name="description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse search that finds pages through people you trust, not a crawler. macOS, Windows, Linux. No accounts, no servers, no DNS." />
   <meta name="theme-color" content="#0a0d12" />
-  <meta property="og:title" content="PearBrowser — the browser for the peer-to-peer web" />
-  <meta property="og:description" content="No accounts, no servers, no DNS. Sites are public keys. Apps install from decentralized catalogs. Multiplayer games run with no backend." />
+  <meta property="og:title" content="PearBrowser — the browser with no servers behind it" />
+  <meta property="og:description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse decentralized search over a social trust graph, not a crawler." />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PearBrowser — the browser with no servers behind it" />
+  <meta name="twitter:description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7. Lighthouse search finds pages through people you trust, not a crawler." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,6 +19,7 @@
       color-scheme: dark;
       --bg: #0a0d12;
       --bg-elev: #11161e;
+      --bg-elev-2: #141a23;
       --fg: #e6edf3;
       --fg-soft: #adbac7;
       --muted: #8b949e;
@@ -24,115 +28,176 @@
       --line-hi: #2d3540;
       --green: #3fb950;
       --green-soft: #7ee787;
+      --green-deep: #1e7a30;
       --green-glow: rgba(63,185,80,0.35);
       --blue: #58a6ff;
+      --purple: #a371f7;
       --amber: #ffa940;
       --accent: var(--green-soft);
+      --radius: 14px;
+      --shadow-lg: 0 24px 60px -18px rgba(0,0,0,0.6);
+      --shadow-md: 0 12px 36px -12px rgba(0,0,0,0.5);
+      --maxw: 1120px;
+      --space: clamp(60px, 9vw, 96px);
     }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--fg);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", system-ui, sans-serif;
-      font-size: 16px; line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       overflow-x: hidden;
     }
     body::before {
       content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background:
-        radial-gradient(circle 800px at 15% 0%, rgba(63,185,80,0.08), transparent 50%),
-        radial-gradient(circle 600px at 90% 30%, rgba(88,166,255,0.06), transparent 50%);
+        radial-gradient(circle 900px at 12% -5%, rgba(63,185,80,0.10), transparent 45%),
+        radial-gradient(circle 700px at 92% 12%, rgba(88,166,255,0.06), transparent 50%),
+        radial-gradient(circle 800px at 60% 100%, rgba(163,113,247,0.045), transparent 55%);
     }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-    a { color: var(--green-soft); text-decoration: none; }
-    a:hover { color: #b6f5b9; text-decoration: underline; }
-    code, pre, kbd { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; }
-    code { background: rgba(2,6,12,0.6); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; color: var(--accent); }
+    /* faint grid texture */
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle 700px at 50% 0%, #000, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle 700px at 50% 0%, #000, transparent 80%);
+    }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    a { color: var(--green-soft); text-decoration: none; transition: color 0.15s ease; }
+    a:hover { color: #b6f5b9; }
+    a:focus-visible, button:focus-visible, summary:focus-visible, .copy-btn:focus-visible {
+      outline: 2px solid var(--green-soft);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+    code, pre, kbd { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.9em; }
+    code { background: rgba(2,6,12,0.6); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--accent); }
+    h1, h2, h3 { text-wrap: balance; }
+    .skip {
+      position: absolute; left: -999px; top: 0; z-index: 200;
+      background: var(--green); color: #04210a; padding: 10px 16px; border-radius: 0 0 8px 0;
+      font-weight: 700; font-size: 14px;
+    }
+    .skip:focus { left: 0; }
 
     /* ─── NAV ────────────────────────────────────────────── */
     nav.top {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(10,13,18,0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      position: sticky; top: 0; z-index: 60;
+      background: rgba(10,13,18,0.72);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
       border-bottom: 1px solid var(--line);
     }
     nav.top .inner {
-      max-width: 1080px; margin: 0 auto;
-      padding: 14px 24px;
+      max-width: var(--maxw); margin: 0 auto;
+      padding: 13px 24px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px;
     }
-    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); font-weight: 600; }
-    .brand:hover { text-decoration: none; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); font-weight: 600; font-size: 16px; letter-spacing: -0.2px; }
+    .brand:hover { color: var(--fg); }
     .brand-logo { display: block; filter: drop-shadow(0 0 14px rgba(63,185,80,0.5)); }
-    nav.top .links { display: flex; gap: 22px; align-items: center; }
-    nav.top .links a { color: var(--muted); font-size: 14px; font-weight: 500; }
-    nav.top .links a:hover { color: var(--fg); text-decoration: none; }
+    nav.top .links { display: flex; gap: 6px; align-items: center; }
+    nav.top .links a:not(.cta) { color: var(--muted); font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 8px; }
+    nav.top .links a:not(.cta):hover { color: var(--fg); background: rgba(255,255,255,0.04); }
     nav.top .cta {
-      background: linear-gradient(180deg, #2ea043, #1e7a30);
+      background: linear-gradient(180deg, #2ea043, var(--green-deep));
       color: #fff !important;
-      padding: 7px 14px;
-      border-radius: 8px;
+      padding: 8px 15px;
+      border-radius: 9px;
       font-size: 13px;
       font-weight: 600;
+      margin-left: 6px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 14px -6px var(--green-glow);
     }
-    nav.top .cta:hover { filter: brightness(1.08); text-decoration: none; }
-    @media (max-width: 720px) { nav.top .links a:not(.cta) { display: none; } }
+    nav.top .cta:hover { filter: brightness(1.08); }
+    .nav-toggle {
+      display: none; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line-hi); border-radius: 9px;
+      width: 40px; height: 38px; cursor: pointer; color: var(--fg);
+      align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    }
+    .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--fg); border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    @media (max-width: 860px) {
+      .nav-toggle { display: flex; }
+      nav.top .links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 4px;
+        background: rgba(10,13,18,0.97);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+        padding: 14px 20px 20px;
+        transform: translateY(-8px); opacity: 0; pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      nav.top .links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      nav.top .links a:not(.cta) { padding: 12px 14px; font-size: 16px; }
+      nav.top .cta { margin: 6px 0 0; text-align: center; padding: 12px; }
+    }
 
     /* ─── HERO ───────────────────────────────────────────── */
-    header.hero { padding: 80px 24px 60px; text-align: center; }
+    header.hero { padding: clamp(64px, 11vw, 110px) 24px clamp(48px, 7vw, 72px); text-align: center; }
     .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 14px;
-      background: rgba(63,185,80,0.06);
-      border: 1px solid rgba(63,185,80,0.25);
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 6px 15px;
+      background: rgba(63,185,80,0.07);
+      border: 1px solid rgba(63,185,80,0.28);
       border-radius: 999px;
-      font-size: 12px; color: var(--accent);
-      margin-bottom: 24px;
+      font-size: 12.5px; color: var(--accent); font-weight: 500;
+      margin-bottom: 26px;
+      box-shadow: inset 0 0 20px rgba(63,185,80,0.05);
     }
     .hero-tag-dot {
       width: 8px; height: 8px; border-radius: 50%;
       background: var(--green); box-shadow: 0 0 12px var(--green);
-      animation: pulse 1.6s ease-in-out infinite;
+      animation: pulse 1.8s ease-in-out infinite;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
     h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1.04;
-      letter-spacing: -1.6px;
+      font-size: clamp(38px, 6.4vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -2px;
       font-weight: 800;
-      max-width: 880px;
-      margin: 0 auto 22px;
+      max-width: 960px;
+      margin: 0 auto 24px;
     }
     h1 .grad {
-      background: linear-gradient(120deg, #7ee787 0%, #58a6ff 65%, #a371f7 100%);
+      background: linear-gradient(115deg, #7ee787 0%, #58a6ff 60%, #a371f7 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero-sub {
       color: var(--fg-soft);
-      font-size: clamp(16px, 1.6vw, 19px);
-      max-width: 640px;
-      margin: 0 auto 32px;
+      font-size: clamp(16px, 1.7vw, 20px);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 36px;
     }
     .hero-sub strong { color: var(--fg); font-weight: 600; }
+    .hero-sub .hl { color: var(--green-soft); font-weight: 600; }
     .hero-cmd {
-      display: inline-flex; align-items: center; gap: 8px;
-      max-width: 720px; width: 100%;
-      background: rgba(2,6,12,0.72);
+      display: inline-flex; align-items: center; gap: 10px;
+      max-width: 760px; width: 100%;
+      background: rgba(2,6,12,0.78);
       border: 1px solid var(--line-hi);
-      border-radius: 12px;
-      padding: 12px 14px;
-      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.55);
+      border-radius: 13px;
+      padding: 13px 14px;
+      box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.03);
       font-family: "SF Mono", ui-monospace, Menlo, monospace;
       font-size: 13px;
       text-align: left;
     }
-    .hero-cmd::before { content: "$"; color: var(--dim); }
+    .hero-cmd::before { content: "$"; color: var(--dim); padding-left: 4px; }
     .hero-cmd code {
       flex: 1; background: transparent; border: 0; padding: 0;
       color: var(--green-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -140,236 +205,376 @@
     .copy-btn {
       background: #1f2630; color: var(--fg);
       border: 1px solid var(--line-hi);
-      padding: 5px 12px; border-radius: 6px;
+      padding: 6px 13px; border-radius: 7px;
       font-size: 12px; font-weight: 600;
       cursor: pointer; font-family: inherit;
-      transition: all 0.12s ease;
+      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+      flex-shrink: 0;
     }
     .copy-btn:hover { background: #2d3540; }
-    .copy-btn.copied { background: rgba(63,185,80,0.15); color: var(--green); border-color: var(--green); }
+    .copy-btn.copied { background: rgba(63,185,80,0.16); color: var(--green-soft); border-color: var(--green); }
     .hero-actions {
-      display: flex; gap: 10px; justify-content: center;
-      margin-top: 20px; flex-wrap: wrap;
+      display: flex; gap: 12px; justify-content: center;
+      margin-top: 22px; flex-wrap: wrap;
     }
     .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 11px 22px;
-      border-radius: 10px;
-      font-size: 14px; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 12px 24px;
+      border-radius: 11px;
+      font-size: 14.5px; font-weight: 600;
       cursor: pointer; border: 1px solid transparent;
-      transition: all 0.15s ease;
+      transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
       font-family: inherit;
     }
     .btn.primary {
-      background: linear-gradient(180deg, #3fb950, #1e7a30);
-      color: #fff; border-color: #1e7a30;
+      background: linear-gradient(180deg, #3fb950, var(--green-deep));
+      color: #fff; border-color: var(--green-deep);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 6px 20px -8px var(--green-glow);
     }
     .btn.primary:hover {
       filter: brightness(1.1);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px -6px var(--green-glow);
-      text-decoration: none; color: #fff;
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 12px 28px -8px var(--green-glow);
+      color: #fff;
     }
     .btn.subtle {
       background: rgba(22,27,34,0.6);
       color: var(--fg);
       border-color: var(--line-hi);
     }
-    .btn.subtle:hover { background: rgba(22,27,34,0.9); border-color: #404a55; text-decoration: none; color: var(--fg); }
+    .btn.subtle:hover { background: rgba(22,27,34,0.95); border-color: #404a55; transform: translateY(-2px); color: var(--fg); }
     .hero-mini {
-      margin-top: 18px;
+      margin-top: 20px;
       color: var(--dim);
-      font-size: 12px;
+      font-size: 12.5px;
     }
+    /* trust strip */
+    .trust-strip {
+      margin-top: 44px;
+      display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center;
+      font-size: 12.5px; color: var(--muted);
+    }
+    .trust-strip span { display: inline-flex; align-items: center; gap: 7px; }
+    .trust-strip svg { flex-shrink: 0; }
 
-    /* ─── KILLER PROPERTY ────────────────────────────────── */
-    .killer {
-      padding: 60px 0;
-      border-top: 1px solid var(--line);
-    }
-    .killer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    @media (max-width: 760px) {
-      .killer-grid { grid-template-columns: 1fr; gap: 28px; }
-    }
-    .killer h2 {
-      font-size: clamp(26px, 3vw, 36px);
-      letter-spacing: -0.6px;
-      margin-bottom: 16px;
-      line-height: 1.18;
-    }
-    .killer h2 em { color: var(--accent); font-style: normal; }
-    .killer p { color: var(--fg-soft); margin-bottom: 14px; }
-    .killer-vis {
-      position: relative;
+    /* ─── SECTION SCAFFOLD ────────────────────────────────── */
+    section.block { padding: var(--space) 0; border-top: 1px solid var(--line); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding: 4px 11px;
       background: var(--bg-elev);
       border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 22px;
+      border-radius: 999px;
+    }
+    .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+    h2.section {
+      font-size: clamp(28px, 3.4vw, 42px);
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+      line-height: 1.12;
+      font-weight: 800;
+    }
+    h2.section em { color: var(--accent); font-style: normal; }
+    .lede { color: var(--fg-soft); max-width: 660px; margin-bottom: 38px; font-size: clamp(15px, 1.4vw, 17px); }
+
+    /* badge pills (status labels) */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+      padding: 3px 10px; border-radius: 999px; text-transform: uppercase;
+      vertical-align: middle;
+    }
+    .pill.live { background: rgba(63,185,80,0.13); color: var(--green-soft); border: 1px solid rgba(63,185,80,0.3); }
+    .pill.exp { background: rgba(255,169,64,0.12); color: var(--amber); border: 1px solid rgba(255,169,64,0.3); }
+    .pill.phase { background: rgba(88,166,255,0.12); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+    .pill.smoke { background: rgba(163,113,247,0.13); color: var(--purple); border: 1px solid rgba(163,113,247,0.3); }
+    .pill .ld { width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+
+    /* ─── LIGHTHOUSE (headline feature) ───────────────────── */
+    .lighthouse-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: center;
+    }
+    @media (max-width: 880px) { .lighthouse-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .lh-copy h2 { margin-bottom: 16px; }
+    .lh-points { list-style: none; margin-top: 26px; display: grid; gap: 16px; }
+    .lh-points li { display: flex; gap: 13px; align-items: flex-start; color: var(--fg-soft); font-size: 14.5px; }
+    .lh-check {
+      flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px;
+      background: rgba(63,185,80,0.13); border: 1px solid rgba(63,185,80,0.3);
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .lh-points li strong { color: var(--fg); font-weight: 600; }
+
+    /* search demo card */
+    .lh-demo {
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
+      border: 1px solid var(--line-hi);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .lh-demo::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle 360px at 80% -10%, rgba(63,185,80,0.12), transparent 60%);
+    }
+    .lh-search {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(2,6,12,0.6); border: 1px solid var(--line-hi);
+      border-radius: 11px; padding: 11px 14px; position: relative; z-index: 1;
+    }
+    .lh-search svg { flex-shrink: 0; color: var(--muted); }
+    .lh-search .q { color: var(--fg); font-size: 14px; flex: 1; }
+    .lh-search .caret { width: 2px; height: 16px; background: var(--green-soft); animation: blink 1.1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .lh-toggle {
+      display: flex; align-items: center; gap: 9px; justify-content: space-between;
+      margin: 14px 2px 6px; font-size: 12.5px; color: var(--fg-soft); position: relative; z-index: 1;
+    }
+    .lh-switch {
+      width: 40px; height: 22px; border-radius: 999px;
+      background: rgba(63,185,80,0.3); border: 1px solid rgba(63,185,80,0.5);
+      position: relative; flex-shrink: 0;
+    }
+    .lh-switch::after {
+      content: ""; position: absolute; top: 1px; right: 1px;
+      width: 18px; height: 18px; border-radius: 50%; background: var(--green-soft);
+      box-shadow: 0 0 10px var(--green-glow);
+    }
+    .lh-results { margin-top: 12px; display: grid; gap: 9px; position: relative; z-index: 1; }
+    .lh-row {
+      background: rgba(2,6,12,0.45); border: 1px solid var(--line);
+      border-radius: 10px; padding: 11px 13px;
+    }
+    .lh-row-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 3px; }
+    .lh-row-title { font-size: 13.5px; color: var(--fg); font-weight: 600; }
+    .lh-row-url { font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .prov {
+      flex-shrink: 0; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 2px 8px; border-radius: 999px; text-transform: uppercase;
+    }
+    .prov.you { background: rgba(63,185,80,0.14); color: var(--green-soft); border: 1px solid rgba(63,185,80,0.3); }
+    .prov.trusted { background: rgba(88,166,255,0.13); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+    .lh-foot {
+      margin-top: 13px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
+      font-size: 11px; color: var(--dim); position: relative; z-index: 1;
+    }
+    .lh-foot b { color: var(--green-soft); }
+
+    /* ─── FEATURE TILES ───────────────────────────────────── */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+    .tile {
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+    }
+    .tile:hover {
+      border-color: var(--line-hi);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .tile-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 17px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 16px -8px rgba(0,0,0,0.5);
+      color: #fff;
+    }
+    .tile-icon.t1 { background: linear-gradient(135deg, #238636, #3fb950); }
+    .tile-icon.t2 { background: linear-gradient(135deg, #1f6feb, #58a6ff); }
+    .tile-icon.t3 { background: linear-gradient(135deg, #8957e5, #bc8cff); }
+    .tile-icon.t4 { background: linear-gradient(135deg, #bb6a1a, #ffa940); }
+    .tile-icon.t5 { background: linear-gradient(135deg, #1a8c7a, #2dd4bf); }
+    .tile-icon.t6 { background: linear-gradient(135deg, #b3308a, #f471b5); }
+    .tile h3 {
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 9px; letter-spacing: -0.2px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    }
+    .tile p { color: var(--fg-soft); font-size: 14px; }
+    .tile p + p { margin-top: 10px; }
+
+    /* ─── PIPELINE / TRUST DIAGRAM ────────────────────────── */
+    .pipeline {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      counter-reset: pstep;
+    }
+    @media (max-width: 880px) { .pipeline { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .pipeline { grid-template-columns: 1fr; } }
+    .pstep {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: 12px; padding: 20px 18px; position: relative;
+    }
+    .pstep .num {
+      counter-increment: pstep; font-family: ui-monospace, monospace;
+      font-size: 12px; font-weight: 700; color: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 8px;
+      background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.28);
+      margin-bottom: 12px;
+    }
+    .pstep .num::before { content: counter(pstep, decimal-leading-zero); }
+    .pstep h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 6px; color: var(--fg); }
+    .pstep p { font-size: 12.5px; color: var(--fg-soft); }
+
+    /* ─── KILLER PROPERTY ────────────────────────────────── */
+    .killer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(28px, 4vw, 52px);
+      align-items: center;
+    }
+    @media (max-width: 800px) { .killer-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .killer-vis {
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
+      border: 1px solid var(--line-hi);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
     }
     .killer-vis-row {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 0;
-      font-size: 13px;
+      display: flex; align-items: center; gap: 13px;
+      padding: 13px 0;
+      font-size: 13.5px;
       color: var(--fg-soft);
       border-bottom: 1px dashed var(--line);
     }
     .killer-vis-row:last-child { border-bottom: 0; }
     .killer-vis-row .icon {
-      width: 32px; height: 32px;
+      width: 34px; height: 34px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 8px;
+      border-radius: 9px;
       flex-shrink: 0;
       font-size: 16px;
     }
     .icon-up { background: rgba(63,185,80,0.15); color: var(--green); }
     .icon-relay { background: rgba(88,166,255,0.15); color: var(--blue); }
     .icon-off { background: rgba(248,81,73,0.12); color: #f85149; }
-
-    /* ─── SECTIONS ────────────────────────────────────────── */
-    section.block { padding: 70px 0; border-top: 1px solid var(--line); }
-    .eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 1.4px;
-      color: var(--muted);
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding: 3px 10px;
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-    }
-    h2.section {
-      font-size: clamp(26px, 3vw, 36px);
-      letter-spacing: -0.6px;
-      margin-bottom: 12px;
-      line-height: 1.15;
-    }
-    h2.section em { color: var(--accent); font-style: normal; }
-    .lede { color: var(--fg-soft); max-width: 640px; margin-bottom: 32px; }
-
-    /* ─── TILES ───────────────────────────────────────────── */
-    .tiles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-    }
-    .tile {
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 24px;
-      transition: border-color 0.18s ease, transform 0.18s ease;
-    }
-    .tile:hover {
-      border-color: var(--line-hi);
-      transform: translateY(-2px);
-    }
-    .tile-icon {
-      width: 44px; height: 44px;
-      border-radius: 11px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      margin-bottom: 16px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-    .tile-icon.t1 { background: linear-gradient(135deg, #238636, #3fb950); }
-    .tile-icon.t2 { background: linear-gradient(135deg, #1f6feb, #58a6ff); }
-    .tile-icon.t3 { background: linear-gradient(135deg, #8957e5, #bc8cff); }
-    .tile h3 {
-      font-size: 18px; font-weight: 700;
-      margin-bottom: 10px; letter-spacing: -0.2px;
-    }
-    .tile p { color: var(--fg-soft); font-size: 14px; }
+    .killer-vis-row b { color: var(--fg); font-weight: 600; }
 
     /* ─── ECOSYSTEM CARDS ─────────────────────────────────── */
+    .eco-spotlight {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+    }
+    @media (max-width: 760px) { .eco-spotlight { grid-template-columns: 1fr; } }
     .ecosystem {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 14px;
     }
     .eco-card {
-      background: var(--bg-elev);
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 13px;
+      padding: 22px;
       display: flex; flex-direction: column;
-      transition: border-color 0.15s ease, transform 0.15s ease;
+      transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
     }
     .eco-card:hover {
       border-color: var(--line-hi);
-      transform: translateY(-2px);
-      text-decoration: none;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
+    .eco-card.big { padding: 26px; }
     .eco-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
+      width: 44px; height: 44px;
+      border-radius: 11px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 700; color: #0a0d12;
-      margin-bottom: 14px;
+      font-size: 20px; font-weight: 800; color: #0a0d12;
+      margin-bottom: 15px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
     }
-    .eco-icon.hw { background: linear-gradient(135deg, #a371f7, #d946ef); color: #fff; }
     .eco-icon.hr { background: linear-gradient(135deg, #00ff41, #3eaf55); color: #002b0e; }
     .eco-icon.pb { background: linear-gradient(135deg, #ff6600, #fbbf24); }
-    .eco-icon.hf { background: linear-gradient(135deg, #58a6ff, #79c0ff); }
+    .eco-icon.app { background: linear-gradient(135deg, #58a6ff, #79c0ff); }
     .eco-name {
-      font-size: 16px; font-weight: 700;
+      font-size: 17px; font-weight: 700;
       color: var(--fg);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
+      display: flex; align-items: center; gap: 9px;
     }
-    .eco-desc { font-size: 13px; color: var(--fg-soft); flex: 1; margin-bottom: 14px; }
+    .eco-tag { font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: var(--muted); text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--line); border-radius: 999px; }
+    .eco-desc { font-size: 13.5px; color: var(--fg-soft); flex: 1; margin-bottom: 15px; }
     .eco-link {
       font-family: ui-monospace, monospace;
       font-size: 11px; color: var(--muted);
       overflow-wrap: anywhere;
+      display: inline-flex; align-items: center; gap: 6px;
     }
     .eco-link strong { color: var(--accent); }
+    .companions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .companion {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 15px; font-size: 13px; color: var(--fg-soft);
+    }
+    .companion .d { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 
     /* ─── QUICKSTART ─────────────────────────────────────── */
+    .install-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: clamp(24px, 4vw, 44px); align-items: start; }
+    @media (max-width: 820px) { .install-grid { grid-template-columns: 1fr; } }
     .terminal {
       background: #0d1117;
-      border: 1px solid var(--line);
-      border-radius: 12px;
+      border: 1px solid var(--line-hi);
+      border-radius: 13px;
       overflow: hidden;
-      box-shadow: 0 18px 50px -12px rgba(0,0,0,0.55);
-      max-width: 720px;
+      box-shadow: var(--shadow-lg);
     }
     .terminal-bar {
       display: flex; align-items: center; gap: 8px;
-      padding: 9px 14px;
+      padding: 10px 14px;
       background: rgba(22,27,34,0.7);
       border-bottom: 1px solid var(--line);
     }
     .dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
     .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
     .terminal-title { flex: 1; text-align: center; font-size: 11px; color: var(--dim); font-family: ui-monospace, monospace; }
-    .terminal-body { padding: 18px 22px; font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.85; color: var(--fg-soft); }
+    .terminal-body { padding: 18px 22px; font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.9; color: var(--fg-soft); overflow-x: auto; }
     .terminal-body .prompt { color: var(--green); margin-right: 10px; user-select: none; }
     .terminal-body .comment { color: var(--dim); font-style: italic; }
     .terminal-body .key { color: var(--blue); }
+    .copy-inline {
+      margin-top: 14px; display: flex; align-items: center; gap: 10px;
+      background: rgba(2,6,12,0.7); border: 1px solid var(--line-hi);
+      border-radius: 11px; padding: 12px 14px;
+      font-family: ui-monospace, monospace; font-size: 12.5px;
+    }
+    .copy-inline code { flex: 1; background: transparent; border: 0; padding: 0; color: var(--green-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .step-list {
       counter-reset: step;
       list-style: none;
-      max-width: 720px;
-      margin-top: 24px;
     }
     .step-list li {
       counter-increment: step;
       position: relative;
-      padding-left: 38px;
-      margin-bottom: 14px;
+      padding-left: 40px;
+      margin-bottom: 16px;
       color: var(--fg-soft);
+      font-size: 14px;
     }
     .step-list li::before {
       content: counter(step);
       position: absolute; left: 0; top: -1px;
-      width: 26px; height: 26px;
+      width: 27px; height: 27px;
       background: var(--bg-elev);
       border: 1px solid var(--line-hi);
       border-radius: 50%;
@@ -378,17 +583,25 @@
       font-family: ui-monospace, monospace;
     }
     .step-list strong { color: var(--fg); }
+    .callout {
+      margin-top: 28px; font-size: 13.5px; padding: 16px 18px;
+      background: rgba(255,169,64,0.06); border: 1px solid rgba(255,169,64,0.2);
+      border-left: 3px solid var(--amber); border-radius: 8px;
+      color: var(--fg-soft);
+    }
+    .callout strong { color: var(--amber); }
 
     /* ─── SPEC TABLE ─────────────────────────────────────── */
     .spec {
-      background: var(--bg-elev);
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow-md);
     }
     .spec table { width: 100%; border-collapse: collapse; }
     .spec th, .spec td {
-      padding: 14px 22px;
+      padding: 15px 24px;
       text-align: left;
       font-size: 14px;
       vertical-align: top;
@@ -405,10 +618,11 @@
       white-space: nowrap;
     }
     .spec td { color: var(--fg); }
-    @media (max-width: 600px) {
-      .spec th, .spec td { display: block; width: auto; padding: 6px 16px; }
-      .spec th { padding-top: 14px; }
-      .spec td { padding-bottom: 14px; border-top: 0; }
+    .spec tr:hover td, .spec tr:hover th { background: rgba(255,255,255,0.015); }
+    @media (max-width: 620px) {
+      .spec th, .spec td { display: block; width: auto; padding: 6px 18px; }
+      .spec th { padding-top: 15px; }
+      .spec td { padding-bottom: 15px; border-top: 0; }
       .spec tr { border-top: 1px solid var(--line); }
       .spec tr:first-child { border-top: 0; }
     }
@@ -417,85 +631,95 @@
     .faq details {
       background: var(--bg-elev);
       border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin-bottom: 10px;
-      transition: border-color 0.15s ease;
+      border-radius: 11px;
+      padding: 17px 22px;
+      margin-bottom: 11px;
+      transition: border-color 0.15s ease, background 0.15s ease;
     }
-    .faq details[open] { border-color: var(--line-hi); }
+    .faq details[open] { border-color: var(--line-hi); background: var(--bg-elev-2); }
     .faq summary {
       cursor: pointer; list-style: none;
-      display: flex; justify-content: space-between; gap: 14px;
-      font-weight: 600; font-size: 15px;
+      display: flex; justify-content: space-between; gap: 16px; align-items: center;
+      font-weight: 600; font-size: 15.5px;
       color: var(--fg);
     }
     .faq summary::-webkit-details-marker { display: none; }
     .faq summary::after {
       content: "+";
       color: var(--muted);
-      font-size: 22px; line-height: 1;
+      font-size: 24px; line-height: 1;
       width: 22px; height: 22px;
       display: flex; align-items: center; justify-content: center;
-      transition: transform 0.18s ease;
+      transition: transform 0.2s ease, color 0.2s ease;
       flex-shrink: 0;
     }
     .faq details[open] summary::after { transform: rotate(45deg); color: var(--accent); }
     .faq details p {
-      margin-top: 12px;
+      margin-top: 13px;
       color: var(--fg-soft);
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.72;
     }
 
-    /* ─── CTA + FOOTER ────────────────────────────────────── */
+    /* ─── FINAL CTA ──────────────────────────────────────── */
     .final {
-      padding: 70px 24px 100px;
+      padding: var(--space) 24px;
       text-align: center;
       border-top: 1px solid var(--line);
-      background:
-        radial-gradient(circle 600px at 50% 0%, rgba(63,185,80,0.08), transparent 60%);
+      background: radial-gradient(circle 700px at 50% -10%, rgba(63,185,80,0.10), transparent 60%);
     }
     .final h2 {
-      font-size: clamp(28px, 3.4vw, 40px);
-      letter-spacing: -0.6px;
-      margin-bottom: 14px;
+      font-size: clamp(30px, 3.8vw, 46px);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      font-weight: 800;
     }
     .final p {
       color: var(--fg-soft);
-      max-width: 520px;
-      margin: 0 auto 28px;
+      max-width: 560px;
+      margin: 0 auto 30px;
+      font-size: clamp(15px, 1.4vw, 17px);
     }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
-      padding: 40px 24px 30px;
+      padding: 56px 24px 36px;
       border-top: 1px solid var(--line);
-      background: rgba(0,0,0,0.18);
+      background: rgba(0,0,0,0.22);
       color: var(--dim);
-      font-size: 13px;
+      font-size: 13.5px;
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 28px;
-      margin-bottom: 32px;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 36px;
+      margin-bottom: 40px;
     }
+    @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand p { margin-top: 12px; max-width: 280px; color: var(--muted); }
     .footer-title {
-      color: var(--muted);
+      color: var(--fg);
       text-transform: uppercase;
       letter-spacing: 1.2px;
       font-size: 11px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     footer ul { list-style: none; }
-    footer li { padding: 4px 0; }
+    footer li { padding: 5px 0; }
+    footer li a { color: var(--muted); }
+    footer li a:hover { color: var(--fg); }
+    footer li .tag { color: var(--dim); font-size: 12px; }
     .footer-meta {
-      padding-top: 24px;
+      padding-top: 26px;
       border-top: 1px solid var(--line);
-      text-align: center;
-      font-size: 12px;
+      display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between;
+      font-size: 12.5px;
       color: var(--dim);
     }
     .footer-meta code { font-size: 11px; }
+    .footer-meta .badges { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .key-block {
       font-family: ui-monospace, monospace;
@@ -509,15 +733,35 @@
       display: inline-block;
       max-width: 100%;
     }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1); will-change: opacity, transform; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.16s; }
+    .reveal.d3 { transition-delay: 0.24s; }
+
+    /* ─── REDUCED MOTION ─────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="top">
+  <nav class="top" aria-label="Primary">
     <div class="inner">
-      <a class="brand" href="#top">
-        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22">
+      <a class="brand" href="#top" aria-label="PearBrowser home">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
           <defs>
             <radialGradient id="gN" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stop-color="#7ee787"/>
@@ -533,7 +777,10 @@
         </svg>
         <span><strong>Pear</strong>Browser</span>
       </a>
-      <div class="links">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="links" id="navLinks">
         <a href="#how">How it works</a>
         <a href="#ecosystem">Ecosystem</a>
         <a href="#install">Install</a>
@@ -543,26 +790,27 @@
     </div>
   </nav>
 
+  <main id="main">
+
   <!-- HERO -->
   <header id="top" class="hero">
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>v0.4.5 · Apache-2.0 · macOS · Windows · Linux</span>
+        <span>Desktop v0.4.x · Apache-2.0 · macOS · Windows · Linux</span>
       </div>
       <h1>
-        The browser for the
-        <span class="grad">peer-to-peer web</span>.
+        The browser with
+        <span class="grad">no servers behind it</span>.
       </h1>
       <p class="hero-sub">
-        Sites that don't go down. Apps that install from public keys. Multiplayer games with no backend.
-        <br/>
-        <strong>No accounts. No DNS. No servers.</strong>
+        Browse the <strong>hyper://</strong> web, install P2P apps, and publish sites pinned 24/7 —
+        now with <span class="hl">Lighthouse search</span> that finds pages through people you trust, not a crawler.
       </p>
 
       <div class="hero-cmd" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
         <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
-        <button class="copy-btn" type="button">Copy</button>
+        <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
       </div>
 
       <div class="hero-actions">
@@ -571,218 +819,452 @@
       </div>
 
       <div class="hero-mini">
-        One install, three platforms. Pear downloads the matching native runtime on first launch.
+        One install, three platforms. Pear fetches the matching native runtime on first launch.
+      </div>
+
+      <div class="trust-strip">
+        <span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/></svg>
+          No accounts · no DNS · no servers
+        </span>
+        <span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
+          Library search returns in &lt;5ms, zero network
+        </span>
+        <span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Sites pinned 24/7 on HiveRelay
+        </span>
       </div>
     </div>
   </header>
 
-  <!-- KILLER PROPERTY -->
-  <section class="killer">
-    <div class="wrap killer-grid">
-      <div>
-        <span class="eyebrow">The promise</span>
-        <h2>Every site you visit, <em>stays visitable</em>.</h2>
-        <p>
-          Today's web is rented. The site you bookmarked five years ago is probably a 404 by now. The domain expired, the company pivoted, the host shut down — and your link died with it.
-        </p>
-        <p>
-          PearBrowser is built on the <a href="https://pears.com">Pear runtime</a> and the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. Sites are <strong>Hyperdrives addressed by public key</strong>, replicated peer-to-peer, and pinned 24/7 on a relay network you can join too. The publisher's laptop being offline doesn't matter — the relays carry the bytes.
-        </p>
-        <p>
-          When you bookmark a `hyper://` URL, you bookmark <strong>a thing that exists</strong>. Not a thing that resolves to a thing if a company decides to keep paying for it.
-        </p>
-      </div>
-      <div class="killer-vis">
-        <div class="killer-vis-row">
-          <span class="icon icon-up">↑</span>
-          <span><strong style="color:var(--fg)">You publish</strong> — block editor, signed seed-request, <code>hyper://key/</code> in hand.</span>
+  <!-- LIGHTHOUSE: headline feature -->
+  <section id="lighthouse" class="block" aria-labelledby="lh-h">
+    <div class="wrap">
+      <div class="lighthouse-grid">
+        <div class="lh-copy reveal">
+          <span class="eyebrow">The latest work</span>
+          <h2 class="section" id="lh-h">Search that runs on <em>trust</em>, not a crawler.</h2>
+          <p class="lede" style="margin-bottom:0">
+            <strong style="color:var(--fg)">Lighthouse</strong> is a local-first personal full-text index over a social
+            trust graph. Pages you browse get tokenized, signed by a per-app
+            <code>search</code> subkey, and stored in a local Hyperbee — so Library search returns
+            <strong style="color:var(--green-soft)">in under 5ms with zero network</strong>.
+          </p>
+          <ul class="lh-points">
+            <li>
+              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Federated “include trusted peers” (opt-in toggle).</strong> Local results paint instantly; a verified trusted-peer set then arrives over Hyperswarm and replaces them — each hit carries a provenance badge (you / trusted · hop N). <span class="pill smoke"><span class="ld"></span>Smoke-validated</span> by a two-node federation test.</span>
+            </li>
+            <li>
+              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Verify-and-drop trust model.</strong> Every federated row is re-verified client-side against the contact's identity binding and dropped on failure before it can touch ranking. The room is an index, not an authority.</span>
+            </li>
+            <li>
+              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Deterministic, clock-free ranker.</strong> The same inputs produce identical ranking on every device — no timestamps, no central tiebreaker.</span>
+            </li>
+          </ul>
         </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-relay">⟳</span>
-          <span><strong style="color:var(--fg)">5 relays pin it</strong> automatically, in two regions. 365-day TTL.</span>
-        </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-off">⏻</span>
-          <span><strong style="color:var(--fg)">You close your laptop.</strong> The site stays reachable.</span>
-        </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-up">✓</span>
-          <span><strong style="color:var(--fg)">Anyone with the key</strong> opens it in PearBrowser — or any web browser via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a>.</span>
+
+        <!-- search demo -->
+        <div class="lh-demo reveal d1" role="img" aria-label="Lighthouse search panel: a query 'hyperdrive pinning' returns a local result badged 'you' and a trusted-peer result badged 'trusted, hop 1'.">
+          <div class="lh-search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <span class="q">hyperdrive pinning</span>
+            <span class="caret"></span>
+          </div>
+          <div class="lh-toggle">
+            <span>Include trusted peers <span style="color:var(--dim)">· opt-in</span></span>
+            <span class="lh-switch" aria-hidden="true"></span>
+          </div>
+          <div class="lh-results">
+            <div class="lh-row">
+              <div class="lh-row-top">
+                <span class="lh-row-title">Pinning a drive to HiveRelay</span>
+                <span class="prov you">you</span>
+              </div>
+              <div class="lh-row-url">hyper://2d6c2be9…/guides/pinning</div>
+            </div>
+            <div class="lh-row">
+              <div class="lh-row-top">
+                <span class="lh-row-title">365-day TTL &amp; re-pinning</span>
+                <span class="prov trusted">trusted · hop 1</span>
+              </div>
+              <div class="lh-row-url">hyper://9af0c1…/relay/ttl</div>
+            </div>
+            <div class="lh-row">
+              <div class="lh-row-top">
+                <span class="lh-row-title">Blind-encrypted seeding explained</span>
+                <span class="prov trusted">trusted · hop 2</span>
+              </div>
+              <div class="lh-row-url">hyper://c41b…/notes/blind-seed</div>
+            </div>
+          </div>
+          <div class="lh-foot">
+            <span>Local hits: <b>&lt;5ms</b></span>
+            <span>Verified &amp; re-checked before ranking</span>
+            <span>Deterministic order</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT IS / HOW IT WORKS -->
-  <section id="how" class="block">
+  <!-- FEDERATION PIPELINE -->
+  <section class="block" aria-labelledby="pipe-h">
     <div class="wrap">
-      <span class="eyebrow">What it is</span>
-      <h2 class="section">Three things in one app — <em>each fully P2P</em>.</h2>
-      <p class="lede">No "P2P module for an existing Chromium." Built bottom-up on the Holepunch stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Ed25519 for identity.</p>
+      <span class="eyebrow reveal">How federated search resolves</span>
+      <h2 class="section reveal" id="pipe-h">Local first. <em>Verified peers second.</em></h2>
+      <p class="lede reveal">A query never waits on the network to feel fast — and never trusts the network without checking.</p>
+      <div class="pipeline">
+        <div class="pstep reveal">
+          <span class="num"></span>
+          <h4>Paint locally</h4>
+          <p>Your local Hyperbee index answers immediately — under 5ms, fully offline.</p>
+        </div>
+        <div class="pstep reveal d1">
+          <span class="num"></span>
+          <h4>Ask trusted peers</h4>
+          <p>If the opt-in toggle is on, the query fans out to your trust graph over Hyperswarm.</p>
+        </div>
+        <div class="pstep reveal d2">
+          <span class="num"></span>
+          <h4>Verify &amp; drop</h4>
+          <p>Each returned row is re-verified against the contact's identity binding; forgeries are dropped before ranking.</p>
+        </div>
+        <div class="pstep reveal d3">
+          <span class="num"></span>
+          <h4>Replace &amp; rank</h4>
+          <p>Survivors merge in with a provenance badge and a deterministic, clock-free order — identical on every device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS / THREE APPS -->
+  <section id="how" class="block" aria-labelledby="how-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">What it is</span>
+      <h2 class="section reveal" id="how-h">Three apps in one — <em>each fully P2P</em>.</h2>
+      <p class="lede reveal">No “P2P module bolted onto Chromium.” Built bottom-up on the Holepunch / Pear stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Ed25519 for identity.</p>
       <div class="tiles">
 
-        <div class="tile">
-          <div class="tile-icon t1">🌐</div>
+        <div class="tile reveal">
+          <div class="tile-icon t1" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
           <h3>Browse <code>hyper://</code></h3>
-          <p>Paste a drive key — hex or z-base-32 — and PearBrowser streams the content directly from peers through the Hyperswarm DHT. Multi-tab, back/forward, bookmarks, history. Devtools when you want them.</p>
+          <p>Paste a drive key — hex or z-base-32 — and PearBrowser streams content directly from peers through the Hyperswarm DHT. Multi-tab browsing with keyboard shortcuts, back/forward, bookmarks, and history.</p>
         </div>
 
-        <div class="tile">
-          <div class="tile-icon t2">📦</div>
-          <h3>Run Pear apps</h3>
-          <p>Click a <code>pear://</code> link, the app opens in its own isolated window. Load any decentralised catalog Hyperdrive — browse, install, launch, uninstall. No store gatekeeper. No 30% cut. Featured: <strong>Keet</strong>, <strong>PearPass</strong>, <strong>HiveWorm</strong>.</p>
+        <div class="tile reveal d1">
+          <div class="tile-icon t2" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+          </div>
+          <h3>Install P2P apps</h3>
+          <p>A decentralized app store that aggregates multiple Hyperdrive catalogs into one view — plus a writable personal <strong>“My Catalog.”</strong> Click a <code>pear://</code> link and the app opens in its own isolated window. No gatekeeper, no 30% cut.</p>
         </div>
 
-        <div class="tile">
-          <div class="tile-icon t3">✒️</div>
+        <div class="tile reveal d2">
+          <div class="tile-icon t3" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+          </div>
           <h3>Publish your own</h3>
-          <p>Built-in block editor — headings, paragraphs, images, lists, quotes, code, raw HTML. Publish creates a Hyperdrive, signs an Ed25519 seed-request, broadcasts to HiveRelay, and waits for at least one relay to actually replicate before saying done. Copy the <code>hyper://</code> URL. Share it. It works.</p>
+          <p>A block-editor site publisher that one-click publishes and auto-pins to HiveRelay. It only reports <strong>“published”</strong> after a relay confirms replication — so the URL works the moment you share it.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ECOSYSTEM (HIVEWORM ETC.) -->
-  <section id="ecosystem" class="block">
+  <!-- IDENTITY & TRUST FEATURES -->
+  <section class="block" aria-labelledby="id-h">
     <div class="wrap">
-      <span class="eyebrow">The ecosystem</span>
-      <h2 class="section">Built around it, from day one.</h2>
-      <p class="lede">PearBrowser isn't shipping into a void. Featured Pear apps and ecosystem sites that already work — pinned, reachable, real.</p>
+      <span class="eyebrow reveal">Identity &amp; trust</span>
+      <h2 class="section reveal" id="id-h">Keys you own. <em>Contacts you verify.</em></h2>
+      <p class="lede reveal">Your identity is local and portable, every app gets its own sub-key, and the people behind federated search are cryptographically vouched for.</p>
+      <div class="tiles">
+
+        <div class="tile reveal">
+          <div class="tile-icon t1" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2 13 10"/><circle cx="8.5" cy="15.5" r="5.5"/><path d="m14 6 3 3M18 2l4 4-3 3"/></svg>
+          </div>
+          <h3>BIP-39 identity + sub-keys</h3>
+          <p>A 12-word backup phrase, restore-on-a-new-device, and a distinct <code>appPubkey</code> handed to every site. Settings → Connected Apps lists and revokes grants.</p>
+        </div>
+
+        <div class="tile reveal d1">
+          <div class="tile-icon t6" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          </div>
+          <h3>Nostr identity <span class="pill phase"><span class="ld"></span>Phase 1</span></h3>
+          <p>Settings shows your <strong>npub</strong> and a one-click “Link (attested)” / Revoke control that cross-curve-binds your Nostr (secp256k1/BIP-340) key to your Pear Ed25519 root, persisted with a monotonic epoch.</p>
+          <p style="color:var(--dim);font-size:12.5px">Phase 1 = local npub display + binding/revoke only. No relays or posting yet.</p>
+        </div>
+
+        <div class="tile reveal d2">
+          <div class="tile-icon t2" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
+          </div>
+          <h3>Trusted-peer contacts</h3>
+          <p>Add a contact from a signed invite URL — pubkey + name + signature + search binding key. Invite signatures are verified at import and <strong>rejected if forged</strong>. These contacts form the trust graph behind federated search.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIMENTAL / OPT-IN FEATURES -->
+  <section class="block" aria-labelledby="exp-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">On the dev line</span>
+      <h2 class="section reveal" id="exp-h">Opt-in capabilities, <em>honestly labeled</em>.</h2>
+      <p class="lede reveal">These live on the active development line. Each one is off by default and clearly scoped — no hidden behavior, no overclaim.</p>
+      <div class="tiles">
+
+        <div class="tile reveal">
+          <div class="tile-icon t4" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 9h8M8 13h5"/></svg>
+          </div>
+          <h3>Naming &amp; petnames <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
+          <p>Type a bare word in the URL bar and a tiered resolver kicks in — your private petname beats a curated floor — to launch <code>pear://</code> apps or navigate <code>hyper://</code> sites, each with a provenance chip. Off by default.</p>
+        </div>
+
+        <div class="tile reveal d1">
+          <div class="tile-icon t5" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m9 8 3 3 3-3"/></svg>
+          </div>
+          <h3>Encrypted device sync <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
+          <p>Pair devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite to converge <strong>bookmarks</strong> across your own machines over Autobase, verified by a two-device encrypted smoke test.</p>
+          <p style="color:var(--dim);font-size:12.5px">Scope today = bookmarks. Not full tabs / history / profile sync.</p>
+        </div>
+
+        <div class="tile reveal d2">
+          <div class="tile-icon t2" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <h3>P2P-first fetch (privacy)</h3>
+          <p>The proxy tries direct peer-to-peer first and only falls back to a HiveRelay HTTP gateway after a short grace window — so relays stop seeing fetches that peers could have served themselves.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KILLER PROPERTY -->
+  <section class="block" aria-labelledby="kill-h">
+    <div class="wrap killer-grid">
+      <div class="reveal">
+        <span class="eyebrow">The promise</span>
+        <h2 class="section" id="kill-h">Every site you visit, <em>stays visitable</em>.</h2>
+        <p style="color:var(--fg-soft); margin-bottom:14px">
+          Today's web is rented. The site you bookmarked five years ago is probably a 404 by now — the domain expired, the company pivoted, the host shut down, and your link died with it.
+        </p>
+        <p style="color:var(--fg-soft); margin-bottom:14px">
+          PearBrowser sites are <strong style="color:var(--fg)">Hyperdrives addressed by public key</strong> — no accounts, no DNS, no servers — replicated peer-to-peer and pinned 24/7 on the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. The publisher being offline doesn't take the site down, because the relays carry the bytes.
+        </p>
+        <p style="color:var(--fg-soft)">
+          When you bookmark a <code>hyper://</code> URL, you bookmark <strong style="color:var(--fg)">a thing that exists</strong> — not a thing that resolves to a thing if a company keeps paying for it.
+        </p>
+      </div>
+      <div class="killer-vis reveal d1">
+        <div class="killer-vis-row">
+          <span class="icon icon-up" aria-hidden="true">↑</span>
+          <span><b>You publish</b> — block editor, signed seed-request, <code>hyper://key/</code> in hand.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-relay" aria-hidden="true">⟳</span>
+          <span><b>HiveRelay pins it</b> automatically and only reports “published” once a relay confirms replication.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-off" aria-hidden="true">⏻</span>
+          <span><b>You close your laptop.</b> The site stays reachable.</span>
+        </div>
+        <div class="killer-vis-row">
+          <span class="icon icon-up" aria-hidden="true">✓</span>
+          <span><b>Anyone with the key</b> opens it in PearBrowser — or any web browser via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section id="ecosystem" class="block" aria-labelledby="eco-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">The ecosystem</span>
+      <h2 class="section reveal" id="eco-h">Part of a P2P stack, <em>not a silo</em>.</h2>
+      <p class="lede reveal">PearBrowser sits alongside an always-on backbone and an ecosystem hub — and a growing set of real companion apps.</p>
+
+      <div class="eco-spotlight">
+        <a class="eco-card big reveal" href="https://github.com/bigdestiny2/P2P-Hiverelay">
+          <div class="eco-icon hr" aria-hidden="true">H</div>
+          <div class="eco-name">HiveRelay <span class="eco-tag">Backbone</span></div>
+          <div class="eco-desc">The always-on relay backbone behind every pinned site. Blind-encrypted seeding (the relay can't read your data), HTTP gateway for non-P2P browsers, and the network PearBrowser publishes to. Apache-2.0 — run your own node.</div>
+          <div class="eco-link"><strong>github</strong>/bigdestiny2/P2P-Hiverelay →</div>
+        </a>
+
+        <a class="eco-card big reveal d1" href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">
+          <div class="eco-icon pb" aria-hidden="true">P</div>
+          <div class="eco-name">P2P Builders <span class="eco-tag">Hub</span></div>
+          <div class="eco-desc">The ecosystem hub — a permissionless gathering spot for the people building the peer-to-peer web. No accounts, no moderators, no servers; reachable over <code>hyper://</code>.</div>
+          <div class="eco-link"><strong>hyper://</strong>f0cd01e3…b3db42a →</div>
+        </a>
+      </div>
+
       <div class="ecosystem">
-
-        <a class="eco-card" href="pear://d1xbkcpcbi1xa8dexp49rsendra5r67w3qh5a9k8t44oemm4k16y">
-          <div class="eco-icon hw">W</div>
-          <div class="eco-name">HiveWorm</div>
-          <div class="eco-desc">Multiplayer life-sim. You're a worm in a 2D meadow. Eat dots, grow, don't crash. Real-time peer gossip over Hyperswarm — no game server.</div>
-          <div class="eco-link"><strong>pear://</strong>d1xbkcpc…m4k16y</div>
-        </a>
-
-        <a class="eco-card" href="https://github.com/bigdestiny2/P2P-Hiverelay">
-          <div class="eco-icon hr">H</div>
-          <div class="eco-name">HiveRelay</div>
-          <div class="eco-desc">The always-on relay backbone. Blind-encrypted seeding (relay can't read your data). Two regions, five nodes today. Apache-2.0 — run your own.</div>
-          <div class="eco-link"><strong>github</strong>/bigdestiny2/P2P-Hiverelay</div>
-        </a>
-
-        <a class="eco-card" href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">
-          <div class="eco-icon pb">P</div>
-          <div class="eco-name">P2P Builders</div>
-          <div class="eco-desc">Permissionless hacker news for anons who build peer-to-peer. Runs in your terminal. No accounts, no moderators, no servers.</div>
-          <div class="eco-link"><strong>hyper://</strong>f0cd01e3…b3db42a</div>
-        </a>
-
-        <a class="eco-card" href="https://github.com/bigdestiny2/hyper-fetch">
-          <div class="eco-icon hf">F</div>
+        <a class="eco-card reveal" href="https://github.com/bigdestiny2/hyper-fetch">
+          <div class="eco-icon app" aria-hidden="true">F</div>
           <div class="eco-name">hyper-fetch</div>
-          <div class="eco-desc">~5 KB JS library. Read <code>hyper://</code> drives from any browser via the HiveRelay HTTP gateway. Drop into a blog, a PWA, a link previewer.</div>
-          <div class="eco-link"><strong>github</strong>/bigdestiny2/hyper-fetch</div>
+          <div class="eco-desc">A tiny JS library that reads <code>hyper://</code> drives from any browser via the HiveRelay HTTP gateway. Drop it into a blog, a PWA, or a link previewer.</div>
+          <div class="eco-link"><strong>github</strong>/bigdestiny2/hyper-fetch →</div>
         </a>
+        <a class="eco-card reveal d1" href="https://github.com/bigdestiny2/pearbrowser-desktop">
+          <div class="eco-icon app" aria-hidden="true">S</div>
+          <div class="eco-name">window.pear.swarm.v1</div>
+          <div class="eco-desc">Direct Hyperswarm for <code>hyper://</code> pages with three trust tiers, per-app rate limits, a 1&nbsp;MB/s/peer cap, and persistent grants.</div>
+          <div class="eco-link"><strong>docs</strong>/SWARM-V1.md →</div>
+        </a>
+        <a class="eco-card reveal d2" href="https://pears.com">
+          <div class="eco-icon app" aria-hidden="true">R</div>
+          <div class="eco-name">Pear Runtime</div>
+          <div class="eco-desc">The platform PearBrowser runs on — Bare + Chromium, distributed peer-to-peer. The runtime that fetches the right native binary on first launch.</div>
+          <div class="eco-link"><strong>pears.com</strong> →</div>
+        </a>
+      </div>
 
+      <div class="companions" aria-label="Companion apps in the ecosystem">
+        <span class="companion"><span class="d"></span>Pear POS</span>
+        <span class="companion"><span class="d"></span>Pear Tickets</span>
+        <span class="companion"><span class="d"></span>pearpaste</span>
+        <span class="companion"><span class="d"></span>Pear Dealroom</span>
       </div>
     </div>
   </section>
 
   <!-- INSTALL / QUICKSTART -->
-  <section id="install" class="block">
+  <section id="install" class="block" aria-labelledby="inst-h">
     <div class="wrap">
-      <span class="eyebrow">Quickstart</span>
-      <h2 class="section">Up and running in <em>thirty seconds</em>.</h2>
-      <p class="lede">PearBrowser is a Pear runtime app. Install the runtime once (it auto-fetches the matching native binary), then run PearBrowser by its public key.</p>
+      <span class="eyebrow reveal">Quickstart</span>
+      <h2 class="section reveal" id="inst-h">Up and running in <em>thirty seconds</em>.</h2>
+      <p class="lede reveal">PearBrowser is a Pear runtime app. Install the runtime once (it auto-fetches the matching native binary), then launch PearBrowser by its public key.</p>
 
-      <div class="terminal">
-        <div class="terminal-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <span class="terminal-title">~/pearbrowser &mdash; zsh</span>
+      <div class="install-grid">
+        <div class="reveal">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
+              <span class="terminal-title">~/pearbrowser — zsh</span>
+            </div>
+            <div class="terminal-body">
+              <span class="comment"># 1. Install Pear (one time, all three OSes)</span><br>
+              <span class="prompt">$</span> npm i -g pear<br>
+              <span class="prompt">$</span> pear <span class="comment"># bootstrap</span><br>
+              <br>
+              <span class="comment"># 2. Launch PearBrowser</span><br>
+              <span class="prompt">$</span> pear run pear://<span class="key">tco5k7h38…ujbebhsbty</span>
+            </div>
+          </div>
+
+          <div class="copy-inline" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
+            <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
+            <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
+          </div>
+
+          <div class="callout">
+            <strong>Heads-up:</strong> <code>pear run</code> is deprecated as of Pear runtime <code>v2.4.0</code> — it still works today and will for the foreseeable future. The longer-term path is signed <strong>native installers</strong> (.app / .exe / .deb) via <code>pear build</code>, coming to a release near you. Nothing breaks in the meantime.
+          </div>
         </div>
-        <div class="terminal-body">
-          <span class="comment"># 1. Install Pear (one time, all three OSes)</span><br>
-          <span class="prompt">$</span> npm i -g pear<br>
-          <span class="prompt">$</span> pear <span class="comment"># bootstrap</span><br>
-          <br>
-          <span class="comment"># 2. Launch PearBrowser</span><br>
-          <span class="prompt">$</span> pear run pear://<span class="key">tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span>
+
+        <div class="reveal d1">
+          <ol class="step-list">
+            <li><strong>Need Node first?</strong> Install <a href="https://nodejs.org">Node.js 20+</a> — Pear ships through npm.</li>
+            <li><strong>First-launch onboarding</strong> generates a BIP-39-backed identity and helps you pick a first site to visit.</li>
+            <li><strong>Tabs persist across launches</strong> — open today, close, reopen tomorrow, same tabs back.</li>
+            <li><strong>Pear updates itself</strong> — when a new PearBrowser release ships, your next launch hot-syncs the new bytes from the swarm.</li>
+          </ol>
         </div>
       </div>
-
-      <ol class="step-list">
-        <li><strong>Need Node first?</strong> Install <a href="https://nodejs.org">Node.js 20+</a>. Pear ships through npm.</li>
-        <li><strong>First-launch onboarding</strong> walks you through generating an identity (BIP-39 backed) and picking a first site to visit.</li>
-        <li><strong>Tabs persist across launches</strong> — open today, close, reopen tomorrow, exact same tabs back.</li>
-        <li><strong>Pear runtime updates itself</strong> — when we ship a new PearBrowser release, your next launch hot-syncs the new bytes from the swarm.</li>
-      </ol>
-
-      <p class="lede" style="margin-top: 28px; font-size: 13px; padding: 12px 16px; background: rgba(255,169,64,0.06); border-left: 3px solid var(--amber); border-radius: 4px;">
-        <strong style="color: var(--amber)">Heads-up:</strong> <code>pear run</code> is officially deprecated as of Pear runtime <code>v2.4.0</code>. It still works today and will continue to for the foreseeable future. The longer-term distribution path is signed native installers (.app / .exe / .deb) via <code>pear build</code> — coming soon to a release near you. Nothing breaks until then.
-      </p>
     </div>
   </section>
 
   <!-- SPECS -->
-  <section class="block">
+  <section class="block" aria-labelledby="spec-h">
     <div class="wrap">
-      <span class="eyebrow">Tech</span>
-      <h2 class="section">The grown-up table.</h2>
-      <p class="lede">For the people who scroll to the bottom first.</p>
-      <div class="spec">
+      <span class="eyebrow reveal">Tech</span>
+      <h2 class="section reveal" id="spec-h">The grown-up table.</h2>
+      <p class="lede reveal">For the people who scroll to the bottom first.</p>
+      <div class="spec reveal">
         <table>
-          <tr><th>Version</th><td>v0.4.5 (released 2026-05-15) · <code>length 5440</code></td></tr>
-          <tr><th>Runtime</th><td>Pear v0.3243+ (Bare + Chromium via <code>pear-electron</code>)</td></tr>
-          <tr><th>Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>p2p-hiverelay 0.8.12</code></td></tr>
-          <tr><th>Identity</th><td>BIP-39 128-bit entropy → SHA-512 seed → Ed25519 publisher keypair. Per-app sub-keys derived per drive.</td></tr>
-          <tr><th>Bridge surface</th><td><code>window.pear.swarm.v1</code> exposes Hyperswarm directly to <code>hyper://</code> pages (see <a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
-          <tr><th>Storage</th><td>Corestore + rocksdb. 1 GB soft cap, LRU eviction at 80%.</td></tr>
-          <tr><th>Platforms</th><td>macOS 14+, Windows 10+, Linux x64 + arm64 — all via Pear Runtime</td></tr>
-          <tr><th>Bundle size</th><td>~50 MB (app) + ~250 MB Pear runtime (shared across all Pear apps you install)</td></tr>
-          <tr><th>Network footprint</th><td>~5-20 KB/s idle (DHT maintenance); scales with replication</td></tr>
-          <tr><th>License</th><td>Apache-2.0 (backend) · MIT (additions)</td></tr>
-          <tr><th>Production key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+          <tbody>
+          <tr><th scope="row">Desktop version</th><td>v0.4.x · newest capabilities ship on the active dev line</td></tr>
+          <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> deprecated in runtime <code>v2.4.0</code></td></tr>
+          <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
+          <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
+          <tr><th scope="row">Identity</th><td>BIP-39 → Ed25519 root with per-app sub-keys; opt-in Nostr (secp256k1/BIP-340) binding — Phase 1: npub display + bind/revoke</td></tr>
+          <tr><th scope="row">Bridge surface</th><td><code>window.pear.swarm.v1</code> — three trust tiers, per-app rate limits, 1&nbsp;MB/s/peer cap (<a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
+          <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing — bookmarks only (two-device encrypted smoke test)</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — all via the Pear runtime</td></tr>
+          <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
+          <tr><th scope="row">Launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+          </tbody>
         </table>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="block">
+  <section id="faq" class="block" aria-labelledby="faq-h">
     <div class="wrap">
-      <span class="eyebrow">FAQ</span>
-      <h2 class="section">Honest answers.</h2>
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="section reveal" id="faq-h">Honest answers.</h2>
 
-      <div class="faq" style="max-width: 760px">
+      <div class="faq reveal" style="max-width: 800px">
 
         <details>
-          <summary>How is this different from Beaker Browser?</summary>
-          <p>Beaker pioneered P2P browsing on the original Dat protocol. PearBrowser builds on the current-generation Holepunch / Pear stack — same philosophy, modern transport (UDX + Hyperswarm + DHT-over-WebSocket relays instead of Dat DHT), first-class publishing, and explicit HiveRelay pinning so sites stay up when your laptop doesn't.</p>
+          <summary>Is Lighthouse search a global crawler?</summary>
+          <p>No — that's the whole point. Lighthouse is a <strong>local-first personal index</strong>: pages you browse are tokenized, signed by a per-app <code>search</code> subkey, and stored in a local Hyperbee. Library search returns in under 5ms with zero network. If you opt in to “include trusted peers,” the query also fans out to your trust graph over Hyperswarm — never to a central crawler.</p>
+        </details>
+
+        <details>
+          <summary>How can I trust results coming from other people?</summary>
+          <p>Every federated row is re-verified client-side against the contact's identity binding and <strong>dropped on failure before it can affect ranking</strong>. Contacts only enter your trust graph through signed invite URLs that are verified at import and rejected if forged. The ranker is deterministic and clock-free, so the same inputs produce identical ordering on every device. The room is an index, not an authority.</p>
+        </details>
+
+        <details>
+          <summary>How production-ready is federated search?</summary>
+          <p>The local index is live and wired. Federation is <strong>smoke-validated</strong> by a two-node federation test — meaning the path works end-to-end, not that it's been run at production scale. Treat the opt-in toggle as the early-access feature it is.</p>
+        </details>
+
+        <details>
+          <summary>Does the Nostr support mean I can post to relays from PearBrowser?</summary>
+          <p>Not yet. Nostr support is <strong>Phase 1</strong>: Settings displays your <code>npub</code> and offers a one-click “Link (attested)” / Revoke control that cross-curve-binds your Nostr (secp256k1/BIP-340) key to your Pear Ed25519 root, persisted with a monotonic epoch. That's local npub display plus binding/revoke only — no relay connections or posting in this phase.</p>
+        </details>
+
+        <details>
+          <summary>What exactly does device sync cover?</summary>
+          <p>Today, <strong>bookmarks only</strong>. It's experimental and opt-in: you pair devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite and bookmarks converge across your own machines over Autobase, verified by a two-device encrypted smoke test. It does not sync tabs, history, or your full profile yet.</p>
         </details>
 
         <details>
           <summary>What happens to my site when I close my laptop?</summary>
-          <p>Nothing — that's the point. When you publish, the relays accept your signed seed-request, replicate the drive's blocks, and serve them to anyone with the key. The publisher (you) can be offline indefinitely. Re-pin once a year to refresh the TTL.</p>
-        </details>
-
-        <details>
-          <summary>Who pays for the relays?</summary>
-          <p>The public HiveRelay network is open source (Apache-2.0) and free to use today. It's a small foundation network — soft replication factor of 3, generous quotas. If you want guaranteed 24/7 availability on hardware you control, the repo ships a one-binary relay you can run on any VPS for the cost of a small Hetzner box.</p>
+          <p>Nothing — that's the point. When you publish, the block editor signs a seed-request and HiveRelay pins the drive; PearBrowser only reports “published” after a relay confirms replication. The publisher can then be offline indefinitely while the relays serve the bytes to anyone with the key.</p>
         </details>
 
         <details>
           <summary>Can I read <code>hyper://</code> from a regular browser?</summary>
-          <p>Yes, via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> — a 5 KB drop-in JS library that talks to the HiveRelay HTTP gateway. Works in every browser, every PWA, every link previewer. The full peer experience (publishing, identity, signed login) still requires PearBrowser.</p>
+          <p>Yes, via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> — a small drop-in JS library that talks to the HiveRelay HTTP gateway. The full peer experience (publishing, identity, Lighthouse search, signed grants) still requires PearBrowser.</p>
         </details>
 
         <details>
-          <summary>What if I lose my laptop?</summary>
-          <p>If you backed up your 12-word phrase (Settings → Moving to a new device?), you restore your identity on a new machine and everything still works — bookmarks, profile, login grants for sites that recognise you. If you didn't back up: the drives you published stay alive on the relays forever, but you can never update or unseed them. Write the phrase down.</p>
+          <summary>How do I install it — and is <code>pear run</code> going away?</summary>
+          <p><code>pear run</code> is deprecated as of Pear runtime <code>v2.4.0</code>, but it still works and will for the foreseeable future. The longer-term distribution path is signed <strong>native installers</strong> (.app / .exe / .deb) produced via <code>pear build</code>. Until those land, the <code>pear run pear://…</code> command above is the supported way in.</p>
         </details>
 
         <details>
-          <summary>Is there a mobile version?</summary>
-          <p>Not yet for the full desktop experience. A PWA viewer built on hyper-fetch is in scope — read any <code>hyper://</code> drive from a phone browser, no install. Native mobile companion with identity sync via shared seed is the next major release.</p>
-        </details>
-
-        <details>
-          <summary>Is it Apple/Google notarised?</summary>
-          <p>Pear runtime itself is signed (the binary the user installs first). PearBrowser runs inside it as a published app — its security model is the Hypercore signing key, not OS-level codesigning. Per-OS notarised installers are on the roadmap when there's reason to ship them; the cross-platform <code>pear://</code> path covers most users.</p>
+          <summary>What if I lose my device?</summary>
+          <p>If you backed up your 12-word BIP-39 phrase, you restore your identity on a new machine and your grants and per-app sub-keys come back with it. If you didn't back up, drives you published stay alive on the relays — but you can never update or unseed them. Write the phrase down.</p>
         </details>
 
       </div>
@@ -790,10 +1272,10 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="final">
-    <div class="wrap">
-      <h2>Ready to take your sites off the cloud?</h2>
-      <p>Run PearBrowser today. Open the Sites tab. Publish your first site — pinned to HiveRelay before you hit save, served by five relays in two regions, signed by your identity, addressable by public key.</p>
+  <section class="final" aria-labelledby="cta-h">
+    <div class="wrap reveal">
+      <h2 id="cta-h">Take your web off the cloud.</h2>
+      <p>Run PearBrowser today: browse the <code>hyper://</code> web, search your Library in under 5ms, install P2P apps, and publish a site that's pinned to HiveRelay before you finish reading this sentence.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#install">Get running →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
@@ -801,21 +1283,24 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <div class="footer-grid">
-        <div>
-          <a class="brand" href="#top" style="margin-bottom: 10px;">
-            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
             <span><strong>Pear</strong>Browser</span>
           </a>
-          <p style="margin-top: 10px;">The browser for the peer-to-peer web. Open source. Apache-2.0.</p>
+          <p>The desktop browser for the peer-to-peer web. No servers behind it. Apache-2.0 · macOS, Windows, Linux.</p>
         </div>
         <div>
           <div class="footer-title">The app</div>
           <ul>
             <li><a href="#install">Install</a></li>
+            <li><a href="#lighthouse">Lighthouse search</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">window.pear.swarm.v1</a></li>
@@ -824,36 +1309,87 @@
         <div>
           <div class="footer-title">Ecosystem</div>
           <ul>
-            <li><a href="https://github.com/bigdestiny2/hiveworm">HiveWorm</a> — multiplayer game</li>
-            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> — relay backbone</li>
-            <li><a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> — browser library</li>
-            <li><a href="https://pears.com">Pear Runtime</a> — the platform</li>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">P2P Builders</a> <span class="tag">— hub</span></li>
+            <li><a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> <span class="tag">— library</span></li>
+            <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Companion apps</div>
+          <ul>
+            <li>Pear POS</li>
+            <li>Pear Tickets</li>
+            <li>pearpaste</li>
+            <li>Pear Dealroom</li>
           </ul>
         </div>
       </div>
       <div class="footer-meta">
-        This site is also published as a Hyperdrive. View at <code>hyper://2d6c2be9…/</code> in any P2P client.
+        <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
+        <span class="badges">
+          <span class="pill live"><span class="ld"></span>Lighthouse live</span>
+          <span class="pill smoke"><span class="ld"></span>Federation smoke-validated</span>
+          <span class="pill exp"><span class="ld"></span>Sync &amp; naming experimental</span>
+        </span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Copy buttons
-    document.querySelectorAll('.copy-btn').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const text = btn.closest('[data-copy]')?.dataset.copy || ''
+    // Copy buttons (works on any [data-copy] ancestor)
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        var host = btn.closest('[data-copy]');
+        var text = host ? host.getAttribute('data-copy') : '';
         try {
-          await navigator.clipboard.writeText(text.trim())
-          const orig = btn.textContent
-          btn.textContent = 'Copied'
-          btn.classList.add('copied')
-          setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied') }, 1500)
-        } catch {
-          btn.textContent = 'Failed'
-          setTimeout(() => { btn.textContent = 'Copy' }, 1500)
+          await navigator.clipboard.writeText((text || '').trim());
+          var orig = btn.textContent;
+          btn.textContent = 'Copied';
+          btn.classList.add('copied');
+          setTimeout(function () { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+        } catch (e) {
+          btn.textContent = 'Failed';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
         }
-      })
-    })
+      });
+    });
+
+    // Mobile nav toggle
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    // Scroll reveal
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
   </script>
 </body>
 </html>
