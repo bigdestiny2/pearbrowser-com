@@ -1,50 +1,74 @@
 # pearbrowser.com
 
-Landing page for [PearBrowser Desktop](https://github.com/bigdestiny2/pearbrowser-desktop) — a peer-to-peer browser, app store, and site publisher built on the Pear Runtime.
+Static landing page for [PearBrowser Desktop](https://github.com/bigdestiny2/pearbrowser-desktop), with release metadata and ecosystem copy pinned to the first-party browser and relay anchors in this workspace.
 
-This repo is one static file (`index.html`) — no build step, no framework, no JS dependencies. Just open it.
+This repo stays intentionally small:
+
+- `index.html` is the site.
+- `scripts/check-sync.js` is a no-deps guardrail that verifies the site still matches the current desktop release metadata and anchor links.
+- `package.json` exists only to make preview and validation repeatable.
+
+## Anchor inputs
+
+Update this site against these sources first:
+
+- [`../../01-browser/pearbrowser-desktop/README.md`](../../01-browser/pearbrowser-desktop/README.md)
+- [`../../01-browser/PearBrowser/README.md`](../../01-browser/PearBrowser/README.md)
+- [`../../00-core/hiverelay/docs/PEARBROWSER-INTEGRATION.md`](../../00-core/hiverelay/docs/PEARBROWSER-INTEGRATION.md)
+
+The public page should describe the desktop browser accurately while making it clear that desktop and mobile share the same HiveRelay catalog, gateway, and capability-doc contract.
+
+## Local workflow
+
+```sh
+npm run check
+npm run preview
+```
+
+- `npm run check` validates the launch command, release version, production length, SWARM docs link, and mobile/browser ecosystem anchors.
+- `npm run preview` serves the static site at `http://127.0.0.1:4173`.
+
+No bundler, no framework, no install step beyond having Node and Python available locally.
+
+## Release-sync checklist
+
+When PearBrowser Desktop ships a new version:
+
+1. Confirm the `**Current release:**` line in [`../../01-browser/pearbrowser-desktop/README.md`](../../01-browser/pearbrowser-desktop/README.md).
+2. Update `index.html` hero/spec copy only if the version, production length, or surrounding product copy changed.
+3. Re-run `npm run check`.
+4. Preview locally and confirm the public site still reads cleanly on desktop and mobile.
+
+If the mobile browser or `hiverelay` contract changes materially, refresh the ecosystem copy and FAQ language in the same pass.
 
 ## Deploy
 
-Any static host works. One-click options, in order of effort:
+Any static host works.
 
-### Cloudflare Pages (recommended)
-1. https://dash.cloudflare.com → Workers & Pages → Create → Connect to Git
-2. Pick `bigdestiny2/pearbrowser-com`
-3. Build command: *(leave empty)*
-4. Build output: `/` (root)
-5. Add custom domain `pearbrowser.com` → DNS is one CNAME
+### Cloudflare Pages
+
+1. Connect the repo.
+2. Leave the build command empty.
+3. Use `/` as the output directory.
+4. Attach `pearbrowser.com`.
 
 ### Vercel
+
 ```sh
 vercel --prod
 ```
-No config needed. Set the custom domain in the dashboard.
 
 ### Netlify
-Drag-and-drop `index.html` into https://app.netlify.com/drop. Add custom domain in site settings.
+
+Drop the repo root or `index.html` into Netlify Drop, then attach the custom domain.
 
 ### GitHub Pages
-Settings → Pages → Source: deploy from `main` branch, `/` root. Then point `pearbrowser.com` at `bigdestiny2.github.io` via CNAME.
 
-## What's on the page
-
-- The current install command: `pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty`
-- Three-pillar pitch: Browse / Run apps / Publish
-- Ecosystem cards (HiveWorm, HiveRelay, P2P Builders, hyper-fetch)
-- Honest FAQ — what works, what's coming, why no installer yet
-- Spec table for the people who scroll to the bottom first
+Deploy from the `main` branch root and point `pearbrowser.com` at the Pages host with a CNAME.
 
 ## Why static?
 
-The previous deployment was a Lovable.dev React SPA that baked stale pear:// keys into the JS bundle. Static HTML is verifiable at a glance — `view-source:pearbrowser.com` shows the exact keys you're being asked to trust.
-
-## Updates
-
-When PearBrowser ships a new version:
-1. Edit the `<span>v0.4.3 · ...` hero tag
-2. Edit the spec table's `Version` row (`length` is from `pear info pear://...`)
-3. Commit and push — the host picks it up
+This page used to be easier to let drift. Static HTML keeps the trust surface inspectable: `view-source:` shows the exact launch key, release metadata, and ecosystem claims you are asking users to trust.
 
 ## License
 

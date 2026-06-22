@@ -6,6 +6,7 @@
   <title>PearBrowser — the desktop browser for the peer-to-peer web</title>
   <meta name="description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse search that finds pages through people you trust, not a crawler. macOS, Windows, Linux. No accounts, no servers, no DNS." />
   <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://pearbrowser.com/" />
   <meta property="og:title" content="PearBrowser — the browser with no servers behind it" />
   <meta property="og:description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse decentralized search over a social trust graph, not a crawler." />
   <meta property="og:type" content="website" />
@@ -797,7 +798,7 @@
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.4.x · Apache-2.0 · macOS · Windows · Linux</span>
+        <span>Desktop v0.4.5 · production length 16842 · macOS · Windows · Linux</span>
       </div>
       <h1>
         The browser with
@@ -815,7 +816,13 @@
 
       <div class="hero-actions">
         <a class="btn primary" href="#install">Get running →</a>
+        <a class="btn subtle" href="hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/">Open the P2P edition ↗</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">View the source</a>
+      </div>
+      <div class="hero-mini">
+        This very page is also served peer-to-peer — open
+        <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>
+        inside PearBrowser to read it with no web server in the loop.
       </div>
 
       <div class="hero-mini">
@@ -834,6 +841,10 @@
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           Sites pinned 24/7 on HiveRelay
+        </span>
+        <span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
+          Shared catalog + gateway contract with PearBrowser Mobile
         </span>
       </div>
     </div>
@@ -964,7 +975,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
           </div>
           <h3>Install P2P apps</h3>
-          <p>A decentralized app store that aggregates multiple Hyperdrive catalogs into one view — plus a writable personal <strong>“My Catalog.”</strong> Click a <code>pear://</code> link and the app opens in its own isolated window. No gatekeeper, no 30% cut.</p>
+          <p>A decentralized app store that aggregates multiple Hyperdrive catalogs into one view — plus a writable personal <strong>“My Catalog.”</strong> Real apps are live today — Keet, Paste, Pear POS, Dealroom, Pear Tickets — each <strong>pinned 24/7 on HiveRelay</strong>, so they launch straight from a <code>pear://</code> link even when the author is offline. The app opens in its own isolated window. No gatekeeper, no 30% cut.</p>
         </div>
 
         <div class="tile reveal d2">
@@ -1095,7 +1106,7 @@
     <div class="wrap">
       <span class="eyebrow reveal">The ecosystem</span>
       <h2 class="section reveal" id="eco-h">Part of a P2P stack, <em>not a silo</em>.</h2>
-      <p class="lede reveal">PearBrowser sits alongside an always-on backbone and an ecosystem hub — and a growing set of real companion apps.</p>
+      <p class="lede reveal">PearBrowser sits alongside the HiveRelay backbone, a mobile sibling that speaks the same catalog and gateway contract, and a growing set of real companion apps.</p>
 
       <div class="eco-spotlight">
         <a class="eco-card big reveal" href="https://github.com/bigdestiny2/P2P-Hiverelay">
@@ -1120,13 +1131,19 @@
           <div class="eco-desc">A tiny JS library that reads <code>hyper://</code> drives from any browser via the HiveRelay HTTP gateway. Drop it into a blog, a PWA, or a link previewer.</div>
           <div class="eco-link"><strong>github</strong>/bigdestiny2/hyper-fetch →</div>
         </a>
-        <a class="eco-card reveal d1" href="https://github.com/bigdestiny2/pearbrowser-desktop">
+        <a class="eco-card reveal d1" href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">
           <div class="eco-icon app" aria-hidden="true">S</div>
           <div class="eco-name">window.pear.swarm.v1</div>
           <div class="eco-desc">Direct Hyperswarm for <code>hyper://</code> pages with three trust tiers, per-app rate limits, a 1&nbsp;MB/s/peer cap, and persistent grants.</div>
           <div class="eco-link"><strong>docs</strong>/SWARM-V1.md →</div>
         </a>
-        <a class="eco-card reveal d2" href="https://pears.com">
+        <a class="eco-card reveal d2" href="https://github.com/bigdestiny2/PearBrowser">
+          <div class="eco-icon app" aria-hidden="true">M</div>
+          <div class="eco-name">PearBrowser Mobile</div>
+          <div class="eco-desc">The iOS and Android sibling app. It shares HiveRelay catalogs, HTTP gateway semantics, and capability-doc discovery with desktop so apps and sites can span both shells.</div>
+          <div class="eco-link"><strong>github</strong>/bigdestiny2/PearBrowser →</div>
+        </a>
+        <a class="eco-card reveal d3" href="https://pears.com">
           <div class="eco-icon app" aria-hidden="true">R</div>
           <div class="eco-name">Pear Runtime</div>
           <div class="eco-desc">The platform PearBrowser runs on — Bare + Chromium, distributed peer-to-peer. The runtime that fetches the right native binary on first launch.</div>
@@ -1198,7 +1215,7 @@
       <div class="spec reveal">
         <table>
           <tbody>
-          <tr><th scope="row">Desktop version</th><td>v0.4.x · newest capabilities ship on the active dev line</td></tr>
+          <tr><th scope="row">Desktop version</th><td>v0.4.5 · production length 16842 · pinned on 5+ relays</td></tr>
           <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> deprecated in runtime <code>v2.4.0</code></td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
@@ -1208,6 +1225,7 @@
           <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — all via the Pear runtime</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
           <tr><th scope="row">Launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+          <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</span> — the same page, pinned 24/7 on HiveRelay</td></tr>
           </tbody>
         </table>
       </div>
@@ -1310,6 +1328,7 @@
           <div class="footer-title">Ecosystem</div>
           <ul>
             <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
             <li><a href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">P2P Builders</a> <span class="tag">— hub</span></li>
             <li><a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> <span class="tag">— library</span></li>
             <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
