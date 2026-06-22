@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Features — PearBrowser</title>
+  <meta name="description" content="Lighthouse trust-graph search, P2P names (pearname://), a Nostr identity + federated feed, BIP-39 identity with per-app sub-keys, 24/7 site publishing, and P2P-first privacy — every capability honestly scoped." />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://pearbrowser.com/features.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="top" aria-label="Primary">
+    <div class="inner">
+      <a class="brand" href="index.html" aria-label="PearBrowser home">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
+          <defs>
+            <radialGradient id="gN" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#7ee787"/>
+              <stop offset="100%" stop-color="#238636"/>
+            </radialGradient>
+          </defs>
+          <circle cx="60" cy="30" r="5" fill="url(#gN)"/>
+          <circle cx="42" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="78" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="60" cy="72" r="7" fill="url(#gN)"/>
+          <circle cx="36" cy="90" r="7.5" fill="url(#gN)"/>
+          <circle cx="84" cy="90" r="7.5" fill="url(#gN)"/>
+        </svg>
+        <span><strong>Pear</strong>Browser</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="features.html" class="active">Features</a>
+        <a href="apps.html">Apps</a>
+        <a href="docs.html">Docs</a>
+        <a href="index.html#install">Download</a>
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow reveal">Everything it does</span>
+      <h1 class="reveal">A full browser — <span class="grad">and a P2P network node</span>.</h1>
+      <p class="lede reveal">PearBrowser is a real browser for the <code>hyper://</code> web, an app catalogue, and a site publisher — wired to a social trust graph that powers search, names, and a Nostr feed. Below is every capability, with the same honesty the app uses in its own Settings: shipping features and experimental ones are labeled, never blurred.</p>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <section class="block" aria-labelledby="search-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Lighthouse · <span class="pill live"><span class="ld"></span>Live</span></span>
+      <h2 class="section reveal" id="search-h">Search that runs on <em>trust</em>, not a crawler.</h2>
+      <p class="lede reveal">A local-first full-text index over your social graph. Pages you browse are tokenized, signed by a per-app <code>search</code> sub-key, and stored in a local Hyperbee — so Library search returns <strong style="color:var(--green-soft)">in under 5ms with zero network</strong>.</p>
+      <div class="tiles">
+        <div class="tile reveal">
+          <h3>Federated, opt-in</h3>
+          <p>Toggle “include trusted peers” and local results paint instantly, then a verified-peer set arrives over Hyperswarm and merges in — each hit carrying a provenance badge (you / trusted · hop N). No global crawler, no ranking black box.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>Verify-and-drop</h3>
+          <p>Every peer row is re-verified against the contact's signing key and dropped if it doesn't check out. A peer is an <em>index</em>, never an authority — it can serve results, never forge them.</p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>Completeness anchors</h3>
+          <p>Root-signed commitments to an index's length + tree hash let a trusted peer detect a truncated or forked index, so “federated” never quietly means “partial”.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAMES -->
+  <section class="block" aria-labelledby="names-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">P2P naming · <span class="pill exp"><span class="ld"></span>Experimental</span></span>
+      <h2 class="section reveal" id="names-h">Memorable names, <em>no registrar</em>.</h2>
+      <p class="lede reveal">Type a bare word or <code>pearname://alice</code> in the URL bar and a tiered resolver turns it into a destination, each with a provenance chip so you always know <em>how</em> it resolved.</p>
+      <div class="tiles">
+        <div class="tile reveal">
+          <h3>A four-tier resolver</h3>
+          <p>Your private <strong>petname</strong> wins, then <strong>your own claims</strong>, then <strong>names your trusted contacts claimed</strong>, then a curated floor. The highest tier you trust answers — and the chip says which.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>Owner-signed registry</h3>
+          <p>Claim a name in a multi-writer Autobase log: first-claim-wins, owner-only rotate/release/revoke, and durable across your devices even after every writer goes offline.</p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>Homograph-guarded</h3>
+          <p>A different owner can't claim a confusable look-alike of a held name — a Cyrillic <code>раypal</code> folds to the same skeleton as <code>paypal</code> and is rejected. Off by default.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSTR -->
+  <section class="block" aria-labelledby="nostr-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Nostr · <span class="pill phase"><span class="ld"></span>Phase 3</span></span>
+      <h2 class="section reveal" id="nostr-h">A portable identity and a feed — <em>over your trust graph</em>.</h2>
+      <p class="lede reveal">Settings shows your <strong>npub</strong> and a one-click “Link (attested)” / Revoke control that cross-curve-binds your Nostr (secp256k1/BIP-340) key to your Pear Ed25519 root with a monotonic epoch.</p>
+      <div class="tiles">
+        <div class="tile reveal">
+          <h3>Post &amp; read, signed</h3>
+          <p>Compose NIP-01 notes signed with your Nostr key, stored in your own event log. Toggle “include trusted contacts” to read notes a verified contact authored with <em>their</em> attested key — replicated peer-to-peer.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>Author-verified feed</h3>
+          <p>Every contact note is checked against that contact's Contacts-held root; an un-attested author never reaches your feed, and future-dated spam can't pin itself to the top.</p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>No relay servers</h3>
+          <p>The feed federates over your own contacts, not a relay fleet. Public <code>wss://</code> relay transport is a later, opt-in phase — clearly labeled when it lands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDENTITY + PUBLISH + PRIVACY -->
+  <section class="block" aria-labelledby="more-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">The foundations</span>
+      <h2 class="section reveal" id="more-h">Keys you own, sites that stay up, fetches peers serve.</h2>
+      <div class="tiles">
+        <div class="tile reveal">
+          <h3>BIP-39 identity + sub-keys</h3>
+          <p>A 12-word backup phrase, restore-on-a-new-device, and a distinct <code>appPubkey</code> handed to every site. Settings → Connected Apps lists and revokes grants. Contacts are added from signed invites, rejected if forged — and one verified contact powers <em>all</em> the federation: search, names, and notes.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>Publish sites, pinned 24/7</h3>
+          <p>Build a site in-app and publish it as a Hyperdrive addressed by key. HiveRelay pins it so it stays reachable even when your machine is closed — this very website is served that way. <span class="pill live"><span class="ld"></span>Live</span></p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>P2P-first privacy</h3>
+          <p>The proxy tries direct peer-to-peer first and only falls back to a HiveRelay HTTP gateway after a short grace window — so relays stop seeing fetches that peers could have served themselves.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>Encrypted device sync <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
+          <p>Pair your own machines with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite to converge <strong>bookmarks</strong> over an encrypted Autobase. Scope today is bookmarks — not full tabs / history / profile. Off by default.</p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>Three apps in one</h3>
+          <p>Browse <code>hyper://</code> sites, install and launch P2P apps from a HiveRelay-backed catalogue, and publish your own — each fully peer-to-peer, no accounts, no DNS, no servers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="block" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="settings-card" style="text-align:center; padding: clamp(28px,5vw,48px); border:1px solid var(--line-hi); border-radius:var(--radius); background:var(--bg-elev)">
+        <h2 class="section" id="cta-h" style="margin-bottom:10px">See it for yourself.</h2>
+        <p class="lede" style="margin:0 auto 22px; max-width:560px">One install, three platforms. Pear fetches the matching native runtime on first launch.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn primary" href="index.html#install">Get running →</a>
+          <a class="btn subtle" href="docs.html">Read the docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
+            <span><strong>Pear</strong>Browser</span>
+          </a>
+          <p>The desktop browser for the peer-to-peer web. No servers behind it. Apache-2.0 · macOS, Windows, Linux.</p>
+        </div>
+        <div>
+          <div class="footer-title">Explore</div>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="index.html#install">Download</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Ecosystem</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
+            <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Source</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Desktop repo</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
+        <span class="badges">
+          <span class="pill live"><span class="ld"></span>Lighthouse live</span>
+          <span class="pill exp"><span class="ld"></span>Sync &amp; naming experimental</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

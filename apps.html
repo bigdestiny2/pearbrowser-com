@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>P2P apps — PearBrowser</title>
+  <meta name="description" content="An early, active ecosystem of peer-to-peer apps built on the Pear / Holepunch stack — ticketing, payments, media, marketplaces, comms — discoverable and launchable from PearBrowser. No servers behind them." />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://pearbrowser.com/apps.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="top" aria-label="Primary">
+    <div class="inner">
+      <a class="brand" href="index.html" aria-label="PearBrowser home">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
+          <defs>
+            <radialGradient id="gN" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#7ee787"/>
+              <stop offset="100%" stop-color="#238636"/>
+            </radialGradient>
+          </defs>
+          <circle cx="60" cy="30" r="5" fill="url(#gN)"/>
+          <circle cx="42" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="78" cy="52" r="6" fill="url(#gN)"/>
+          <circle cx="60" cy="72" r="7" fill="url(#gN)"/>
+          <circle cx="36" cy="90" r="7.5" fill="url(#gN)"/>
+          <circle cx="84" cy="90" r="7.5" fill="url(#gN)"/>
+        </svg>
+        <span><strong>Pear</strong>Browser</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="apps.html" class="active">Apps</a>
+        <a href="docs.html">Docs</a>
+        <a href="index.html#install">Download</a>
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow reveal">The P2P app ecosystem</span>
+      <h1 class="reveal">Apps with <span class="grad">no backend</span> to go down.</h1>
+      <p class="lede reveal">A growing set of apps built on the same Pear / Holepunch stack as the browser — corestore, hypercore, hyperswarm, autobase. They run device-to-device with no servers, sync over the swarm, and surface in PearBrowser's app catalogue. It's an <strong>early, active</strong> ecosystem: some apps ship, many are demos or in active development — labeled honestly below.</p>
+      <div class="hero-actions reveal" style="margin-top:22px">
+        <a class="btn primary" href="index.html#install">Get the browser →</a>
+        <a class="btn subtle" href="docs.html#publish">Publish your own ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COMMERCE -->
+  <section class="block" aria-labelledby="commerce-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Commerce &amp; payments</span>
+      <h2 class="section reveal" id="commerce-h">Sell, settle, and ticket — <em>peer to peer</em>.</h2>
+      <div class="app-grid">
+        <div class="app-card reveal">
+          <span class="app-cat">Events</span>
+          <span class="app-name">Pear Tickets</span>
+          <p>P2P ticketing for events with QR validation and transfers — issue, sell, and check in without a ticketing server in the middle.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Retail</span>
+          <span class="app-name">Pear POS</span>
+          <p>A point-of-sale with AI product recognition and self-custodial crypto payments — runs the till locally, settles without a processor.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Documents</span>
+          <span class="app-name">Pear Dealroom</span>
+          <p>Zero-infrastructure secure document exchange — a P2P virtual data room for deals, where files never touch a third-party host.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Marketplace</span>
+          <span class="app-name">Pear Bazaar</span>
+          <p>An offline-first P2P marketplace built for connectivity-poor economies — list and trade even when the network is intermittent.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Travel</span>
+          <span class="app-name">Pear Stays</span>
+          <p>P2P short-term rentals with geospatial discovery — hosts and guests connect directly, no booking platform taking a cut.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Mobility</span>
+          <span class="app-name">Pear Rides</span>
+          <p>P2P ridesharing with geohash-based discovery — riders and drivers match over the swarm instead of a central dispatcher.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Finance</span>
+          <span class="app-name">Pear Exchange</span>
+          <p>A P2P cryptocurrency exchange on the Pear / Holepunch stack — order flow that doesn't route through an exchange operator.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Cash</span>
+          <span class="app-name">Pear Sanduq</span>
+          <p>An offline P2P bearer-cash wallet built on Cashu ecash — spend hand-to-hand, no online ledger required to transact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA & COMMS -->
+  <section class="block" aria-labelledby="media-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Media &amp; communication</span>
+      <h2 class="section reveal" id="media-h">Publish and talk <em>without a platform</em>.</h2>
+      <div class="app-grid">
+        <div class="app-card reveal">
+          <span class="app-cat">Video</span>
+          <span class="app-name">PearTube</span>
+          <p>P2P video streaming for desktop and mobile — creators serve their own streams to viewers directly, no CDN bill, no de-platforming.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">News</span>
+          <span class="app-name">Pear Sahifa</span>
+          <p>An authenticated offline news relay network — signed reporting that spreads peer to peer, verifiable even where the internet is cut.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Notes</span>
+          <span class="app-name">pearpaste</span>
+          <p>Personal, end-to-end encrypted note and clipboard sync over Pear / Holepunch — your snippets across your own devices, never a server's.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">Calls &amp; chat</span>
+          <span class="app-name">Pear Comms</span>
+          <p>A P2P communications SDK and demo — app-to-app voice, video, and messaging you can drop into your own Pear app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRA, AI & SDKs -->
+  <section class="block" aria-labelledby="infra-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Infrastructure, AI &amp; building blocks</span>
+      <h2 class="section reveal" id="infra-h">The stack <em>under</em> the apps.</h2>
+      <div class="app-grid">
+        <div class="app-card reveal">
+          <span class="app-cat">AI</span>
+          <span class="app-name">anonGPT</span>
+          <p>Privacy-by-design AI access — PearBrowser ships a built-in buyer/shim so a page can reach the service without handing over an identity.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">AI mesh</span>
+          <span class="app-name">Pear OpenClaw</span>
+          <p>A P2P agent-orchestration mesh for AI workflows — coordinate agents across machines without a central controller.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">IoT</span>
+          <span class="app-name">Pear Home</span>
+          <p>A P2P smart home — local-first IoT control with no cloud dependency, so your devices keep working when the vendor's servers don't.</p>
+        </div>
+        <div class="app-card reveal">
+          <span class="app-cat">SDK</span>
+          <span class="app-name">react-native-pear-end</span>
+          <p>A reusable Bare-on-React-Native integration — embed a Pear-style backend (corestore + hypercore + hyperswarm + hyperdht + autobase) in a mobile app, with native UDP via UDX.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLISH CTA -->
+  <section class="block" aria-labelledby="pub-h">
+    <div class="wrap">
+      <div class="settings-card" style="text-align:center; padding: clamp(28px,5vw,48px); border:1px solid var(--line-hi); border-radius:var(--radius); background:var(--bg-elev)">
+        <h2 class="section" id="pub-h" style="margin-bottom:10px">Build the next one.</h2>
+        <p class="lede" style="margin:0 auto 22px; max-width:620px">Every app here is a Hyperdrive or a Pear app — addressed by key, served by peers, with no host to pay or ask permission from. PearBrowser is also a site publisher and an app catalogue: ship yours and it's reachable the moment a peer pins it.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn primary" href="docs.html#publish">How to publish →</a>
+          <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Read the source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
+            <span><strong>Pear</strong>Browser</span>
+          </a>
+          <p>The desktop browser for the peer-to-peer web. No servers behind it. Apache-2.0 · macOS, Windows, Linux.</p>
+        </div>
+        <div>
+          <div class="footer-title">Explore</div>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="index.html#install">Download</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Ecosystem</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
+            <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Source</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Desktop repo</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
+        <span class="badges">
+          <span class="pill live"><span class="ld"></span>Lighthouse live</span>
+          <span class="pill exp"><span class="ld"></span>Ecosystem early &amp; active</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
