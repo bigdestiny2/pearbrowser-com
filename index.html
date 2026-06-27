@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PearBrowser — the desktop browser for the peer-to-peer web</title>
-  <meta name="description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse search that finds pages through people you trust, not a crawler. macOS, Windows, Linux. No accounts, no servers, no DNS." />
+  <title>PearBrowser — the desktop for the peer-to-peer web</title>
+  <meta name="description" content="PearBrowser is the desktop for the peer-to-peer web: browse hyper:// sites, run Pear apps, search people you trust, and publish pages that stay online without servers. macOS, Windows, Linux. No accounts, no DNS." />
   <meta name="theme-color" content="#0a0d12" />
   <link rel="canonical" href="https://pearbrowser.com/" />
-  <meta property="og:title" content="PearBrowser — the browser with no servers behind it" />
-  <meta property="og:description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7 — now with Lighthouse decentralized search over a social trust graph, not a crawler." />
+  <meta property="og:title" content="PearBrowser — the desktop for the peer-to-peer web" />
+  <meta property="og:description" content="Browse hyper:// sites, run Pear apps, search trusted peers, and publish pages that stay online without servers." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PearBrowser — the browser with no servers behind it" />
-  <meta name="twitter:description" content="Browse the hyper:// web, install P2P apps, and publish sites pinned 24/7. Lighthouse search finds pages through people you trust, not a crawler." />
+  <meta name="twitter:description" content="Browse hyper:// sites, run Pear apps, search trusted peers, and publish pages that stay online without servers." />
+  <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
@@ -56,39 +57,36 @@
   <main id="main">
 
   <!-- HERO -->
-  <header id="top" class="hero">
+  <header id="top" class="hero hero-product">
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.4.5 · production length 16842 · macOS · Windows · Linux</span>
+        <span>Desktop v0.5.0 · production length 33841 · installer artifacts pending · macOS · Windows · Linux</span>
       </div>
       <h1>
-        The browser with
-        <span class="grad">no servers behind it</span>.
+        <span class="brandline">PearBrowser</span>
+        <span class="grad">the desktop for the peer-to-peer web</span>.
       </h1>
       <p class="hero-sub">
-        Browse the <strong>hyper://</strong> web, install P2P apps, and publish sites pinned 24/7 —
-        now with <span class="hl">Lighthouse search</span> that finds pages through people you trust, not a crawler.
+        Browse <strong>hyper://</strong> sites, run Pear apps, search people you trust, and publish pages that stay online without servers.
+        <span class="hl">No accounts. No DNS. No manual updates.</span>
       </p>
 
-      <div class="hero-cmd" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
-        <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
-        <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
+      <div class="hero-cmd" data-copy="https://github.com/bigdestiny2/pearbrowser-desktop/releases">
+        <code>Installer artifacts pending: macOS .app · Windows .exe · Linux .deb</code>
+        <button class="copy-btn" type="button" aria-label="Copy release URL">Copy release URL</button>
       </div>
 
       <div class="hero-actions">
-        <a class="btn primary" href="#install">Get running →</a>
+        <a class="btn primary" href="#demo">See what to demo →</a>
+        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Check installer status</a>
         <a class="btn subtle" href="hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/">Open the P2P edition ↗</a>
-        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">View the source</a>
-      </div>
-      <div class="hero-mini">
-        This very page is also served peer-to-peer — open
-        <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>
-        inside PearBrowser to read it with no web server in the loop.
       </div>
 
       <div class="hero-mini">
-        One install, three platforms. Pear fetches the matching native runtime on first launch.
+        This very page is also served peer-to-peer at
+        <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>.
+        Native packages are the target path; until installer artifacts land, the legacy Pear CLI fallback remains available in the install section.
       </div>
 
       <div class="trust-strip">
@@ -98,7 +96,7 @@
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
-          Library search returns in &lt;5ms, zero network
+          Provenance badges on search, apps, and sites
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
@@ -109,109 +107,74 @@
           Shared catalog + gateway contract with PearBrowser Mobile
         </span>
       </div>
+
+      <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
+        <div class="proof-card"><strong>Browse</strong><span>Fresh launches open PearBrowser, P2P Builders, and peerit as real hyper:// tabs.</span></div>
+        <div class="proof-card"><strong>Search</strong><span>Local first-paint, trusted-peer federation, and row-level proof badges.</span></div>
+        <div class="proof-card"><strong>Publish</strong><span>Block editor → publish → relay replication proof → shareable key.</span></div>
+        <div class="proof-card"><strong>Trust</strong><span>Catalog source, signatures, release history, pins, and grants in one view.</span></div>
+      </div>
     </div>
   </header>
 
-  <!-- LIGHTHOUSE: headline feature -->
-  <section id="lighthouse" class="block" aria-labelledby="lh-h">
+  <!-- DEMO FLOW -->
+  <section id="demo" class="block" aria-labelledby="demo-h">
     <div class="wrap">
-      <div class="lighthouse-grid">
-        <div class="lh-copy reveal">
-          <span class="eyebrow">The latest work</span>
-          <h2 class="section" id="lh-h">Search that runs on <em>trust</em>, not a crawler.</h2>
-          <p class="lede" style="margin-bottom:0">
-            <strong style="color:var(--fg)">Lighthouse</strong> is a local-first personal full-text index over a social
-            trust graph. Pages you browse get tokenized, signed by a per-app
-            <code>search</code> subkey, and stored in a local Hyperbee — so Library search returns
-            <strong style="color:var(--green-soft)">in under 5ms with zero network</strong>.
-          </p>
-          <ul class="lh-points">
-            <li>
-              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <span><strong>Federated “include trusted peers” (opt-in toggle).</strong> Local results paint instantly; a verified trusted-peer set then arrives over Hyperswarm and replaces them — each hit carries a provenance badge (you / trusted · hop N). <span class="pill smoke"><span class="ld"></span>Smoke-validated</span> by a two-node federation test.</span>
-            </li>
-            <li>
-              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <span><strong>Verify-and-drop trust model.</strong> Every federated row is re-verified client-side against the contact's identity binding and dropped on failure before it can touch ranking. The room is an index, not an authority.</span>
-            </li>
-            <li>
-              <span class="lh-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <span><strong>Deterministic, clock-free ranker.</strong> The same inputs produce identical ranking on every device — no timestamps, no central tiebreaker.</span>
-            </li>
-          </ul>
-        </div>
+      <span class="eyebrow reveal">What to demo</span>
+      <h2 class="section reveal" id="demo-h">Show the loop, not the protocol.</h2>
+      <p class="lede reveal">PearBrowser is easiest to understand when people see a complete path: open a live P2P site, search it with proof, publish something new, then inspect what the browser knows about trust.</p>
 
-        <!-- search demo -->
-        <div class="lh-demo reveal d1" role="img" aria-label="Lighthouse search panel: a query 'hyperdrive pinning' returns a local result badged 'you' and a trusted-peer result badged 'trusted, hop 1'.">
-          <div class="lh-search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-            <span class="q">hyperdrive pinning</span>
-            <span class="caret"></span>
-          </div>
-          <div class="lh-toggle">
-            <span>Include trusted peers <span style="color:var(--dim)">· opt-in</span></span>
-            <span class="lh-switch" aria-hidden="true"></span>
-          </div>
-          <div class="lh-results">
-            <div class="lh-row">
-              <div class="lh-row-top">
-                <span class="lh-row-title">Pinning a drive to HiveRelay</span>
-                <span class="prov you">you</span>
-              </div>
-              <div class="lh-row-url">hyper://2d6c2be9…/guides/pinning</div>
+      <div class="product-demo-grid">
+        <article class="demo-card demo-browser reveal">
+          <div class="demo-kicker">1 · Fresh launch</div>
+          <h3>Start inside the live P2P web.</h3>
+          <p>Open the app and show the default tabs: PearBrowser, P2P Builders, and peerit. It immediately feels like a place, not a blank protocol shell.</p>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="demo-tabs">
+              <span class="active">PearBrowser</span><span>P2P Builders</span><span>peerit</span>
             </div>
-            <div class="lh-row">
-              <div class="lh-row-top">
-                <span class="lh-row-title">365-day TTL &amp; re-pinning</span>
-                <span class="prov trusted">trusted · hop 1</span>
-              </div>
-              <div class="lh-row-url">hyper://9af0c1…/relay/ttl</div>
-            </div>
-            <div class="lh-row">
-              <div class="lh-row-top">
-                <span class="lh-row-title">Blind-encrypted seeding explained</span>
-                <span class="prov trusted">trusted · hop 2</span>
-              </div>
-              <div class="lh-row-url">hyper://c41b…/notes/blind-seed</div>
+            <div class="demo-address">hyper://ac1977a7…635f6d74/</div>
+            <div class="demo-page">
+              <strong>P2P Builders</strong>
+              <span>boards · posts · votes · blocklists</span>
+              <div class="demo-feed-row"><b>Show us what you built</b><small>posted from a signed local identity</small></div>
+              <div class="demo-feed-row"><b>Relay pin dashboard</b><small>replicated directly between peers</small></div>
             </div>
           </div>
-          <div class="lh-foot">
-            <span>Local hits: <b>&lt;5ms</b></span>
-            <span>Verified &amp; re-checked before ranking</span>
-            <span>Deterministic order</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </article>
 
-  <!-- FEDERATION PIPELINE -->
-  <section class="block" aria-labelledby="pipe-h">
-    <div class="wrap">
-      <span class="eyebrow reveal">How federated search resolves</span>
-      <h2 class="section reveal" id="pipe-h">Local first. <em>Verified peers second.</em></h2>
-      <p class="lede reveal">A query never waits on the network to feel fast — and never trusts the network without checking.</p>
-      <div class="pipeline">
-        <div class="pstep reveal">
-          <span class="num"></span>
-          <h4>Paint locally</h4>
-          <p>Your local Hyperbee index answers immediately — under 5ms, fully offline.</p>
-        </div>
-        <div class="pstep reveal d1">
-          <span class="num"></span>
-          <h4>Ask trusted peers</h4>
-          <p>If the opt-in toggle is on, the query fans out to your trust graph over Hyperswarm.</p>
-        </div>
-        <div class="pstep reveal d2">
-          <span class="num"></span>
-          <h4>Verify &amp; drop</h4>
-          <p>Each returned row is re-verified against the contact's identity binding; forgeries are dropped before ranking.</p>
-        </div>
-        <div class="pstep reveal d3">
-          <span class="num"></span>
-          <h4>Replace &amp; rank</h4>
-          <p>Survivors merge in with a provenance badge and a deterministic, clock-free order — identical on every device.</p>
-        </div>
+        <article class="demo-card reveal d1">
+          <div class="demo-kicker">2 · Search</div>
+          <h3>Search with provenance on every result.</h3>
+          <p>Run a query against Library or P2P Sites. The important part is not just that results appear; it is that the UI explains where each one came from and how it was verified.</p>
+          <div class="search-panel" aria-hidden="true">
+            <div class="search-box">lighthouse peerit</div>
+            <div class="result-row"><strong>Lighthouse outbox discovery</strong><span><em>peerit / post</em><i>app-signed</i><i>you</i></span></div>
+            <div class="result-row"><strong>P2PBuilders app data search</strong><span><em>p2pbuilders / comment</em><i>trusted hop 1</i><i>relay-confirmed</i></span></div>
+            <div class="run-summary">planned 2 peers · pulled 1 · digest matched · partial-proof capped</div>
+          </div>
+        </article>
+
+        <article class="demo-card reveal d2">
+          <div class="demo-kicker">3 · Publish</div>
+          <h3>Publish a page that survives your laptop closing.</h3>
+          <p>Create a tiny site in the block editor, click Publish &amp; Pin, then show the replication row. This is the clearest aha moment in the whole app.</p>
+          <div class="publish-flow" aria-hidden="true">
+            <span>Block editor</span><b>→</b><span>Publish &amp; Pin</span><b>→</b><span class="ok">3 HiveRelay peers replicated</span>
+          </div>
+          <code class="demo-url">hyper://1868916a…02709e25d/</code>
+        </article>
+
+        <article class="demo-card reveal d3">
+          <div class="demo-kicker">4 · Apps & trust</div>
+          <h3>Run apps, then inspect why they are trustworthy.</h3>
+          <p>Show the app catalog with source chips, launch mode, release history, permissions, and relay availability. This is the product's quiet superpower.</p>
+          <div class="catalog-mini" aria-hidden="true">
+            <div><b>peerit</b><span>hypersite · relay-listed · pinned</span></div>
+            <div><b>Peercord</b><span>window app · third-party trust prompt</span></div>
+            <div><b>Paste</b><span>standalone · release history · My Catalog</span></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -220,8 +183,8 @@
   <section id="how" class="block" aria-labelledby="how-h">
     <div class="wrap">
       <span class="eyebrow reveal">What it is</span>
-      <h2 class="section reveal" id="how-h">Three apps in one — <em>each fully P2P</em>.</h2>
-      <p class="lede reveal">No “P2P module bolted onto Chromium.” Built bottom-up on the Holepunch / Pear stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Ed25519 for identity.</p>
+      <h2 class="section reveal" id="how-h">One desktop, <em>four P2P product loops</em>.</h2>
+      <p class="lede reveal">No P2P module bolted onto Chromium. PearBrowser is built bottom-up on the Holepunch / Pear stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Autobase for shared logs, and Ed25519 identities for user-owned trust.</p>
       <div class="tiles">
 
         <div class="tile reveal">
@@ -229,23 +192,31 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
           </div>
           <h3>Browse <code>hyper://</code></h3>
-          <p>Paste a drive key — hex or z-base-32 — and PearBrowser streams content directly from peers through the Hyperswarm DHT. Multi-tab browsing with keyboard shortcuts, back/forward, bookmarks, and history.</p>
+          <p>Paste a drive key, a z-base-32 key, or a friendly name. PearBrowser streams content directly from peers, keeps multi-tab history across launches, and shows site keys plus catalog provenance when you need to inspect what you opened.</p>
         </div>
 
         <div class="tile reveal d1">
           <div class="tile-icon t2" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
           </div>
-          <h3>Install P2P apps</h3>
-          <p>A decentralized app store that aggregates multiple Hyperdrive catalogs into one view — plus a writable personal <strong>“My Catalog.”</strong> Real apps are live today — Keet, Paste, Pear POS, Dealroom, Pear Tickets — each <strong>pinned 24/7 on HiveRelay</strong>, so they launch straight from a <code>pear://</code> link even when the author is offline. The app opens in its own isolated window. No gatekeeper, no 30% cut.</p>
+          <h3>Run Pear apps</h3>
+          <p>The Apps tab merges curated, community, personal, Hyperbee, schema-sheets, and relay-index catalogues. Standalone apps open in their own Pear window; hypersites run in the browser. My Catalog lets users collect and share their own picks.</p>
         </div>
 
         <div class="tile reveal d2">
           <div class="tile-icon t3" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
           </div>
-          <h3>Publish your own</h3>
-          <p>A block-editor site publisher that one-click publishes and auto-pins to HiveRelay. It only reports <strong>“published”</strong> after a relay confirms replication — so the URL works the moment you share it.</p>
+          <h3>Publish and pin</h3>
+          <p>The site editor publishes Hyperdrives and auto-pins them to HiveRelay. The UI only calls a site published after replication evidence comes back, then gives you a shareable <code>hyper://</code> URL and a recoverable drive key.</p>
+        </div>
+
+        <div class="tile reveal d3">
+          <div class="tile-icon t5" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-5"/></svg>
+          </div>
+          <h3>Inspect trust</h3>
+          <p>Apps, sites, search results, and permissions carry calm proof surfaces: source chips, signed/unsigned status, relay pins, live peers, release history, profile grants, and swarm-topic grants.</p>
         </div>
 
       </div>
@@ -255,34 +226,33 @@
   <!-- IDENTITY & TRUST FEATURES -->
   <section class="block" aria-labelledby="id-h">
     <div class="wrap">
-      <span class="eyebrow reveal">Identity &amp; trust</span>
-      <h2 class="section reveal" id="id-h">Keys you own. <em>Contacts you verify.</em></h2>
-      <p class="lede reveal">Your identity is local and portable, every app gets its own sub-key, and the people behind everything you federate — search, names, and your Nostr feed — are cryptographically vouched for.</p>
+      <span class="eyebrow reveal">Trust surfaces</span>
+      <h2 class="section reveal" id="id-h">Proof without protocol homework.</h2>
+      <p class="lede reveal">The product keeps trust visible but calm. You can use the app normally, then open details when you want to know what is signed, pinned, local, federated, or permissioned.</p>
       <div class="tiles">
 
         <div class="tile reveal">
           <div class="tile-icon t1" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2 13 10"/><circle cx="8.5" cy="15.5" r="5.5"/><path d="m14 6 3 3M18 2l4 4-3 3"/></svg>
           </div>
-          <h3>BIP-39 identity + sub-keys</h3>
-          <p>A 12-word backup phrase, restore-on-a-new-device, and a distinct <code>appPubkey</code> handed to every site. Settings → Connected Apps lists and revokes grants.</p>
+          <h3>BIP-39 identity + per-app keys</h3>
+          <p>A 12-word backup phrase restores your identity on a new device. Each site receives a different <code>appPubkey</code>, and Settings groups sign-in, profile, contact, and arbitrary swarm-topic grants by app for revocation.</p>
         </div>
 
         <div class="tile reveal d1">
           <div class="tile-icon t6" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
           </div>
-          <h3>Nostr identity + feed <span class="pill phase"><span class="ld"></span>Phase 3</span></h3>
-          <p>Settings shows your <strong>npub</strong> and a one-click “Link (attested)” / Revoke control that cross-curve-binds your Nostr (secp256k1/BIP-340) key to your Pear Ed25519 root, with a monotonic epoch. Post NIP-01 notes signed with that key, then toggle <strong>“Include trusted contacts”</strong> to read notes a verified contact authored with <em>their</em> attested key — replicated peer-to-peer.</p>
-          <p style="color:var(--dim);font-size:12.5px">Every contact note is author-verified against their Contacts-held root; an un-attested author never reaches your feed. No public <code>wss://</code> relays yet — the feed federates over your own trust graph.</p>
+          <h3>Trusted-contact Nostr bridge <span class="pill phase"><span class="ld"></span>Phase 3</span></h3>
+          <p>Settings shows your <strong>npub</strong>, lets you link or revoke a cross-curve attestation, and can post NIP-01 notes signed with that key. The feed is trust-graph scoped: contact notes must match the contact's attested Nostr key. No public <code>wss://</code> relay client by default.</p>
         </div>
 
         <div class="tile reveal d2">
           <div class="tile-icon t2" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
           </div>
-          <h3>Trusted-peer contacts</h3>
-          <p>Add a contact from a signed invite URL — pubkey + name + signature + binding key. Invite signatures are verified at import and <strong>rejected if forged</strong>. One verified contact then powers all the federation: search results, resolvable names, and Nostr notes — each author-checked against the root you vouched for.</p>
+          <h3>Search, names, and feeds from verified contacts</h3>
+          <p>Signed contact invites build the trusted frontier. Those contacts can enrich search, assert names, and contribute Nostr notes, but each surface preserves provenance so a local petname, contact claim, and curated default never look equivalent.</p>
         </div>
 
       </div>
@@ -293,8 +263,8 @@
   <section class="block" aria-labelledby="exp-h">
     <div class="wrap">
       <span class="eyebrow reveal">On the dev line</span>
-      <h2 class="section reveal" id="exp-h">Opt-in capabilities, <em>honestly labeled</em>.</h2>
-      <p class="lede reveal">These live on the active development line. Each one is off by default and clearly scoped — no hidden behavior, no overclaim.</p>
+      <h2 class="section reveal" id="exp-h">Experimental features, <em>honestly labeled</em>.</h2>
+      <p class="lede reveal">The early surfaces stay opt-in and explicit. They are useful today, but the UI tells you where the edges are.</p>
       <div class="tiles">
 
         <div class="tile reveal">
@@ -302,7 +272,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 9h8M8 13h5"/></svg>
           </div>
           <h3>P2P names &amp; petnames <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
-          <p>Claim a memorable name in an owner-signed, multi-writer registry — <code>pearname://alice</code> (or a bare word) resolves to your drive in the URL bar, with a provenance chip. A tiered resolver runs your private petname → your own claims → <strong>names your trusted contacts claimed</strong> → a curated floor. First-claim-wins, durable across devices even when writers go offline, and confusable look-alikes (a Cyrillic <code>раypal</code>) are blocked. Off by default.</p>
+          <p>Type <code>pearname://name</code> or a bare word in the URL bar. Resolution checks your private petnames, your own registry records, trusted-contact claims, and curated defaults, while Unicode guardrails block confusable look-alikes.</p>
         </div>
 
         <div class="tile reveal d1">
@@ -310,16 +280,15 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m9 8 3 3 3-3"/></svg>
           </div>
           <h3>Encrypted device sync <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
-          <p>Pair devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite to converge <strong>bookmarks</strong> across your own machines over Autobase, verified by a two-device encrypted smoke test.</p>
-          <p style="color:var(--dim);font-size:12.5px">Scope today = bookmarks. Not full tabs / history / profile sync.</p>
+          <p>Pair your own devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite. The current sync surface covers bookmarks, open-tab snapshots, allowlisted settings, profile fields, recent history, contacts, and app grants, with rotate/forget recovery controls.</p>
         </div>
 
         <div class="tile reveal d2">
           <div class="tile-icon t2" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/><circle cx="12" cy="12" r="9"/></svg>
           </div>
-          <h3>P2P-first fetch (privacy)</h3>
-          <p>The proxy tries direct peer-to-peer first and only falls back to a HiveRelay HTTP gateway after a short grace window — so relays stop seeing fetches that peers could have served themselves.</p>
+          <h3>Diagnostics that explain the network</h3>
+          <p>Settings exposes boot timing, proxy fetch mix, cache hit rate, P2P/relay split, storage usage, and live relay capability pills. It is product UX for a network that should be inspectable.</p>
         </div>
 
       </div>
@@ -378,11 +347,11 @@
           <div class="eco-link"><strong>github</strong>/bigdestiny2/P2P-Hiverelay →</div>
         </a>
 
-        <a class="eco-card big reveal d1" href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">
+        <a class="eco-card big reveal d1" href="hyper://ac1977a75cc84b46af0af8bb559cd4ebbe10507eb0f51d863e289d09635f6d74/">
           <div class="eco-icon pb" aria-hidden="true">P</div>
           <div class="eco-name">P2P Builders <span class="eco-tag">Hub</span></div>
           <div class="eco-desc">The ecosystem hub — a permissionless gathering spot for the people building the peer-to-peer web. No accounts, no moderators, no servers; reachable over <code>hyper://</code>.</div>
-          <div class="eco-link"><strong>hyper://</strong>f0cd01e3…b3db42a →</div>
+          <div class="eco-link"><strong>hyper://</strong>ac1977a7…635f6d74 →</div>
         </a>
       </div>
 
@@ -426,42 +395,43 @@
   <section id="install" class="block" aria-labelledby="inst-h">
     <div class="wrap">
       <span class="eyebrow reveal">Quickstart</span>
-      <h2 class="section reveal" id="inst-h">Up and running in <em>thirty seconds</em>.</h2>
-      <p class="lede reveal">PearBrowser is a Pear runtime app. Install the runtime once (it auto-fetches the matching native binary), then launch PearBrowser by its public key.</p>
+      <h2 class="section reveal" id="inst-h">Installer status and fallback.</h2>
+      <p class="lede reveal">PearBrowser's target desktop path is native installers: macOS <code>.app</code>, Windows <code>.exe</code>, and Linux <code>.deb</code>. The current <code>v0.5.0</code> GitHub release does <strong>not</strong> have those artifacts attached yet, so the stable Pear key is the temporary legacy fallback.</p>
 
       <div class="install-grid">
         <div class="reveal">
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
-              <span class="terminal-title">~/pearbrowser — zsh</span>
+              <span class="terminal-title">PearBrowser release artifacts</span>
             </div>
             <div class="terminal-body">
-              <span class="comment"># 1. Install Pear (one time, all three OSes)</span><br>
-              <span class="prompt">$</span> npm i -g pear<br>
-              <span class="prompt">$</span> pear <span class="comment"># bootstrap</span><br>
+              <span class="comment"># Target installer artifacts (not attached to v0.5.0 yet)</span><br>
+              macOS: PearBrowser.app<br>
+              Windows: PearBrowser Setup.exe<br>
+              Linux: pearbrowser-desktop.deb<br>
               <br>
-              <span class="comment"># 2. Launch PearBrowser</span><br>
-              <span class="prompt">$</span> pear run pear://<span class="key">tco5k7h38…ujbebhsbty</span>
+              <span class="comment"># Release page</span><br>
+              https://github.com/bigdestiny2/pearbrowser-desktop/releases
             </div>
           </div>
 
-          <div class="copy-inline" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
-            <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
-            <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
+          <div class="copy-inline" data-copy="https://github.com/bigdestiny2/pearbrowser-desktop/releases">
+            <code>https://github.com/bigdestiny2/pearbrowser-desktop/releases</code>
+            <button class="copy-btn" type="button" aria-label="Copy release URL">Copy</button>
           </div>
 
           <div class="callout">
-            <strong>Heads-up:</strong> <code>pear run</code> is deprecated as of Pear runtime <code>v2.4.0</code> — it still works today and will for the foreseeable future. The longer-term path is signed <strong>native installers</strong> (.app / .exe / .deb) via <code>pear build</code>, coming to a release near you. Nothing breaks in the meantime.
+            <strong>Legacy fallback:</strong> until installer artifacts are attached and smoke-tested, use <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>. Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so this is a temporary compatibility path, not the finished distribution story.
           </div>
         </div>
 
         <div class="reveal d1">
           <ol class="step-list">
-            <li><strong>Need Node first?</strong> Install <a href="https://nodejs.org">Node.js 20+</a> — Pear ships through npm.</li>
+            <li><strong>Installer artifacts pending</strong> — the release page currently has no packaged desktop downloads attached.</li>
             <li><strong>First-launch onboarding</strong> generates a BIP-39-backed identity and helps you pick a first site to visit.</li>
             <li><strong>Tabs persist across launches</strong> — open today, close, reopen tomorrow, same tabs back.</li>
-            <li><strong>Pear updates itself</strong> — when a new PearBrowser release ships, your next launch hot-syncs the new bytes from the swarm.</li>
+            <li><strong>P2P updates still apply</strong> — the installer carries the desktop shell while the stable Pear release keeps hot-syncing current app bytes from the swarm.</li>
           </ol>
         </div>
       </div>
@@ -477,16 +447,17 @@
       <div class="spec reveal">
         <table>
           <tbody>
-          <tr><th scope="row">Desktop version</th><td>v0.4.5 · production length 16842 · pinned on 5+ relays</td></tr>
-          <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> deprecated in runtime <code>v2.4.0</code></td></tr>
+          <tr><th scope="row">Desktop version</th><td>v0.5.0 · production length 33841 · pinned on the HiveRelay backbone</td></tr>
+          <tr><th scope="row">Distribution</th><td>Installer target: macOS <code>.app</code>, Windows <code>.exe</code>, Linux <code>.deb</code>; no <code>v0.5.0</code> artifacts attached yet, legacy Pear CLI fallback until packaging/signing is complete</td></tr>
+          <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> is legacy because Pear runtime <code>v2.4.0</code> deprecates it</td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
           <tr><th scope="row">Identity</th><td>BIP-39 → Ed25519 root with per-app sub-keys; opt-in Nostr (secp256k1/BIP-340) — Phase 3: attested binding, post notes, federated feed over your trust graph (no public relays yet)</td></tr>
           <tr><th scope="row">Bridge surface</th><td><code>window.pear.swarm.v1</code> — three trust tiers, per-app rate limits, 1&nbsp;MB/s/peer cap (<a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
-          <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing — bookmarks only (two-device encrypted smoke test)</td></tr>
-          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — all via the Pear runtime</td></tr>
+          <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing for bookmarks, tabs, settings, profile, history, contacts, and app grants</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — installer artifacts pending; Pear CLI fallback currently available</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
-          <tr><th scope="row">Launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+          <tr><th scope="row">Legacy launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
           <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</span> — the same page, pinned 24/7 on HiveRelay</td></tr>
           </tbody>
         </table>
@@ -524,7 +495,7 @@
 
         <details>
           <summary>What exactly does device sync cover?</summary>
-          <p>Today, <strong>bookmarks only</strong>. It's experimental and opt-in: you pair devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite and bookmarks converge across your own machines over Autobase, verified by a two-device encrypted smoke test. It does not sync tabs, history, or your full profile yet.</p>
+          <p>Device sync is still <strong>experimental and opt-in</strong>, but it now covers more than bookmarks: open-tab snapshots, allowlisted settings, profile fields, bounded browsing history, trusted contacts, and app grants. You pair devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite, and rotate or forget the sync group when a device should stop receiving future state.</p>
         </details>
 
         <details>
@@ -538,8 +509,8 @@
         </details>
 
         <details>
-          <summary>How do I install it — and is <code>pear run</code> going away?</summary>
-          <p><code>pear run</code> is deprecated as of Pear runtime <code>v2.4.0</code>, but it still works and will for the foreseeable future. The longer-term distribution path is signed <strong>native installers</strong> (.app / .exe / .deb) produced via <code>pear build</code>. Until those land, the <code>pear run pear://…</code> command above is the supported way in.</p>
+          <summary>How do I install it — and what about <code>pear run</code>?</summary>
+          <p>The intended distribution path is native desktop artifacts on the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">release page</a>: macOS <code>.app</code>, Windows <code>.exe</code>, or Linux <code>.deb</code>. The current <code>v0.5.0</code> release has no attached installer assets yet, so <code>pear run pear://…</code> remains the <strong>temporary legacy fallback</strong> for testers and recovery while packaging/signing lands; Pear runtime <code>v2.4.0</code> already deprecates that command.</p>
         </details>
 
         <details>
@@ -555,9 +526,9 @@
   <section class="final" aria-labelledby="cta-h">
     <div class="wrap reveal">
       <h2 id="cta-h">Take your web off the cloud.</h2>
-      <p>Run PearBrowser today: browse the <code>hyper://</code> web, search your Library in under 5ms, install P2P apps, and publish a site that's pinned to HiveRelay before you finish reading this sentence.</p>
+      <p>Run PearBrowser today: browse the <code>hyper://</code> web, launch real Pear apps, search with provenance, and publish a site that stays online after you close your laptop.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="#install">Get running →</a>
+        <a class="btn primary" href="#install">Check installer status →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
       </div>
     </div>
@@ -580,7 +551,7 @@
           <div class="footer-title">The app</div>
           <ul>
             <li><a href="#install">Install</a></li>
-            <li><a href="#lighthouse">Lighthouse search</a></li>
+            <li><a href="#demo">Product demo</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">window.pear.swarm.v1</a></li>
@@ -591,7 +562,7 @@
           <ul>
             <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
             <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
-            <li><a href="hyper://f0cd01e3565a9eb5d811f3f46f0595ad6b2e87652304789bef3fe4501b3db42a/">P2P Builders</a> <span class="tag">— hub</span></li>
+            <li><a href="hyper://ac1977a75cc84b46af0af8bb559cd4ebbe10507eb0f51d863e289d09635f6d74/">P2P Builders</a> <span class="tag">— hub</span></li>
             <li><a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a> <span class="tag">— library</span></li>
             <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
           </ul>
@@ -610,7 +581,7 @@
         <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
         <span class="badges">
           <span class="pill live"><span class="ld"></span>Lighthouse live</span>
-          <span class="pill smoke"><span class="ld"></span>Federation smoke-validated</span>
+          <span class="pill smoke"><span class="ld"></span>Search provenance live</span>
           <span class="pill exp"><span class="ld"></span>Sync &amp; naming experimental</span>
         </span>
       </div>

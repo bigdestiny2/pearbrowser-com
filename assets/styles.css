@@ -280,6 +280,171 @@
     .pill.smoke { background: rgba(163,113,247,0.13); color: var(--purple); border: 1px solid rgba(163,113,247,0.3); }
     .pill .ld { width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
 
+
+    /* ─── DEMO FLOW ─────────────────────────────────────── */
+    .hero-product h1 .brandline {
+      display: block;
+      color: var(--fg);
+    }
+    .hero-proof-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      text-align: left;
+    }
+    .proof-card {
+      background: rgba(17,22,30,0.72);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 112px;
+    }
+    .proof-card strong { display: block; color: var(--fg); margin-bottom: 5px; }
+    .proof-card span { color: var(--fg-soft); font-size: 12.5px; line-height: 1.45; }
+    .product-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .demo-card {
+      background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-md);
+    }
+    .demo-card h3 { font-size: 20px; letter-spacing: -0.3px; }
+    .demo-card p { color: var(--fg-soft); font-size: 14px; }
+    .demo-kicker {
+      color: var(--green-soft);
+      font: 700 11px/1.2 ui-monospace, monospace;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .browser-frame, .search-panel, .catalog-mini {
+      margin-top: auto;
+      background: rgba(2,6,12,0.62);
+      border: 1px solid var(--line-hi);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .demo-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 8px 8px 0;
+      background: rgba(22,27,34,0.75);
+    }
+    .demo-tabs span {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .demo-tabs .active { background: #0d1117; color: var(--fg); }
+    .demo-address {
+      margin: 10px;
+      padding: 7px 10px;
+      background: #010409;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--green-soft);
+      font: 12px ui-monospace, monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .demo-page { padding: 0 14px 14px; display: grid; gap: 9px; }
+    .demo-page strong { font-size: 18px; }
+    .demo-page > span { color: var(--muted); font-size: 12px; }
+    .demo-feed-row {
+      display: grid;
+      gap: 2px;
+      padding: 10px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+    }
+    .demo-feed-row b { color: var(--fg); font-size: 13px; }
+    .demo-feed-row small { color: var(--muted); }
+    .search-panel { padding: 14px; display: grid; gap: 10px; }
+    .search-box {
+      padding: 10px 12px;
+      background: #010409;
+      border: 1px solid var(--line-hi);
+      border-radius: 10px;
+      color: var(--fg);
+      font: 13px ui-monospace, monospace;
+    }
+    .result-row {
+      display: grid;
+      gap: 6px;
+      padding: 11px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .result-row strong { color: var(--fg); font-size: 13px; }
+    .result-row span { display: flex; flex-wrap: wrap; gap: 5px; }
+    .result-row em, .result-row i {
+      font-style: normal;
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(88,166,255,0.25);
+      color: var(--blue);
+      background: rgba(88,166,255,0.09);
+    }
+    .result-row em { color: var(--green-soft); border-color: rgba(63,185,80,0.25); background: rgba(63,185,80,0.08); }
+    .run-summary { color: var(--dim); font-size: 11px; }
+    .publish-flow {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      color: var(--fg-soft);
+    }
+    .publish-flow span {
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(2,6,12,0.55);
+      font-size: 12px;
+    }
+    .publish-flow .ok { color: var(--green-soft); border-color: rgba(63,185,80,0.35); }
+    .demo-url {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .catalog-mini { display: grid; padding: 12px; gap: 8px; }
+    .catalog-mini div {
+      display: grid;
+      gap: 2px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.035);
+    }
+    .catalog-mini b { color: var(--fg); font-size: 13px; }
+    .catalog-mini span { color: var(--muted); font-size: 11.5px; }
+    @media (max-width: 920px) {
+      .hero-proof-grid, .product-demo-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .hero-proof-grid, .product-demo-grid { grid-template-columns: 1fr; }
+      .demo-card { min-height: auto; }
+    }
+
     /* ─── LIGHTHOUSE (headline feature) ───────────────────── */
     .lighthouse-grid {
       display: grid;
