@@ -4,6 +4,7 @@ This is a **static site** — plain HTML/CSS at the repo root, no build step. Fi
 
 ```
 index.html  features.html  apps.html  docs.html   ← pages
+site-manifest.json                                 ← Hyperdrive/publish metadata
 assets/styles.css                                  ← shared design system
 vercel.json                                        ← Vercel static config (pretty URLs + asset caching)
 ```
@@ -47,3 +48,5 @@ Every push redeploys automatically.
 ## Local preview
 Just open `index.html` in a browser, or serve the folder:
 `python3 -m http.server` → http://localhost:8000
+
+Before deploying, run `npm run check`; it validates release metadata, the linked manifest, and local static references across all pages.

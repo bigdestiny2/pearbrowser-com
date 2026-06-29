@@ -48,7 +48,7 @@
         <a href="features.html">Features</a>
         <a href="apps.html">Apps</a>
         <a href="docs.html">Docs</a>
-        <a href="index.html#install">Download</a>
+        <a href="download.html">Download</a>
         <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
       </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.5.0 · production length 33841 · installer artifacts pending · macOS · Windows · Linux</span>
+        <span>Desktop v0.5.0 · production length 33841 · preview builds · macOS · Windows · Linux</span>
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
@@ -72,21 +72,21 @@
         <span class="hl">No accounts. No DNS. No manual updates.</span>
       </p>
 
-      <div class="hero-cmd" data-copy="https://github.com/bigdestiny2/pearbrowser-desktop/releases">
-        <code>Installer artifacts pending: macOS .app · Windows .exe · Linux .deb</code>
-        <button class="copy-btn" type="button" aria-label="Copy release URL">Copy release URL</button>
+      <div class="hero-cmd" data-copy="https://pearbrowser.com/download">
+        <code>Preview builds: macOS .app.zip · Windows .msix · Linux .AppImage</code>
+        <button class="copy-btn" type="button" aria-label="Copy download URL">Copy download URL</button>
       </div>
 
       <div class="hero-actions">
-        <a class="btn primary" href="#demo">See what to demo →</a>
-        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Check installer status</a>
+        <a class="btn primary" href="download.html">Download for desktop →</a>
+        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">All releases</a>
         <a class="btn subtle" href="hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/">Open the P2P edition ↗</a>
       </div>
 
       <div class="hero-mini">
         This very page is also served peer-to-peer at
         <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>.
-        Native packages are the target path; until installer artifacts land, the legacy Pear CLI fallback remains available in the install section.
+        Desktop downloads are unsigned preview builds today — signed, notarized installers land as code-signing credentials are wired in.
       </div>
 
       <div class="trust-strip">
@@ -395,43 +395,44 @@
   <section id="install" class="block" aria-labelledby="inst-h">
     <div class="wrap">
       <span class="eyebrow reveal">Quickstart</span>
-      <h2 class="section reveal" id="inst-h">Installer status and fallback.</h2>
-      <p class="lede reveal">PearBrowser's target desktop path is native installers: macOS <code>.app</code>, Windows <code>.exe</code>, and Linux <code>.deb</code>. The current <code>v0.5.0</code> GitHub release does <strong>not</strong> have those artifacts attached yet, so the stable Pear key is the temporary legacy fallback.</p>
+      <h2 class="section reveal" id="inst-h">Get PearBrowser.</h2>
+      <p class="lede reveal">Desktop preview builds are attached to the <code>v0.5.0</code> release for macOS, Windows, and Linux. They are <strong>unsigned today</strong> — signed and notarized installers land as code-signing credentials are wired in — so the peer-to-peer Pear launch path is the friction-free way to run the current release right now. The <a href="download.html">download page</a> has per-platform builds with SHA-256 checksums.</p>
 
       <div class="install-grid">
         <div class="reveal">
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
-              <span class="terminal-title">PearBrowser release artifacts</span>
+              <span class="terminal-title">PearBrowser v0.5.0 downloads</span>
             </div>
             <div class="terminal-body">
-              <span class="comment"># Target installer artifacts (not attached to v0.5.0 yet)</span><br>
-              macOS: PearBrowser.app<br>
-              Windows: PearBrowser Setup.exe<br>
-              Linux: pearbrowser-desktop.deb<br>
+              <span class="comment"># Unsigned preview builds (verify with SHA-256)</span><br>
+              macOS: PearBrowser-0.5.0-macos-arm64.app.zip · -x64.app.zip<br>
+              Windows: PearBrowser-0.5.0-windows-x64.msix<br>
+              Linux: PearBrowser-0.5.0-linux-x64.AppImage<br>
               <br>
-              <span class="comment"># Release page</span><br>
-              https://github.com/bigdestiny2/pearbrowser-desktop/releases
+              <span class="comment"># Or launch over P2P — no download, no signing caveats</span><br>
+              npm i -g pear<br>
+              pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty
             </div>
           </div>
 
-          <div class="copy-inline" data-copy="https://github.com/bigdestiny2/pearbrowser-desktop/releases">
-            <code>https://github.com/bigdestiny2/pearbrowser-desktop/releases</code>
-            <button class="copy-btn" type="button" aria-label="Copy release URL">Copy</button>
+          <div class="copy-inline" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
+            <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
+            <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
           </div>
 
           <div class="callout">
-            <strong>Legacy fallback:</strong> until installer artifacts are attached and smoke-tested, use <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>. Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so this is a temporary compatibility path, not the finished distribution story.
+            <strong>Legacy fallback:</strong> the <code>pear run pear://…</code> path hot-syncs the current release from the swarm and works on every desktop today. Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so it is a compatibility path while signed native installers become the primary distribution story.
           </div>
         </div>
 
         <div class="reveal d1">
           <ol class="step-list">
-            <li><strong>Installer artifacts pending</strong> — the release page currently has no packaged desktop downloads attached.</li>
+            <li><strong>Pick your platform</strong> on the <a href="download.html">download page</a> — it auto-detects your OS and shows a verifiable SHA-256 for each build.</li>
+            <li><strong>Unsigned today</strong> — macOS needs a right-click → Open the first time; a signed Windows installer and notarized macOS build are in progress.</li>
             <li><strong>First-launch onboarding</strong> generates a BIP-39-backed identity and helps you pick a first site to visit.</li>
-            <li><strong>Tabs persist across launches</strong> — open today, close, reopen tomorrow, same tabs back.</li>
-            <li><strong>P2P updates still apply</strong> — the installer carries the desktop shell while the stable Pear release keeps hot-syncing current app bytes from the swarm.</li>
+            <li><strong>P2P updates still apply</strong> — the shell carries the app while the stable Pear release keeps hot-syncing current app bytes from the swarm.</li>
           </ol>
         </div>
       </div>
@@ -448,14 +449,14 @@
         <table>
           <tbody>
           <tr><th scope="row">Desktop version</th><td>v0.5.0 · production length 33841 · pinned on the HiveRelay backbone</td></tr>
-          <tr><th scope="row">Distribution</th><td>Installer target: macOS <code>.app</code>, Windows <code>.exe</code>, Linux <code>.deb</code>; no <code>v0.5.0</code> artifacts attached yet, legacy Pear CLI fallback until packaging/signing is complete</td></tr>
+          <tr><th scope="row">Distribution</th><td>Unsigned preview builds attached to <code>v0.5.0</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; signed/notarized installers in progress; <code>pear run pear://…</code> P2P launch path works today</td></tr>
           <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> is legacy because Pear runtime <code>v2.4.0</code> deprecates it</td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
           <tr><th scope="row">Identity</th><td>BIP-39 → Ed25519 root with per-app sub-keys; opt-in Nostr (secp256k1/BIP-340) — Phase 3: attested binding, post notes, federated feed over your trust graph (no public relays yet)</td></tr>
           <tr><th scope="row">Bridge surface</th><td><code>window.pear.swarm.v1</code> — three trust tiers, per-app rate limits, 1&nbsp;MB/s/peer cap (<a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
           <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing for bookmarks, tabs, settings, profile, history, contacts, and app grants</td></tr>
-          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — installer artifacts pending; Pear CLI fallback currently available</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — preview builds on the <a href="download.html">download page</a>; Android and iOS (App Store / TestFlight) in progress</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
           <tr><th scope="row">Legacy launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
           <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</span> — the same page, pinned 24/7 on HiveRelay</td></tr>
@@ -510,7 +511,7 @@
 
         <details>
           <summary>How do I install it — and what about <code>pear run</code>?</summary>
-          <p>The intended distribution path is native desktop artifacts on the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">release page</a>: macOS <code>.app</code>, Windows <code>.exe</code>, or Linux <code>.deb</code>. The current <code>v0.5.0</code> release has no attached installer assets yet, so <code>pear run pear://…</code> remains the <strong>temporary legacy fallback</strong> for testers and recovery while packaging/signing lands; Pear runtime <code>v2.4.0</code> already deprecates that command.</p>
+          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">v0.5.0 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>unsigned preview builds</strong> today, so <code>pear run pear://…</code> stays available as a friction-free P2P launch path while signed/notarized installers land; Pear runtime <code>v2.4.0</code> deprecates that command, so it is a compatibility path, not the finished story.</p>
         </details>
 
         <details>
@@ -528,7 +529,7 @@
       <h2 id="cta-h">Take your web off the cloud.</h2>
       <p>Run PearBrowser today: browse the <code>hyper://</code> web, launch real Pear apps, search with provenance, and publish a site that stays online after you close your laptop.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="#install">Check installer status →</a>
+        <a class="btn primary" href="download.html">Go to downloads →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
       </div>
     </div>

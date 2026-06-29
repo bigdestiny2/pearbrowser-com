@@ -1,0 +1,85 @@
+{
+  "version": "v0.5.0",
+  "updated": "2026-06-29",
+  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.5.0",
+  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.5.0/",
+  "note": "Desktop builds are unsigned preview packages today. Signed/notarized installers land as signing credentials are wired in; this file is regenerated from the release manifests each build.",
+  "platforms": [
+    {
+      "os": "macos",
+      "label": "macOS",
+      "signing": "unsigned",
+      "status": "preview",
+      "statusLabel": "Unsigned preview",
+      "openNote": "Not yet notarized. After downloading: right-click the app → Open → Open to get past Gatekeeper the first time (or run xattr -dr com.apple.quarantine on the .app).",
+      "builds": [
+        {
+          "arch": "arm64",
+          "archLabel": "Apple Silicon (arm64)",
+          "file": "PearBrowser-0.5.0-macos-arm64.app.zip",
+          "sha256": "0265cd7a63ca22636a4ada09dab3cd45ff42e40acb49ba5c11fe7e26d5e2bf17",
+          "bytes": 22608302
+        },
+        {
+          "arch": "x64",
+          "archLabel": "Intel (x64)",
+          "file": "PearBrowser-0.5.0-macos-x64.app.zip",
+          "sha256": "f866994357246da3acac34af0fe2a72171cc32eb1064010388dbc8b0ef9fe01f",
+          "bytes": 23694269
+        }
+      ]
+    },
+    {
+      "os": "windows",
+      "label": "Windows",
+      "signing": "unsigned",
+      "status": "blocked",
+      "statusLabel": "Unsigned — not yet installable",
+      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install (a code-signing certificate is being obtained). Until then, use the P2P launch path below, or install only if you understand sideloading (Developer Mode + Add-AppxPackage).",
+      "builds": [
+        {
+          "arch": "x64",
+          "archLabel": "x64",
+          "file": "PearBrowser-0.5.0-windows-x64.msix",
+          "sha256": "41cc808708bfa556766764ae56ae5fa66ddf4b023fd76b52d34fa071e6bd6f44",
+          "bytes": 19223008
+        }
+      ]
+    },
+    {
+      "os": "linux",
+      "label": "Linux",
+      "signing": "none-required",
+      "status": "preview",
+      "statusLabel": "Preview AppImage",
+      "openNote": "After downloading: chmod +x the file and run it. On minimal distributions it may need system GTK4 libraries until runtime bundling lands; on a standard desktop it runs as-is.",
+      "builds": [
+        {
+          "arch": "x64",
+          "archLabel": "x86_64",
+          "file": "PearBrowser-0.5.0-linux-x64.AppImage",
+          "sha256": "a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0",
+          "bytes": 15092216
+        }
+      ]
+    }
+  ],
+  "p2p": {
+    "pearKey": "pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
+    "pearRunCommand": "pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
+    "hyper": "hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/",
+    "note": "Works on every desktop today and hot-syncs the current release from the swarm. Requires the Pear runtime (npm i -g pear). pear run is deprecated in Pear v2.4.0 but still functional."
+  },
+  "mobile": {
+    "android": {
+      "status": "pending",
+      "statusLabel": "Coming soon",
+      "note": "A signed .apk for direct download (and a Google Play listing) are in progress."
+    },
+    "ios": {
+      "status": "pending",
+      "statusLabel": "App Store / TestFlight",
+      "note": "iOS cannot be installed from a download; it will ship via the App Store and TestFlight once review is complete."
+    }
+  }
+}

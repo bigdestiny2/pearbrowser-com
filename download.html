@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download PearBrowser — macOS, Windows, Linux</title>
+  <meta name="description" content="Download PearBrowser for macOS, Windows, and Linux, verify it with SHA-256, or launch it over the peer-to-peer Pear network. Mobile via the App Store and Google Play soon." />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://pearbrowser.com/download" />
+  <meta property="og:title" content="Download PearBrowser" />
+  <meta property="og:description" content="Desktop downloads for macOS, Windows, Linux — plus the peer-to-peer launch path. Verify every build with SHA-256." />
+  <meta property="og:type" content="website" />
+  <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .dl-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
+    .dl-hero { padding: clamp(48px, 8vw, 88px) 0 8px; }
+    .dl-detected {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      background: var(--bg-elev); border: 1px solid var(--line-hi); border-radius: var(--radius);
+      padding: 16px 18px; margin: 22px 0 6px;
+    }
+    .dl-detected strong { color: var(--accent); }
+    .dl-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 18px 0; }
+    .dl-card {
+      background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .dl-card.is-detected { border-color: var(--green); box-shadow: 0 0 0 1px var(--green-glow); }
+    .dl-card h3 { margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+    .dl-os-ico { width: 22px; height: 22px; flex: 0 0 auto; }
+    .dl-badge {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: .02em; padding: 3px 9px; border-radius: 999px;
+      border: 1px solid var(--line-hi); color: var(--fg-soft); white-space: nowrap;
+    }
+    .dl-badge.preview { color: var(--amber); border-color: rgba(255,169,64,.4); background: rgba(255,169,64,.08); }
+    .dl-badge.blocked { color: var(--dim); border-color: var(--line-hi); background: rgba(110,118,129,.1); }
+    .dl-badge.ok { color: var(--green-soft); border-color: rgba(63,185,80,.4); background: rgba(63,185,80,.08); }
+    .dl-build { display: flex; flex-direction: column; gap: 8px; padding-top: 6px; border-top: 1px solid var(--line); }
+    .dl-build:first-of-type { border-top: 0; }
+    .dl-build-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .dl-build-arch { font-weight: 600; }
+    .dl-build-size { color: var(--muted); font-size: 0.85rem; }
+    .dl-sha {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.74rem; color: var(--dim);
+      display: flex; align-items: center; gap: 8px; word-break: break-all;
+    }
+    .dl-sha button {
+      flex: 0 0 auto; font-size: 0.7rem; padding: 2px 8px; border-radius: 6px; cursor: pointer;
+      background: var(--bg-elev-2); border: 1px solid var(--line-hi); color: var(--fg-soft);
+    }
+    .dl-sha button:hover { border-color: var(--green); color: var(--green-soft); }
+    .dl-note { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+    .dl-callout {
+      background: var(--bg-elev-2); border: 1px solid var(--line); border-left: 3px solid var(--amber);
+      border-radius: 10px; padding: 14px 16px; color: var(--fg-soft); font-size: 0.9rem; line-height: 1.6; margin: 8px 0 26px;
+    }
+    .dl-callout.p2p { border-left-color: var(--green); }
+    .dl-section-h { margin: 40px 0 6px; }
+    .dl-cmd {
+      display: flex; align-items: center; gap: 10px; justify-content: space-between;
+      background: var(--bg-elev-2); border: 1px solid var(--line-hi); border-radius: 10px; padding: 12px 14px; margin: 10px 0;
+    }
+    .dl-cmd code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; color: var(--green-soft); word-break: break-all; }
+    .dl-mobile-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="top" aria-label="Primary">
+    <div class="inner">
+      <a class="brand" href="index.html" aria-label="PearBrowser home">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
+          <defs><radialGradient id="gN" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7ee787"/><stop offset="100%" stop-color="#238636"/></radialGradient></defs>
+          <circle cx="60" cy="30" r="5" fill="url(#gN)"/><circle cx="42" cy="52" r="6" fill="url(#gN)"/><circle cx="78" cy="52" r="6" fill="url(#gN)"/><circle cx="60" cy="72" r="7" fill="url(#gN)"/><circle cx="36" cy="90" r="7.5" fill="url(#gN)"/><circle cx="84" cy="90" r="7.5" fill="url(#gN)"/>
+        </svg>
+        <span><strong>Pear</strong>Browser</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="apps.html">Apps</a>
+        <a href="docs.html">Docs</a>
+        <a href="download.html" class="active">Download</a>
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="dl-hero">
+      <div class="dl-wrap">
+        <span class="pill"><span class="ld"></span>Desktop <span id="dl-version">v0.5.0</span> · verify with SHA-256</span>
+        <h1 style="margin:14px 0 8px;font-size:clamp(2rem,5vw,3rem);">Download <span class="grad">PearBrowser</span>.</h1>
+        <p class="lede">
+          Desktop builds for macOS, Windows, and Linux — or launch it over the peer-to-peer Pear network with no download at all.
+          Desktop packages are <strong>unsigned preview builds today</strong>; signed and notarized installers land as code-signing
+          credentials are wired in. Every build below is checksum-verifiable.
+        </p>
+
+        <div class="dl-detected" id="dl-detected" hidden>
+          <span id="dl-detected-text">Detecting your platform…</span>
+          <span id="dl-detected-action"></span>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="dl-wrap">
+        <h2 class="dl-section-h">Desktop</h2>
+        <div class="dl-grid" id="dl-desktop">
+          <noscript>
+            <p class="dl-note">Enable JavaScript to see per-platform downloads, or get every asset from the
+            <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">GitHub releases page</a>.</p>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="dl-wrap">
+        <h2 class="dl-section-h">Run it over P2P <span class="tag">— works on every desktop today</span></h2>
+        <p class="dl-note">No installer, no signing caveats. Install the Pear runtime once, then launch PearBrowser straight from its
+        content-addressed key — it hot-syncs the current release from the swarm.</p>
+        <div class="dl-card p2p" id="dl-p2p" style="margin-top:14px;"></div>
+        <p class="dl-callout p2p" id="dl-p2p-note"></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="dl-wrap">
+        <h2 class="dl-section-h">Mobile</h2>
+        <div class="dl-mobile-grid" id="dl-mobile"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="dl-wrap">
+        <h2 class="dl-section-h">Verify your download</h2>
+        <p class="dl-note">Each desktop card shows the SHA-256 of its asset. After downloading, compute the hash locally and confirm it matches:</p>
+        <div class="dl-cmd" data-copy="shasum -a 256 ~/Downloads/PearBrowser-0.5.0-macos-arm64.app.zip">
+          <code>macOS / Linux: shasum -a 256 &lt;file&gt;</code><button class="copy-btn" type="button" aria-label="Copy command">Copy</button>
+        </div>
+        <div class="dl-cmd" data-copy="certutil -hashfile PearBrowser-0.5.0-windows-x64.msix SHA256">
+          <code>Windows: certutil -hashfile &lt;file&gt; SHA256</code><button class="copy-btn" type="button" aria-label="Copy command">Copy</button>
+        </div>
+        <p class="dl-note">The full checksum list for each platform is published as <code>SHA256SUMS-&lt;platform&gt;-&lt;arch&gt;.txt</code> on the
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">release page</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/></svg>
+            <span><strong>Pear</strong>Browser</span>
+          </a>
+          <p>The desktop browser for the peer-to-peer web. No servers behind it. Apache-2.0 · macOS, Windows, Linux.</p>
+        </div>
+        <div>
+          <div class="footer-title">The app</div>
+          <ul>
+            <li><a href="download.html">Download</a></li>
+            <li><a href="index.html#install">Install guide</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Ecosystem</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
+            <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    // Delegated copy buttons (also covers cards injected by download.js)
+    document.addEventListener('click', async function (e) {
+      var btn = e.target.closest('.copy-btn, .dl-copy');
+      if (!btn) return;
+      var host = btn.closest('[data-copy]');
+      var text = host ? host.getAttribute('data-copy') : btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText((text || '').trim());
+        var orig = btn.textContent; btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = orig; }, 1400);
+      } catch (err) { btn.textContent = 'Failed'; }
+    });
+  </script>
+  <script src="download.js"></script>
+</body>
+</html>

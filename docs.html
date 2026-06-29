@@ -7,6 +7,7 @@
   <meta name="description" content="Get started with PearBrowser: install and launch, the hyper:// / pear:// / pearname:// schemes, your BIP-39 identity, Lighthouse search, P2P names, the Nostr feed, trusted contacts, and publishing a site pinned 24/7." />
   <meta name="theme-color" content="#0a0d12" />
   <link rel="canonical" href="https://pearbrowser.com/docs.html" />
+  <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='30' r='6' fill='%237ee787'/%3E%3Ccircle cx='42' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='78' cy='52' r='7' fill='%237ee787'/%3E%3Ccircle cx='60' cy='72' r='8' fill='%237ee787'/%3E%3Ccircle cx='36' cy='90' r='8' fill='%237ee787'/%3E%3Ccircle cx='84' cy='90' r='8' fill='%237ee787'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
@@ -54,7 +55,7 @@
     <div class="wrap">
       <span class="eyebrow reveal">Documentation</span>
       <h1 class="reveal">Get up and running.</h1>
-      <p class="lede reveal">Everything you need to install PearBrowser, understand its address schemes, and use search, names, Nostr, and publishing. PearBrowser is a Pear / Bare app — there's no web bundle to host; one install fetches the matching native runtime.</p>
+      <p class="lede reveal">Everything you need to install PearBrowser, understand its address schemes, and use search, names, Nostr, and publishing. Native desktop packages are the target distribution path, but the stable Pear key remains the temporary legacy fallback until installer artifacts are attached.</p>
     </div>
   </header>
 
@@ -81,13 +82,14 @@
 
           <div class="doc-section reveal" id="install">
             <h2>Install &amp; launch</h2>
-            <p>PearBrowser runs on the <a href="https://pears.com">Pear runtime</a>. Install Pear once, then launch the browser by key — Pear downloads the right native build for macOS, Windows, or Linux on first run.</p>
-            <pre><code># 1. install the Pear runtime (one time)
-npm i -g pear
+            <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. The <code>v0.5.0</code> builds are unsigned previews — verify them with SHA-256; signed/notarized installers are in progress.</p>
+            <pre><code># Download &amp; verify (example)
+shasum -a 256 PearBrowser-0.5.0-macos-arm64.app.zip
 
-# 2. launch PearBrowser by its key
+# Or launch over P2P — works today, no signing caveats
+npm i -g pear
 pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
-            <p>There are no accounts and no installer servers — the app is itself a Hyperdrive, fetched peer-to-peer. You can also open the P2P edition of this very website inside the browser at <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>.</p>
+            <p>The installer path will carry the desktop shell while the stable Pear release keeps P2P updates and the content-addressed launch key intact. The Pear CLI fallback still works today, but Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so it is a compatibility bridge rather than the finished distribution story. You can also open the P2P edition of this very website inside the browser at <code>hyper://1868916a7a282ff0f211b11b536e9642828c32d3a817a254e1ef7e602709e25d/</code>.</p>
           </div>
 
           <div class="doc-section reveal" id="schemes">
@@ -154,7 +156,7 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
           <div class="doc-section reveal" id="help">
             <h2>Troubleshooting</h2>
             <h3>“Could not reach backend”</h3>
-            <p>The Pear runtime didn't finish handing off. The most common cause is a stale partial download in Pear's cache — clear it and relaunch the <code>pear run</code> command.</p>
+            <p>Until native installer artifacts are attached, use the legacy fallback above. If that fallback hangs, the most common cause is a stale partial download in Pear's cache — clear it and relaunch the <code>pear run</code> command.</p>
             <h3>Experimental features are off</h3>
             <p>Naming, device sync, and some Nostr surfaces are gated behind toggles in Settings → Experimental. They're off by default and clearly scoped — turn them on there.</p>
             <h3>Still stuck?</h3>
