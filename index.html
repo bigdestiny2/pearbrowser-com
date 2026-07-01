@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PearBrowser — the desktop for the peer-to-peer web</title>
-  <meta name="description" content="PearBrowser is the desktop for the peer-to-peer web: browse hyper:// sites, run Pear apps, search people you trust, and publish pages that stay online without servers. macOS, Windows, Linux. No accounts, no DNS." />
+  <meta name="description" content="PearBrowser is the desktop for the peer-to-peer web: browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, search people you trust, and publish pages that stay online without servers. macOS, Windows, Linux. No accounts, no DNS." />
   <meta name="theme-color" content="#f6f8f7" />
   <link rel="canonical" href="https://pearbrowser.com/" />
   <meta property="og:title" content="PearBrowser — the desktop for the peer-to-peer web" />
-  <meta property="og:description" content="Browse hyper:// sites, run Pear apps, search trusted peers, and publish pages that stay online without servers." />
+  <meta property="og:description" content="Browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, and publish pages that stay online without servers." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PearBrowser — the browser with no servers behind it" />
-  <meta name="twitter:description" content="Browse hyper:// sites, run Pear apps, search trusted peers, and publish pages that stay online without servers." />
+  <meta name="twitter:description" content="Browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, and publish pages that stay online without servers." />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="icon" type="image/svg+xml" href="assets/pearbrowser-logo.svg" />
   <link rel="stylesheet" href="assets/styles.css?v=20260701-light-app" />
@@ -69,7 +69,7 @@
         <span class="grad">the desktop for the peer-to-peer web</span>.
       </h1>
       <p class="hero-sub">
-        Browse <strong>hyper://</strong> sites, run Pear apps, search people you trust, and publish pages that stay online without servers.
+        Browse <strong>hyper://</strong> sites, run Pear apps from decentralized catalogues, seed and pin your own app on HiveRelay, and publish pages that stay online without servers.
         <span class="hl">No accounts. No DNS. No manual updates.</span>
       </p>
 
@@ -105,15 +105,15 @@
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
-          Shared catalog + gateway contract with PearBrowser Mobile
+          Shared catalog + gateway contract with PearBrowser Mobile · app store: seed, pin, publish
         </span>
       </div>
 
       <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
         <div class="proof-card"><strong>Browse</strong><span>Fresh launches open PearBrowser, P2P Builders, and peerit as real hyper:// tabs.</span></div>
         <div class="proof-card"><strong>Search</strong><span>Local first-paint, trusted-peer federation, and row-level proof badges.</span></div>
-        <div class="proof-card"><strong>Publish</strong><span>Block editor → publish → relay replication proof → shareable key.</span></div>
-        <div class="proof-card"><strong>Trust</strong><span>Catalog source, signatures, release history, pins, and grants in one view.</span></div>
+        <div class="proof-card"><strong>Publish</strong><span>Block editor or app bundle → seed to HiveRelay → pin proof → shareable key.</span></div>
+        <div class="proof-card"><strong>App store</strong><span>Submit your pinned app to a catalogue so other peers can discover and launch it.</span></div>
       </div>
     </div>
   </header>
@@ -169,7 +169,7 @@
         <article class="demo-card reveal d3">
           <div class="demo-kicker">4 · Apps & trust</div>
           <h3>Run apps, then inspect why they are trustworthy.</h3>
-          <p>Show the app catalog with source chips, launch mode, release history, permissions, and relay availability. This is the product's quiet superpower.</p>
+          <p>Show the app catalog as a decentralized app store: source chips, launch mode, release history, permissions, relay availability, and the path for builders to publish their own pinned apps into a catalogue.</p>
           <div class="catalog-mini" aria-hidden="true">
             <div><b>peerit</b><span>hypersite · relay-listed · pinned</span></div>
             <div><b>Peercord</b><span>window app · third-party trust prompt</span></div>
@@ -201,7 +201,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
           </div>
           <h3>Run Pear apps</h3>
-          <p>The Apps tab merges curated, community, personal, Hyperbee, schema-sheets, and relay-index catalogues. Standalone apps open in their own Pear window; hypersites run in the browser. My Catalog lets users collect and share their own picks.</p>
+          <p>The Apps tab is a decentralized app store: curated, community, personal, Hyperbee, schema-sheets, and relay-index catalogues merge into one view. Publishers can seed an app to HiveRelay, pin it for availability, and publish the entry to a catalogue; users inspect provenance before launching.</p>
         </div>
 
         <div class="tile reveal d2">
@@ -209,7 +209,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
           </div>
           <h3>Publish and pin</h3>
-          <p>The site editor publishes Hyperdrives and auto-pins them to HiveRelay. The UI only calls a site published after replication evidence comes back, then gives you a shareable <code>hyper://</code> URL and a recoverable drive key.</p>
+          <p>The site editor publishes Hyperdrives and auto-pins them to HiveRelay. App publishers use the same loop: package the app, seed it to a relay, pin it, then publish the catalogue entry so it can be discovered from the Apps tab.</p>
         </div>
 
         <div class="tile reveal d3">
@@ -217,7 +217,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-5"/></svg>
           </div>
           <h3>Inspect trust</h3>
-          <p>Apps, sites, search results, and permissions carry calm proof surfaces: source chips, signed/unsigned status, relay pins, live peers, release history, profile grants, and swarm-topic grants.</p>
+          <p>Apps, sites, search results, and permissions carry calm proof surfaces: catalogue source chips, signed/unsigned status, relay pins, live peers, release history, profile grants, and swarm-topic grants.</p>
         </div>
 
       </div>
@@ -528,7 +528,7 @@
   <section class="final" aria-labelledby="cta-h">
     <div class="wrap reveal">
       <h2 id="cta-h">Take your web off the cloud.</h2>
-      <p>Run PearBrowser today: browse the <code>hyper://</code> web, launch real Pear apps, search with provenance, and publish a site that stays online after you close your laptop.</p>
+      <p>Run PearBrowser today: browse the <code>hyper://</code> web, launch real Pear apps from decentralized catalogues, search with provenance, and publish a site or app that stays online after you close your laptop.</p>
       <div class="hero-actions">
         <a class="btn primary" href="download.html">Go to downloads →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>

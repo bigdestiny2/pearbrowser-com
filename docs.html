@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Docs — PearBrowser</title>
-  <meta name="description" content="Get started with PearBrowser: install and launch, the hyper:// / pear:// / pearname:// schemes, your BIP-39 identity, Lighthouse search, P2P names, the Nostr feed, trusted contacts, and publishing a site pinned 24/7." />
+  <meta name="description" content="Get started with PearBrowser: install and launch, the hyper:// / pear:// / pearname:// schemes, decentralized app catalogues, HiveRelay app seeding and pinning, your BIP-39 identity, Lighthouse search, P2P names, trusted contacts, and publishing a site pinned 24/7." />
   <meta name="theme-color" content="#f6f8f7" />
   <link rel="canonical" href="https://pearbrowser.com/docs.html" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
@@ -140,12 +140,13 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
           </div>
 
           <div class="doc-section reveal" id="publish">
-            <h2>Publish a site</h2>
-            <p>PearBrowser includes a site builder. Create a site, publish it, and it becomes a Hyperdrive addressed by key. Ask HiveRelay to pin it and it stays reachable 24/7 even when your machine is closed — that's how this website is served.</p>
+            <h2>Publish a site or app</h2>
+            <p>PearBrowser includes a site builder and a decentralized app catalogue. Create a site, publish it, and it becomes a Hyperdrive addressed by key. Build a Pear or <code>hyper://</code> app, seed it to HiveRelay, pin it for availability, then publish the app entry to a catalogue so other users can discover and launch it.</p>
             <ul>
               <li>Build &amp; publish from the <strong>Sites</strong> tab.</li>
               <li>Your site is reachable at <code>hyper://&lt;your-key&gt;/</code> the moment a peer (or HiveRelay) is seeding it.</li>
-              <li>Apps are the same shape — a Hyperdrive or a Pear app — so anything you build is discoverable in the catalogue.</li>
+              <li>Package apps as either a browsable Hyperdrive or a Pear app link, then request a HiveRelay seed and pin so the app stays online after your machine goes offline.</li>
+              <li>Publish the catalogue entry with the app key/link, launch type, source, version, and provenance so it appears in the Apps tab as part of the decentralized app store.</li>
             </ul>
           </div>
 
