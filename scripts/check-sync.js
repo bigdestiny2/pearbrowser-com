@@ -74,7 +74,7 @@ function checkHtmlReferences(pages) {
   for (const page of pages) {
     const source = read(path.join(root, page))
     if (!source.includes('href="site-manifest.json"')) fail(`${page} is missing the site manifest discovery link`)
-    if (!source.includes('href="assets/styles.css"')) fail(`${page} is missing the shared stylesheet`)
+    if (!/href="assets\/styles\.css(?:\?[^"]*)?"/.test(source)) fail(`${page} is missing the shared stylesheet`)
 
     let match
     while ((match = attrPattern.exec(source))) {
