@@ -1,26 +1,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      color-scheme: dark;
-      --bg: #0a0d12;
-      --bg-elev: #11161e;
-      --bg-elev-2: #141a23;
-      --fg: #e6edf3;
-      --fg-soft: #adbac7;
-      --muted: #8b949e;
-      --dim: #6e7681;
-      --line: #1f2630;
-      --line-hi: #2d3540;
-      --green: #3fb950;
-      --green-soft: #7ee787;
-      --green-deep: #1e7a30;
-      --green-glow: rgba(63,185,80,0.35);
-      --blue: #58a6ff;
-      --purple: #a371f7;
-      --amber: #ffa940;
-      --accent: var(--green-soft);
-      --radius: 14px;
-      --shadow-lg: 0 24px 60px -18px rgba(0,0,0,0.6);
-      --shadow-md: 0 12px 36px -12px rgba(0,0,0,0.5);
+      color-scheme: light;
+      --bg: #f6f8f7;
+      --bg-elev: #ffffff;
+      --bg-elev-2: #eef3f1;
+      --fg: #17211b;
+      --fg-soft: #405149;
+      --muted: #65736c;
+      --dim: #8a9790;
+      --line: #dde6e2;
+      --line-hi: #c9d6d0;
+      --green: #16834f;
+      --green-soft: #16834f;
+      --green-deep: #116c41;
+      --green-glow: rgba(22,131,79,0.18);
+      --blue: #0f766e;
+      --purple: #6f58b7;
+      --amber: #b97812;
+      --accent: var(--green);
+      --radius: 8px;
+      --shadow-lg: 0 18px 48px rgba(24,36,30,0.10);
+      --shadow-md: 0 10px 28px rgba(24,36,30,0.06);
       --maxw: 1120px;
       --space: clamp(60px, 9vw, 96px);
     }
@@ -946,3 +946,422 @@
 .doc-section pre { background: #06080c; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
 .doc-section pre code { background: none; border: none; padding: 0; color: var(--fg-soft); font-size: 12.5px; line-height: 1.7; }
 @media (max-width: 820px) { .doc-layout { grid-template-columns: 1fr; } .doc-toc { position: static; flex-direction: row; flex-wrap: wrap; gap: 10px; } }
+
+
+/* ─── LIGHT APP ALIGNMENT OVERRIDES ───────────────────────────── */
+body::before {
+  background: linear-gradient(180deg, rgba(22,131,79,0.055), rgba(246,248,247,0) 430px);
+}
+body::after {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(23,33,27,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,33,27,0.055) 1px, transparent 1px);
+}
+body,
+h1,
+h2,
+h3,
+.brand,
+.eyebrow,
+.pill,
+.demo-kicker,
+.spec th,
+.footer-title,
+.app-card .app-cat,
+.prov,
+.eco-tag,
+.terminal-title {
+  letter-spacing: 0;
+}
+a { color: var(--green); }
+a:hover { color: var(--green-deep); }
+code {
+  background: var(--bg-elev-2);
+  border-color: var(--line);
+  color: var(--blue);
+}
+.skip {
+  background: var(--green);
+  color: #ffffff;
+}
+nav.top {
+  background: rgba(255,255,255,0.86);
+  border-bottom-color: var(--line);
+  box-shadow: 0 1px 0 rgba(24,36,30,0.02);
+}
+.brand,
+.brand:hover { color: var(--fg); }
+.brand-logo { filter: drop-shadow(0 8px 18px rgba(22,131,79,0.16)); }
+nav.top .links a:not(.cta) { color: var(--muted); }
+nav.top .links a:not(.cta):hover,
+.nav.top .links a.active {
+  color: var(--fg);
+  background: var(--bg-elev-2);
+}
+nav.top .cta,
+.btn.primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: #ffffff !important;
+  box-shadow: none;
+}
+nav.top .cta:hover,
+.btn.primary:hover {
+  background: var(--green-deep);
+  filter: none;
+  box-shadow: var(--shadow-soft, 0 10px 28px rgba(24,36,30,0.06));
+}
+.nav-toggle {
+  background: var(--bg-elev);
+  border-color: var(--line);
+  color: var(--fg);
+}
+.nav-toggle span { background: var(--fg); }
+@media (max-width: 860px) {
+  nav.top .links {
+    background: rgba(255,255,255,0.98);
+    border-bottom-color: var(--line);
+  }
+}
+h1,
+h2.section,
+.page-hero h1,
+.final h2 {
+  letter-spacing: 0;
+}
+h1 .grad,
+.grad {
+  background: linear-gradient(115deg, #16834f 0%, #0f766e 58%, #e45d45 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pill {
+  background: var(--bg-elev-2);
+  border: 1px solid rgba(22,131,79,0.18);
+  color: var(--green);
+}
+.hero-tag,
+.eyebrow,
+.pill.live,
+.prov.you {
+  background: var(--bg-elev-2);
+  border-color: rgba(22,131,79,0.18);
+  color: var(--green);
+}
+.hero-tag-dot,
+.eyebrow::before,
+.companion .d {
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(22,131,79,0.22);
+}
+.hero-sub strong,
+.proof-card strong,
+.demo-feed-row b,
+.result-row strong,
+.lh-points li strong,
+.pstep h4,
+.killer-vis-row b,
+.eco-name,
+.spec td,
+.faq summary,
+.app-card .app-name,
+.doc-section h3 {
+  color: var(--fg);
+}
+.hero-sub .hl,
+.demo-kicker,
+.result-row em,
+.publish-flow .ok,
+.lh-foot b,
+.eco-link strong,
+.doc-section code,
+.app-card code,
+.copy-inline code,
+.dl-cmd code {
+  color: var(--green);
+}
+.hero-cmd,
+.copy-inline,
+.dl-cmd,
+.key-block,
+.lh-search,
+.search-box,
+.demo-address,
+.doc-section pre {
+  background: var(--bg-elev);
+  border-color: var(--line);
+  box-shadow: var(--shadow-md);
+}
+.hero-cmd code,
+.key-block,
+.doc-section pre code {
+  color: var(--fg-soft);
+}
+.copy-btn,
+.dl-sha button {
+  background: var(--bg-elev);
+  color: var(--muted);
+  border-color: var(--line);
+}
+.copy-btn:hover,
+.dl-sha button:hover {
+  background: var(--bg-elev-2);
+  color: var(--green);
+  border-color: rgba(22,131,79,0.24);
+}
+.copy-btn.copied {
+  background: var(--bg-elev-2);
+  color: var(--green);
+  border-color: rgba(22,131,79,0.28);
+}
+.btn.subtle {
+  background: var(--bg-elev);
+  color: var(--fg);
+  border-color: var(--line);
+}
+.btn.subtle:hover {
+  background: var(--bg-elev-2);
+  border-color: var(--line-hi);
+  color: var(--fg);
+}
+.proof-card,
+.demo-card,
+.tile,
+.pstep,
+.killer-vis,
+.eco-card,
+.spec,
+.faq details,
+.app-card,
+.settings-card,
+.dl-card,
+.dl-detected,
+.dl-callout,
+.terminal,
+.lh-demo {
+  background: var(--bg-elev);
+  border-color: var(--line);
+  box-shadow: var(--shadow-md);
+}
+.proof-card,
+.demo-card,
+.tile,
+.pstep,
+.killer-vis,
+.eco-card,
+.spec,
+.faq details,
+.app-card,
+.settings-card,
+.dl-card,
+.dl-detected,
+.dl-callout,
+.terminal,
+.lh-demo,
+.hero-cmd,
+.copy-inline,
+.dl-cmd,
+.browser-frame,
+.search-panel,
+.catalog-mini,
+.demo-address,
+.search-box,
+.result-row,
+.demo-feed-row,
+.catalog-mini div,
+.lh-search,
+.lh-row,
+.key-block,
+.doc-section pre,
+.copy-btn,
+.btn {
+  border-radius: 8px;
+}
+.proof-card,
+.demo-card,
+.tile,
+.eco-card,
+.app-card,
+.dl-card {
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.tile:hover,
+.eco-card:hover,
+.app-card:hover,
+.faq details[open] {
+  background: var(--bg-elev-2);
+  border-color: var(--line-hi);
+}
+.browser-frame,
+.search-panel,
+.catalog-mini {
+  background: var(--bg-elev-2);
+  border-color: var(--line);
+}
+.demo-tabs,
+.terminal-bar {
+  background: var(--bg-elev-2);
+  border-bottom-color: var(--line);
+}
+.demo-tabs span {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--muted);
+}
+.demo-tabs .active {
+  background: var(--bg-elev);
+  color: var(--fg);
+}
+.demo-feed-row,
+.result-row,
+.catalog-mini div,
+.lh-row,
+.publish-flow span {
+  background: rgba(255,255,255,0.74);
+  border-color: var(--line);
+}
+.result-row em,
+.result-row i,
+.prov.trusted {
+  background: var(--pear-color-teal-soft, #e2f3f1);
+  border-color: rgba(15,118,110,0.18);
+  color: var(--blue);
+}
+.pill.exp,
+.callout,
+.dl-badge.preview {
+  background: var(--pear-color-amber-soft, #fff4dc);
+  border-color: rgba(185,120,18,0.22);
+  color: var(--amber);
+}
+.pill.phase,
+.pill.smoke {
+  background: var(--pear-color-teal-soft, #e2f3f1);
+  border-color: rgba(15,118,110,0.18);
+  color: var(--blue);
+}
+.dl-badge.blocked {
+  background: var(--bg-elev-2);
+  border-color: var(--line);
+  color: var(--muted);
+}
+.dl-badge.ok {
+  background: var(--bg-elev-2);
+  border-color: rgba(22,131,79,0.18);
+  color: var(--green);
+}
+.lh-demo::before,
+.final {
+  background: linear-gradient(180deg, rgba(22,131,79,0.055), rgba(255,255,255,0));
+}
+.lh-switch {
+  background: rgba(22,131,79,0.18);
+  border-color: rgba(22,131,79,0.28);
+}
+.lh-switch::after {
+  background: var(--green);
+  box-shadow: 0 6px 16px rgba(22,131,79,0.18);
+}
+.terminal-body {
+  color: var(--fg-soft);
+}
+.terminal-title,
+.terminal-body .comment,
+.dl-sha {
+  color: var(--dim);
+}
+.terminal-body .prompt,
+.icon-up {
+  color: var(--green);
+}
+.icon-relay,
+.terminal-body .key {
+  color: var(--blue);
+}
+footer {
+  background: var(--bg-elev-2);
+  color: var(--dim);
+}
+footer li a:hover,
+.doc-toc a:hover {
+  color: var(--fg);
+}
+.spec tr:hover td,
+.spec tr:hover th {
+  background: rgba(22,131,79,0.045);
+}
+.doc-toc a:hover {
+  border-left-color: var(--green);
+}
+.doc-section pre code {
+  background: transparent;
+  border: 0;
+}
+.tile-icon,
+.eco-icon,
+.lh-check,
+.killer-vis-row .icon,
+.step-list li::before,
+.pstep .num {
+  border-radius: 8px;
+}
+.pstep .num,
+.lh-check {
+  background: var(--bg-elev-2);
+  border-color: rgba(22,131,79,0.18);
+  color: var(--green);
+}
+.step-list li::before {
+  background: var(--bg-elev);
+  border-color: var(--line);
+  color: var(--green);
+}
+.install-grid > *,
+.product-demo-grid > *,
+.hero-proof-grid > *,
+.tiles > *,
+.lighthouse-grid > *,
+.killer-grid > *,
+.eco-spotlight > *,
+.ecosystem > *,
+.app-grid > *,
+.dl-grid > *,
+.dl-mobile-grid > *,
+.doc-layout > *,
+.doc-toc,
+.doc-section {
+  min-width: 0;
+}
+.terminal,
+.copy-inline,
+.callout,
+.step-list,
+.hero-mini,
+.terminal-body,
+.dl-card,
+.dl-detected,
+.dl-cmd,
+.dl-callout,
+.doc-layout,
+.doc-toc,
+.doc-section {
+  max-width: 100%;
+  min-width: 0;
+}
+.hero-mini code,
+.copy-inline code,
+.terminal-body,
+.terminal-body code,
+.doc-section pre,
+.doc-section code,
+.dl-cmd code,
+.dl-sha {
+  overflow-wrap: anywhere;
+}
+.dl-cmd,
+.dl-callout {
+  border-radius: 8px !important;
+}
+/* ─── END LIGHT APP ALIGNMENT OVERRIDES ───────────────────────── */
