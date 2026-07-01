@@ -11,7 +11,7 @@
   },
   "desktopRelease": {
     "version": "v0.5.1",
-    "productionLength": 45701,
+    "productionLength": 45704,
     "distribution": {
       "primary": "preview-unsigned",
       "installerUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases",
