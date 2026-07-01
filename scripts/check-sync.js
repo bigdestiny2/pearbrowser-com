@@ -126,7 +126,7 @@ try {
     'site Hyperdrive key'
   )
 
-  const expectedHero = `Desktop ${version} · production length ${length} · preview builds · macOS · Windows · Linux`
+  const expectedHero = `Desktop ${version} · production length ${length} · preview builds live · macOS · Windows · Linux`
   const expectedSpec = `${version} · production length ${length} · pinned on the HiveRelay backbone`
   const expectedLegacyLaunch = `pear run ${driveKey}`
 
