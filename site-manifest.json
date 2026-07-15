@@ -65,10 +65,6 @@
     {
       "path": "assets/styles.css",
       "role": "shared-styles"
-    },
-    {
-      "path": "assets/pearbrowser-logo.svg",
-      "role": "logo"
     }
   ],
   "checks": [
