@@ -77,6 +77,9 @@ function checkHtmlReferences(pages) {
   for (const page of pages) {
     const source = read(path.join(root, page))
     if (!source.includes('href="site-manifest.json"')) fail(`${page} is missing the site manifest discovery link`)
+    if (/<link\b[^>]*\brel=["'][^"']*\bicon\b[^"']*["'][^>]*>/i.test(source)) {
+      fail(`${page} must not declare a favicon`)
+    }
     if (!/href="assets\/styles\.css(?:\?[^"]*)?"/.test(source)) fail(`${page} is missing the shared stylesheet`)
 
     let match
