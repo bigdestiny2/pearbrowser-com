@@ -62,7 +62,7 @@
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.6.0 · production length 63158 · preview builds live · macOS · Windows · Linux</span>
+        <span>Desktop v0.6.1 · production length 63165 · preview builds live · macOS · Windows · Linux</span>
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
@@ -397,20 +397,20 @@
     <div class="wrap">
       <span class="eyebrow reveal">Quickstart</span>
       <h2 class="section reveal" id="inst-h">Get PearBrowser.</h2>
-      <p class="lede reveal"><code>v0.6.0</code> adds Content Shield, privacy-first clearnet tabs, the Pear Plugins foundation, opt-in history and local search indexing, zero telemetry, and on-device Ask Browser / QVAC AI. Desktop preview builds are attached for macOS, Windows, and Linux. They are <strong>unsigned today</strong> — signed and notarized installers land as code-signing credentials are wired in — so the peer-to-peer Pear launch path remains the friction-free way to run the current release. The <a href="download.html">download page</a> has per-platform builds with SHA-256 checksums.</p>
+      <p class="lede reveal"><code>v0.6.1</code> carries the Content Shield, privacy-first clearnet tabs, Pear Plugins foundation, opt-in history and local search indexing, zero telemetry, and on-device Ask Browser / QVAC AI from v0.6.0, while correcting the catalogue version and Linux download packaging. Desktop preview builds are attached for macOS, Windows, and Linux. They are <strong>unsigned today</strong> — signed and notarized installers land as code-signing credentials are wired in — so the peer-to-peer Pear launch path remains the friction-free way to run the current release. The <a href="download.html">download page</a> has per-platform builds with SHA-256 checksums.</p>
 
       <div class="install-grid">
         <div class="reveal">
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
-              <span class="terminal-title">PearBrowser v0.6.0 downloads</span>
+              <span class="terminal-title">PearBrowser v0.6.1 downloads</span>
             </div>
             <div class="terminal-body">
               <span class="comment"># Unsigned preview builds (verify with SHA-256)</span><br>
-              macOS: PearBrowser-0.6.0-macos-arm64.app.zip · -x64.app.zip<br>
-              Windows: PearBrowser-0.6.0-windows-x64.msix<br>
-              Linux: PearBrowser-0.6.0-linux-x64.AppImage<br>
+              macOS: PearBrowser-0.6.1-macos-arm64.app.zip · -x64.app.zip<br>
+              Windows: PearBrowser-0.6.1-windows-x64.msix<br>
+              Linux: PearBrowser-0.6.1-linux-x64.AppImage<br>
               <br>
               <span class="comment"># Or launch over P2P — no download, no signing caveats</span><br>
               npm i -g pear<br>
@@ -449,8 +449,8 @@
       <div class="spec reveal">
         <table>
           <tbody>
-          <tr><th scope="row">Desktop version</th><td>v0.6.0 · production length 63158 · pinned on the HiveRelay backbone</td></tr>
-          <tr><th scope="row">Distribution</th><td>Unsigned preview builds attached to <code>v0.6.0</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; signed/notarized installers in progress; <code>pear run pear://…</code> P2P launch path works today</td></tr>
+          <tr><th scope="row">Desktop version</th><td>v0.6.1 · production length 63165 · pinned on the HiveRelay backbone</td></tr>
+          <tr><th scope="row">Distribution</th><td>Unsigned preview builds attached to <code>v0.6.1</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; signed/notarized installers in progress; <code>pear run pear://…</code> P2P launch path works today</td></tr>
           <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> is legacy because Pear runtime <code>v2.4.0</code> deprecates it</td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
@@ -512,7 +512,7 @@
 
         <details>
           <summary>How do I install it — and what about <code>pear run</code>?</summary>
-          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">v0.6.0 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>unsigned preview builds</strong> today, so <code>pear run pear://…</code> stays available as a friction-free P2P launch path while signed/notarized installers land; Pear runtime <code>v2.4.0</code> deprecates that command, so it is a compatibility path, not the finished story.</p>
+          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">v0.6.1 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>unsigned preview builds</strong> today, so <code>pear run pear://…</code> stays available as a friction-free P2P launch path while signed/notarized installers land; Pear runtime <code>v2.4.0</code> deprecates that command, so it is a compatibility path, not the finished story.</p>
         </details>
 
         <details>

@@ -1,9 +1,9 @@
 {
-  "version": "v0.6.0",
+  "version": "v0.6.1",
   "updated": "2026-07-15",
-  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.6.0",
-  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.6.0/",
-  "note": "Desktop builds are unsigned preview packages today. Signed/notarized installers land as signing credentials are wired in; this file is regenerated from the release manifests each build.",
+  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.6.1",
+  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.6.1/",
+  "note": "Desktop builds are unsigned preview packages today. v0.6.1 supersedes the incorrect normalized Linux AppImage attached to v0.6.0. Signed/notarized installers land as signing credentials are wired in; this file is regenerated from verified release assets.",
   "platforms": [
     {
       "os": "macos",
@@ -16,16 +16,16 @@
         {
           "arch": "arm64",
           "archLabel": "Apple Silicon (arm64)",
-          "file": "PearBrowser-0.6.0-macos-arm64.app.zip",
-          "sha256": "b1c8374e9740c880b42d2ff7cf7009f6adc6e3738d650688e707aa5e662c4c6b",
-          "bytes": 22608332
+          "file": "PearBrowser-0.6.1-macos-arm64.app.zip",
+          "sha256": "269ee6f32dafe4805da862737ada26e685fa3ece2fdf93c83b6bab7a1adef463",
+          "bytes": 22608326
         },
         {
           "arch": "x64",
           "archLabel": "Intel (x64)",
-          "file": "PearBrowser-0.6.0-macos-x64.app.zip",
-          "sha256": "96cfd380b6f46aeb1b65eae47f13ac5d97902b274c741f8236b45e584af05ebf",
-          "bytes": 23694226
+          "file": "PearBrowser-0.6.1-macos-x64.app.zip",
+          "sha256": "b31841a8b982d6976c3fcd7f799a597dbc2510b8cd4cfa36020d2a4919f38f13",
+          "bytes": 23694171
         }
       ]
     },
@@ -33,16 +33,16 @@
       "os": "windows",
       "label": "Windows",
       "signing": "unsigned",
-      "status": "blocked",
-      "statusLabel": "Unsigned - sideload only",
-      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install. Until signing is wired in, use the P2P launch path below, or install only if you understand sideloading (Developer Mode + Add-AppxPackage).",
+      "status": "preview",
+      "statusLabel": "Unsigned sideload preview",
+      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install. Download it only if you understand sideloading (Developer Mode + Add-AppxPackage), or use the P2P launch path below.",
       "builds": [
         {
           "arch": "x64",
           "archLabel": "x64",
-          "file": "PearBrowser-0.6.0-windows-x64.msix",
-          "sha256": "6664d671cf229c714a26a252becb287661d59b56b466a85d83ef5c05d019dffe",
-          "bytes": 19223077
+          "file": "PearBrowser-0.6.1-windows-x64.msix",
+          "sha256": "d7fa8ec307210998a847b4f4d141e4916ff6535de5c1d07be8d72ed9ec52e665",
+          "bytes": 19223043
         }
       ]
     },
@@ -57,9 +57,9 @@
         {
           "arch": "x64",
           "archLabel": "x86_64",
-          "file": "PearBrowser-0.6.0-linux-x64.AppImage",
-          "sha256": "a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0",
-          "bytes": 15092216
+          "file": "PearBrowser-0.6.1-linux-x64.AppImage",
+          "sha256": "b4bdb86741cec365daf3c15d5ea9aaea42377f1a94a782e4d5ce799db85557e3",
+          "bytes": 52578808
         }
       ]
     }
