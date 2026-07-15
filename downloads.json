@@ -1,8 +1,8 @@
 {
-  "version": "v0.5.2",
-  "updated": "2026-07-01",
-  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.5.2",
-  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.5.2/",
+  "version": "v0.6.0",
+  "updated": "2026-07-15",
+  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.6.0",
+  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.6.0/",
   "note": "Desktop builds are unsigned preview packages today. Signed/notarized installers land as signing credentials are wired in; this file is regenerated from the release manifests each build.",
   "platforms": [
     {
@@ -16,16 +16,16 @@
         {
           "arch": "arm64",
           "archLabel": "Apple Silicon (arm64)",
-          "file": "PearBrowser-0.5.2-macos-arm64.app.zip",
-          "sha256": "75e1cbf5f0b77fe3cbefee0699137b9b1155b1686090bca4d567f9ebbadf865a",
-          "bytes": 22608318
+          "file": "PearBrowser-0.6.0-macos-arm64.app.zip",
+          "sha256": "b1c8374e9740c880b42d2ff7cf7009f6adc6e3738d650688e707aa5e662c4c6b",
+          "bytes": 22608332
         },
         {
           "arch": "x64",
           "archLabel": "Intel (x64)",
-          "file": "PearBrowser-0.5.2-macos-x64.app.zip",
-          "sha256": "5c84917ba211b89b8e09cb7b489692dbbb29ba584d1081522256334198f3a43c",
-          "bytes": 23694239
+          "file": "PearBrowser-0.6.0-macos-x64.app.zip",
+          "sha256": "96cfd380b6f46aeb1b65eae47f13ac5d97902b274c741f8236b45e584af05ebf",
+          "bytes": 23694226
         }
       ]
     },
@@ -40,9 +40,9 @@
         {
           "arch": "x64",
           "archLabel": "x64",
-          "file": "PearBrowser-0.5.2-windows-x64.msix",
-          "sha256": "c4e3c1faefa452afc43ebac68ce74e4595b7e596b54e1af23b91f8a67d3d55dc",
-          "bytes": 19223133
+          "file": "PearBrowser-0.6.0-windows-x64.msix",
+          "sha256": "6664d671cf229c714a26a252becb287661d59b56b466a85d83ef5c05d019dffe",
+          "bytes": 19223077
         }
       ]
     },
@@ -57,7 +57,7 @@
         {
           "arch": "x64",
           "archLabel": "x86_64",
-          "file": "PearBrowser-0.5.2-linux-x64.AppImage",
+          "file": "PearBrowser-0.6.0-linux-x64.AppImage",
           "sha256": "a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0",
           "bytes": 15092216
         }

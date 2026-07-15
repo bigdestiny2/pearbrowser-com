@@ -6,7 +6,9 @@ const path = require('path')
 const root = path.resolve(__dirname, '..')
 const indexPath = path.join(root, 'index.html')
 const manifestPath = path.join(root, 'site-manifest.json')
-const desktopReadmePath = path.join(root, '..', '..', '01-browser', 'pearbrowser-desktop', 'README.md')
+const desktopReadmePath = process.env.PEARBROWSER_DESKTOP_README
+  ? path.resolve(process.env.PEARBROWSER_DESKTOP_README)
+  : path.join(root, '..', '..', '01-browser', 'pearbrowser-desktop', 'README.md')
 const htmlPages = ['index.html', 'features.html', 'apps.html', 'docs.html', 'download.html']
 const releaseUrl = 'https://github.com/bigdestiny2/pearbrowser-desktop/releases'
 const requiredPhrases = [
@@ -110,7 +112,7 @@ try {
 
   const [, version, length] = mustMatch(
     desktopReadme,
-    /\*\*Current release:\*\*\s*`(v[^`]+)` · production length `(\d+)`/,
+    /\*\*Current release:\*\*\s*`(v[^`]+)` · (?:stable Pear )?production length `(\d+)`/,
     'desktop release metadata'
   )
 
