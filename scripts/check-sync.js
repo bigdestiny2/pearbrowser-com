@@ -6,6 +6,7 @@ const path = require('path')
 const root = path.resolve(__dirname, '..')
 const indexPath = path.join(root, 'index.html')
 const manifestPath = path.join(root, 'site-manifest.json')
+const downloadsPath = path.join(root, 'downloads.json')
 const desktopReadmePath = process.env.PEARBROWSER_DESKTOP_README
   ? path.resolve(process.env.PEARBROWSER_DESKTOP_README)
   : path.join(root, '..', '..', '01-browser', 'pearbrowser-desktop', 'README.md')
@@ -109,6 +110,7 @@ try {
   const site = read(indexPath)
   const desktopReadme = read(desktopReadmePath)
   const manifest = readJson(manifestPath)
+  const downloads = readJson(downloadsPath)
 
   const [, version, length] = mustMatch(
     desktopReadme,
@@ -150,6 +152,21 @@ try {
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.legacyLaunchCommand, expectedLegacyLaunch, 'manifest legacy launch command')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'preview-unsigned', 'manifest primary distribution')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.installerUrl, releaseUrl, 'manifest installer URL')
+
+  requireEqual(downloads.version, version, 'downloads release version')
+  requireEqual(downloads.releaseUrl, `${releaseUrl}/tag/${version}`, 'downloads release URL')
+  requireEqual(downloads.assetBase, `${releaseUrl}/download/${version}/`, 'downloads asset base')
+  const builds = (downloads.platforms || []).flatMap((platform) => platform.builds || [])
+  const filenames = new Set()
+  for (const build of builds) {
+    if (!String(build.file || '').includes(version.replace(/^v/, ''))) fail(`download filename is out of sync with ${version}: ${build.file || '(missing)'}`)
+    if (!/^[0-9a-f]{64}$/.test(build.sha256 || '')) fail(`download SHA-256 is invalid for ${build.file || '(missing)'}`)
+    if (!Number.isInteger(build.bytes) || build.bytes <= 0) fail(`download byte size is invalid for ${build.file || '(missing)'}`)
+    if (filenames.has(build.file)) fail(`duplicate download filename: ${build.file}`)
+    filenames.add(build.file)
+  }
+  const linuxAppImages = builds.filter((build) => /-linux-[A-Za-z0-9._-]+\.AppImage$/.test(build.file || ''))
+  requireEqual(linuxAppImages.length, 1, 'Linux product AppImage count')
 
   for (const entry of manifest.files || []) {
     if (!entry.path || !fileExists(entry.path)) fail(`manifest references missing file "${entry.path}"`)

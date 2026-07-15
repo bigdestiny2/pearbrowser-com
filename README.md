@@ -4,7 +4,8 @@ Static landing page for [PearBrowser Desktop](https://github.com/bigdestiny2/pea
 
 This repo stays intentionally small:
 
-- `index.html`, `features.html`, `apps.html`, and `docs.html` are the static site.
+- `index.html`, `features.html`, `apps.html`, `docs.html`, and `download.html` are the static site.
+- `downloads.json` is the machine-readable native-download manifest; its file sizes and SHA-256 values come from verified GitHub release assets.
 - `site-manifest.json` is the machine-readable Hyperdrive/publish surface for the public site.
 - `scripts/check-sync.js` is a no-deps guardrail that verifies the site still matches the current desktop release metadata, manifest, local page links, local assets, and anchor links.
 - `package.json` exists only to make preview and validation repeatable.
@@ -26,7 +27,7 @@ npm run check
 npm run preview
 ```
 
-- `npm run check` validates the release/download URL, legacy Pear CLI fallback, release version, production length, SWARM docs link, site manifest, local page links, local assets, and mobile/browser ecosystem anchors.
+- `npm run check` validates the release/download URL, legacy Pear CLI fallback, release version, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, local assets, and mobile/browser ecosystem anchors.
 - `npm run preview` serves the static site at `http://127.0.0.1:4173`.
 
 No bundler, no framework, no install step beyond having Node and Python available locally.
@@ -36,7 +37,7 @@ No bundler, no framework, no install step beyond having Node and Python availabl
 When PearBrowser Desktop ships a new version:
 
 1. Confirm the `**Current release:**` line in [`../../01-browser/pearbrowser-desktop/README.md`](../../01-browser/pearbrowser-desktop/README.md).
-2. Update `index.html` hero/spec copy and `site-manifest.json` only if the version, production length, site drive key, installer artifact URL/status, or surrounding product copy changed.
+2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed.
 3. Re-run `npm run check`.
 4. Preview locally and confirm the public site still reads cleanly on desktop and mobile.
 

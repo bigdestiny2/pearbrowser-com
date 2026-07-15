@@ -3,10 +3,11 @@
 This is a **static site** — plain HTML/CSS at the repo root, no build step. Files:
 
 ```
-index.html  features.html  apps.html  docs.html   ← pages
-site-manifest.json                                 ← Hyperdrive/publish metadata
-assets/styles.css                                  ← shared design system
-vercel.json                                        ← Vercel static config (pretty URLs + asset caching)
+index.html  features.html  apps.html  docs.html  download.html  ← pages
+downloads.json                                               ← verified native-download metadata
+site-manifest.json                                           ← Hyperdrive/publish metadata
+assets/styles.css                                            ← shared design system
+vercel.json                                                  ← Vercel static config (pretty URLs + asset caching)
 ```
 
 The repo is already on GitHub: `https://github.com/bigdestiny2/pearbrowser-com`.
