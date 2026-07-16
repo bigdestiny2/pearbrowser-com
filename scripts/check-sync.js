@@ -115,10 +115,16 @@ try {
   const manifest = readJson(manifestPath)
   const downloads = readJson(downloadsPath)
 
-  const [, version, length] = mustMatch(
+  const [, version] = mustMatch(
     desktopReadme,
-    /\*\*Current release:\*\*\s*`(v[^`]+)` · (?:stable Pear )?production length `(\d+)`/,
-    'desktop release metadata'
+    /\*\*Current release:\*\*\s*`(v[^`]+)`/,
+    'desktop release version'
+  )
+
+  const [, length] = mustMatch(
+    desktopReadme,
+    /stable Pear[^`\n]*length\s*`(\d+)`/i,
+    'desktop stable Pear length'
   )
 
   const [, driveKey] = mustMatch(

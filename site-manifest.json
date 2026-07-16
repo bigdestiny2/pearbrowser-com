@@ -2,7 +2,7 @@
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
   "description": "Static public and Hyperdrive-ready website for PearBrowser Desktop, its mobile sibling, and the HiveRelay-backed Pear app ecosystem.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "updated": "2026-07-16",
   "hyperdrive": {
     "driveKey": "03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f",
@@ -10,8 +10,8 @@
     "status": "pinned-on-hiverelay"
   },
   "desktopRelease": {
-    "version": "v0.7.0",
-    "productionLength": 78006,
+    "version": "v0.7.1",
+    "productionLength": 92835,
     "distribution": {
       "primary": "preview-unsigned",
       "installerUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases",
@@ -22,7 +22,7 @@
         "Windows .msix",
         "Linux .AppImage"
       ],
-      "status": "Unsigned preview builds are attached to v0.7.0 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The pear:// P2P launch path works today."
+      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The pear:// P2P launch path works today."
     },
     "legacyLaunchCommand": "pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "source": "../../01-browser/pearbrowser-desktop/README.md"
