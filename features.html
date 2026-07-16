@@ -151,10 +151,14 @@
           <p>Install scoped styles, scripts, and network filters from ordinary Hyperdrives. Every install previews explicit capabilities; updates that ask for more power are disabled until you re-consent to the exact new snapshot. A P2P catalogue provides one-click Install/Open actions with no central extension store.</p>
         </div>
         <div class="tile reveal d1">
+          <h3>Reload-safe browser transport</h3>
+          <p>The authenticated renderer reconnects across reload and live-update handoffs while the backend briefly preserves state and buffers events. Pending calls fail immediately on a real disconnect, so Settings no longer turns one closed socket into a cluster of misleading 30-second RPC timeouts.</p>
+        </div>
+        <div class="tile reveal d2">
           <h3>Encrypted device sync <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
           <p>Pair your own machines with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite to converge <strong>bookmarks</strong> over an encrypted Autobase. Scope today is bookmarks — not full tabs / history / profile. Off by default.</p>
         </div>
-        <div class="tile reveal d2">
+        <div class="tile reveal">
           <h3>Three apps in one</h3>
           <p>Browse <code>hyper://</code> sites, install and launch P2P apps from decentralized catalogues, and publish your own. Builders can seed an app to HiveRelay, pin it, and submit it to a catalogue — each fully peer-to-peer, no accounts, no DNS, no servers.</p>
         </div>
