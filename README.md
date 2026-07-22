@@ -14,11 +14,10 @@ This repo stays intentionally small:
 
 Update this site against these sources first:
 
-- [`../../01-browser/pearbrowser-desktop/README.md`](../../01-browser/pearbrowser-desktop/README.md)
 - [`../../01-browser/PearBrowser/README.md`](../../01-browser/PearBrowser/README.md)
 - [`../../00-core/hiverelay/docs/PEARBROWSER-INTEGRATION.md`](../../00-core/hiverelay/docs/PEARBROWSER-INTEGRATION.md)
 
-The public page should describe the desktop browser accurately while making it clear that desktop and mobile share the same HiveRelay catalog, gateway, and capability-doc contract.
+The public page should describe the desktop browser accurately while making it clear that desktop and mobile share the same HiveRelay catalog, gateway, and capability-doc contract. Treat this site's manifest and verified native release assets as the public release record; a development README is not a publication API.
 
 ## Local workflow
 
@@ -27,7 +26,7 @@ npm run check
 npm run preview
 ```
 
-- `npm run check` validates the release/download URL, legacy Pear CLI fallback, release version, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, local assets, and mobile/browser ecosystem anchors.
+- `npm run check` validates the public release/download record, legacy migration record, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, local assets, and mobile/browser ecosystem anchors.
 - `npm run preview` serves the static site at `http://127.0.0.1:4173`.
 
 No bundler, no framework, no install step beyond having Node and Python available locally.
@@ -36,7 +35,7 @@ No bundler, no framework, no install step beyond having Node and Python availabl
 
 When PearBrowser Desktop ships a new version:
 
-1. Confirm the `**Current release:**` line in [`../../01-browser/pearbrowser-desktop/README.md`](../../01-browser/pearbrowser-desktop/README.md).
+1. Confirm the approved native release artifacts and their SHA-256 values.
 2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed.
 3. Re-run `npm run check`.
 4. Preview locally and confirm the public site still reads cleanly on desktop and mobile.
@@ -70,7 +69,7 @@ Deploy from the `main` branch root and point `pearbrowser.com` at the Pages host
 
 ## Why static?
 
-This page used to be easier to let drift. Static HTML keeps the trust surface inspectable: `view-source:` shows the installer URL, legacy launch key, release metadata, manifest link, and ecosystem claims you are asking users to trust.
+This page used to be easier to let drift. Static HTML keeps the trust surface inspectable: `view-source:` shows the installer URL, legacy migration record, release metadata, manifest link, and ecosystem claims you are asking users to trust.
 
 ## License
 

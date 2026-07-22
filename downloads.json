@@ -66,9 +66,8 @@
   ],
   "p2p": {
     "pearKey": "pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
-    "pearRunCommand": "pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "hyper": "hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/",
-    "note": "Works on every desktop today and hot-syncs the current release from the swarm. Requires the Pear runtime (npm i -g pear). pear run is deprecated in Pear v2.4.0 but still functional."
+    "note": "Legacy migration record only. It is not a Pear v3 launch or install path; use the native package for this device."
   },
   "mobile": {
     "android": {
