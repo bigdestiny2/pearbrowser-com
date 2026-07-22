@@ -146,10 +146,10 @@ try {
 
   const version = String(manifest.desktopRelease && manifest.desktopRelease.version || '')
   const length = String(manifest.desktopRelease && manifest.desktopRelease.productionLength || '')
-  const driveKey = String(manifest.desktopRelease && manifest.desktopRelease.legacyMigrationKey || '')
+  const legacyMigrationId = String(manifest.desktopRelease && manifest.desktopRelease.legacyMigrationId || '')
   if (!/^v\d+\.\d+\.\d+$/.test(version)) throw new Error('Missing desktop release version in site manifest')
   if (!/^\d+$/.test(length)) throw new Error('Missing desktop production length in site manifest')
-  if (!/^pear:\/\/[a-z0-9]+$/.test(driveKey)) throw new Error('Missing legacy migration key in site manifest')
+  if (!/^[a-z0-9]+$/.test(legacyMigrationId)) throw new Error('Missing legacy migration identifier in site manifest')
 
   const [, siteDriveKey] = mustMatch(
     site,
@@ -159,7 +159,7 @@ try {
 
   const expectedHero = `Desktop ${version} · production length ${length} · preview builds live · macOS · Windows · Linux`
   const expectedSpec = `${version} · production length ${length} · pinned on the HiveRelay backbone`
-  const expectedLegacyMigration = `Legacy migration record: ${driveKey}`
+  const expectedLegacyMigration = `Legacy migration identifier: ${legacyMigrationId}`
 
   if (!site.includes(expectedHero)) fail(`hero release line is out of sync; expected "${expectedHero}"`)
   if (!site.includes(expectedSpec)) fail(`spec table release line is out of sync; expected "${expectedSpec}"`)
@@ -185,6 +185,7 @@ try {
   requireEqual(manifest.webSearch && manifest.webSearch.anonymity, false, 'manifest web search anonymity boundary')
 
   requireEqual(downloads.version, version, 'downloads release version')
+  requireEqual(downloads.p2p && downloads.p2p.legacyMigrationId, legacyMigrationId, 'downloads legacy migration identifier')
   requireEqual(downloads.releaseUrl, `${releaseUrl}/tag/${version}`, 'downloads release URL')
   requireEqual(downloads.assetBase, `${releaseUrl}/download/${version}/`, 'downloads asset base')
   const builds = (downloads.platforms || []).flatMap((platform) => platform.builds || [])

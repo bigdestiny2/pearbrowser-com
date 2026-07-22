@@ -46,9 +46,9 @@
         "Windows .msix",
         "Linux .AppImage"
       ],
-      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The legacy pear:// record is migration-only and is not a v3 launch path."
+      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The legacy migration identifier is only for local support and is not a v3 launch path."
     },
-    "legacyMigrationKey": "pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
+    "legacyMigrationId": "tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "source": "https://github.com/bigdestiny2/pearbrowser-desktop/releases"
   },
   "ecosystemAnchors": {
