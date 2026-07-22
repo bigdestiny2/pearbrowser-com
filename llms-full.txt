@@ -2,7 +2,7 @@
 
 ## What is PearBrowser?
 
-PearBrowser is a free, open-source desktop browser for macOS, Windows, and Linux. It browses ordinary HTTPS websites and native hyper:// peer-to-peer sites. It also includes decentralized app catalogues, local-first search, P2P identities, site publishing, Content Shield filter lists, and capability-gated Pear Plugins.
+PearBrowser is a free, open-source desktop browser for macOS, Windows, and Linux. It browses ordinary HTTPS websites and native hyper:// peer-to-peer sites. It also includes a private-search home powered by DuckDuckGo, decentralized app catalogues, local-first search, P2P identities, site publishing, Content Shield filter lists, and capability-gated Pear Plugins.
 
 PearBrowser Desktop v0.7.1 is the current public release. Desktop packages are unsigned preview builds. The download page publishes SHA-256 checksums for verification.
 
@@ -13,6 +13,12 @@ PearBrowser does not collect usage telemetry, remote analytics, advertising iden
 Browsing history and local full-text page indexing are disabled by default. If a user turns either feature on, its data is stored locally. Selected browser data is shared between a user's own devices only if that user explicitly enables encrypted device sync.
 
 PearBrowser does not upload browsing history to an analytics, advertising, or profiling service. It does not require a central account.
+
+## Does PearBrowser include private web search?
+
+Yes. PearBrowser Home opens as the active first tab, and blank new tabs expose the same DuckDuckGo search box. PearBrowser sends no search analytics and explicitly excludes submitted web searches from its optional persistent visit log. Content Shield stays enabled for the results page.
+
+DuckDuckGo receives the query and the user's network address to return results. DuckDuckGo's published privacy policy says it does not save or share search history. The accurate description is “private web search,” not anonymous search. PearBrowser Desktop does not currently route these searches through Tor automatically.
 
 ## Which privacy protections are on by default?
 
@@ -49,7 +55,7 @@ PearBrowser adds native peer-to-peer capabilities to normal browsing:
 
 ## What should not be claimed?
 
-Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
+Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not say a web-search query never leaves the device: DuckDuckGo receives it to return results. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
 
 ## Canonical links
 

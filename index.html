@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PearBrowser — The Browser That Doesn't Track You</title>
-  <meta name="description" content="PearBrowser is a private desktop browser with no telemetry, analytics, ads, tracking SDKs, or central account. Your browsing data stays local by default." />
+  <meta name="description" content="PearBrowser is a private desktop browser with built-in DuckDuckGo search, no telemetry, analytics, ads, tracking SDKs, or central account." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/" />
   <meta property="og:title" content="PearBrowser — The Browser That Doesn't Track You" />
-  <meta property="og:description" content="No telemetry. No ads. No tracking SDKs. No central account. Your browsing data stays local by default." />
+  <meta property="og:description" content="Open to private DuckDuckGo search with no PearBrowser search analytics, telemetry, ads, tracking SDKs, or central account." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pearbrowser.com/" />
   <meta property="og:site_name" content="PearBrowser" />
@@ -19,12 +19,12 @@
   <meta property="og:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PearBrowser — The Browser That Doesn't Track You" />
-  <meta name="twitter:description" content="No telemetry. No ads. No tracking SDKs. No central account. Your browsing data stays local by default." />
+  <meta name="twitter:description" content="Open to private DuckDuckGo search with no PearBrowser search analytics, telemetry, ads, tracking SDKs, or central account." />
   <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
   <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260722-privacy" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260722-private-search" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +34,7 @@
         "@id": "https://pearbrowser.com/#website",
         "url": "https://pearbrowser.com/",
         "name": "PearBrowser",
-        "description": "A private desktop browser with no telemetry, analytics, ads, tracking SDKs, or central account."
+        "description": "A private desktop browser with built-in DuckDuckGo search and no telemetry, analytics, ads, tracking SDKs, or central account."
       },
       {
         "@type": "SoftwareApplication",
@@ -53,7 +53,13 @@
         },
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
         "codeRepository": "https://github.com/bigdestiny2/pearbrowser-desktop",
-        "description": "PearBrowser is a privacy-first desktop browser for the regular and peer-to-peer web. It ships without telemetry or remote analytics, keeps history and local search indexing off by default, and enables Content Shield by default."
+        "description": "PearBrowser is a privacy-first desktop browser for the regular and peer-to-peer web. Its first tab offers DuckDuckGo search without PearBrowser search analytics, while Content Shield is enabled and persistent visit history stays off by default.",
+        "featureList": [
+          "Browser-owned private-search home powered by DuckDuckGo",
+          "No PearBrowser usage telemetry or remote analytics",
+          "Content Shield enabled by default",
+          "Native hyper:// peer-to-peer browsing"
+        ]
       }
     ]
   }
@@ -113,7 +119,7 @@
       </h1>
       <p class="hero-sub">
         No telemetry. No analytics. No ads. No tracking SDKs. No central account.
-        <strong>Your browsing data stays on your device by default</strong>, while privacy protections block common tracking across the regular web.
+        <strong>Open the browser and search without a PearBrowser profile</strong>, while privacy protections block common tracking across the regular web.
         <span class="hl">Private by default, open source, and built for people—not profiles.</span>
       </p>
 
@@ -155,12 +161,30 @@
 
       <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
         <div class="proof-card"><strong>No surveillance business model</strong><span>PearBrowser does not collect usage telemetry or build a profile to sell ads.</span></div>
-        <div class="proof-card"><strong>Local-first browser data</strong><span>History and full-text search stay off until you opt in, then remain on your device unless you choose device sync.</span></div>
+        <div class="proof-card"><strong>Private search on launch</strong><span>The first tab opens to DuckDuckGo search. PearBrowser sends no search analytics and skips its optional persistent visit log.</span></div>
         <div class="proof-card"><strong>Everyday web protection</strong><span>HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, fingerprint farbling, and Content Shield.</span></div>
         <div class="proof-card"><strong>Peer-to-peer power</strong><span>Browse <code>hyper://</code> sites, run Pear apps, search people you trust, and publish without a central platform account.</span></div>
       </div>
     </div>
   </header>
+
+  <!-- PRIVATE SEARCH HOME -->
+  <section id="private-search" class="block private-search-block" aria-labelledby="private-search-h">
+    <div class="wrap private-search-layout">
+      <div>
+        <span class="eyebrow reveal">Private search, loaded</span>
+        <h2 class="section reveal" id="private-search-h">Open the browser. Search without a profile.</h2>
+        <p class="lede reveal">PearBrowser now opens on a browser-owned home page with DuckDuckGo search. PearBrowser sends no search analytics, adds no submitted query to its optional persistent visit log, and keeps Content Shield on for the results page.</p>
+        <p class="private-search-limit reveal"><strong>The honest boundary:</strong> DuckDuckGo receives the query and your network address to return results. <a href="https://duckduckgo.com/privacy">Its published policy says it does not save or share search history</a>. Private search improves privacy; it is not anonymity.</p>
+      </div>
+      <div class="private-search-window reveal d1" aria-label="PearBrowser private search home preview">
+        <div class="private-search-window-head"><span>Private web search</span><b>DuckDuckGo</b></div>
+        <div class="private-search-window-form"><span>Search the web</span><strong>Search</strong></div>
+        <p>Content Shield stays on. DuckDuckGo receives your query and network address. Private search is not anonymity.</p>
+        <div class="private-search-window-meta"><span>No PearBrowser search analytics</span><span>No persistent visit-log entry</span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- PRIVACY PROMISE -->
   <section id="privacy-promise" class="block privacy-block" aria-labelledby="privacy-h">
@@ -214,18 +238,18 @@
       <div class="product-demo-grid">
         <article class="demo-card demo-browser reveal">
           <div class="demo-kicker">1 · Fresh launch</div>
-          <h3>Start inside the live P2P web.</h3>
-          <p>Open the app and show the default tabs: PearBrowser, P2P Builders, and peerit. It immediately feels like a place, not a blank protocol shell.</p>
+          <h3>Start with private search.</h3>
+          <p>Open the app and the active PearBrowser Home tab is ready to search, with the product site, P2P Builders, and peerit beside it.</p>
           <div class="browser-frame" aria-hidden="true">
             <div class="demo-tabs">
-              <span class="active">PearBrowser</span><span>P2P Builders</span><span>peerit</span>
+              <span class="active">PearBrowser Home</span><span>PearBrowser</span><span>P2P Builders</span><span>peerit</span>
             </div>
-            <div class="demo-address">hyper://ac1977a7…635f6d74/</div>
+            <div class="demo-address">Search the web</div>
             <div class="demo-page">
-              <strong>P2P Builders</strong>
-              <span>boards · posts · votes · blocklists</span>
-              <div class="demo-feed-row"><b>Show us what you built</b><small>posted from a signed local identity</small></div>
-              <div class="demo-feed-row"><b>Relay pin dashboard</b><small>replicated directly between peers</small></div>
+              <strong>Search without a profile</strong>
+              <span>DuckDuckGo · Content Shield on</span>
+              <div class="demo-feed-row"><b>No PearBrowser search analytics</b><small>submitted queries skip the optional persistent visit log</small></div>
+              <div class="demo-feed-row"><b>Private, not anonymous</b><small>provider and network boundary shown before you search</small></div>
             </div>
           </div>
         </article>
@@ -574,6 +598,11 @@
         <details>
           <summary>What privacy protections are on by default?</summary>
           <p>Content Shield, HTTPS-only navigation, common tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are enabled by default. Browsing history and local full-text search indexing are disabled until you opt in. Telemetry stays off and cannot be enabled.</p>
+        </details>
+
+        <details>
+          <summary>Does PearBrowser include private web search?</summary>
+          <p>Yes. The first tab and every blank new tab include DuckDuckGo search. PearBrowser sends no search analytics and does not add submitted queries to its optional persistent visit log. DuckDuckGo still receives the query and your network address to return results; <a href="https://duckduckgo.com/privacy">its policy says it does not save or share search history</a>. This is private search, not anonymity.</p>
         </details>
 
         <details>

@@ -1,7 +1,7 @@
 {
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
-  "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser with no telemetry or remote analytics.",
+  "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser with built-in DuckDuckGo search and no telemetry or remote analytics.",
   "version": "0.7.1",
   "updated": "2026-07-22",
   "privacy": {
@@ -16,6 +16,17 @@
     "contentShieldDefault": "on",
     "anonymity": "not-an-anonymity-network",
     "tor": "optional HiveRelay transport exists; PearBrowser Desktop does not route through Tor automatically"
+  },
+  "webSearch": {
+    "surface": "browser-owned active first tab and blank new tabs",
+    "provider": "DuckDuckGo",
+    "providerUrl": "https://duckduckgo.com/",
+    "providerPrivacyPolicy": "https://duckduckgo.com/privacy",
+    "pearBrowserSearchAnalytics": false,
+    "optionalPersistentVisitLogEntry": false,
+    "contentShield": "on",
+    "providerReceives": "query and network address needed to return results",
+    "anonymity": false
   },
   "hyperdrive": {
     "driveKey": "03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f",

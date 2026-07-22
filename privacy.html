@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PearBrowser Privacy — No Telemetry or Tracking</title>
-  <meta name="description" content="PearBrowser doesn't track you: no telemetry, remote analytics, ads, tracking SDKs, or central account. See what stays local and the limits of protection." />
+  <meta name="description" content="PearBrowser doesn't track you: private DuckDuckGo search, no telemetry, remote analytics, ads, tracking SDKs, or central account—with honest limits." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/privacy" />
@@ -22,7 +22,7 @@
   <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260722-privacy" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260722-private-search" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -78,6 +78,14 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does PearBrowser include private web search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. PearBrowser Home uses DuckDuckGo. PearBrowser sends no search analytics and excludes submitted queries from the optional persistent visit log. DuckDuckGo receives the query and network address to return results and says it does not save or share search history. Private search is not anonymity."
             }
           }
         ]
@@ -144,8 +152,8 @@
             <p>Content Shield, HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, and fingerprint farbling.</p>
           </article>
           <article class="privacy-fact reveal d3">
-            <strong>Shared only by your choice</strong>
-            <p>Selected browser data can sync between your devices only after you explicitly enable encrypted device sync.</p>
+            <strong>Private search on launch</strong>
+            <p>PearBrowser Home sends no search analytics and excludes submitted DuckDuckGo queries from its optional persistent visit log.</p>
           </article>
         </div>
       </div>
@@ -226,6 +234,10 @@
           <details>
             <summary>Does PearBrowser block ads and trackers?</summary>
             <p>PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default.</p>
+          </details>
+          <details>
+            <summary>Does PearBrowser include private web search?</summary>
+            <p>Yes. PearBrowser Home and blank new tabs use DuckDuckGo. PearBrowser sends no search analytics and excludes submitted queries from the optional persistent visit log. DuckDuckGo receives the query and network address to return results; <a href="https://duckduckgo.com/privacy">its policy says it does not save or share search history</a>. Private search is not anonymity.</p>
           </details>
         </div>
       </div>

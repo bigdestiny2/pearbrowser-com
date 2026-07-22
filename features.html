@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Private Browser Features — PearBrowser</title>
-  <meta name="description" content="Explore PearBrowser privacy features: no telemetry, opt-in local history, Content Shield, HTTPS-only browsing, tracking-link cleanup, and P2P apps and sites." />
+  <meta name="description" content="Explore PearBrowser privacy features: built-in DuckDuckGo search, no telemetry, opt-in local history, Content Shield, HTTPS-only browsing, and P2P apps and sites." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/features" />
   <meta property="og:title" content="Private Browser Features — PearBrowser" />
-  <meta property="og:description" content="No telemetry, local-first browser data, tracking protection, and direct access to peer-to-peer apps and sites." />
+  <meta property="og:description" content="Built-in private search, no telemetry, local-first browser data, tracking protection, and direct access to peer-to-peer apps and sites." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pearbrowser.com/features" />
   <meta property="og:site_name" content="PearBrowser" />
@@ -17,12 +17,12 @@
   <meta property="og:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Private Browser Features — PearBrowser" />
-  <meta name="twitter:description" content="No telemetry, local-first browser data, tracking protection, and direct access to peer-to-peer apps and sites." />
+  <meta name="twitter:description" content="Built-in private search, no telemetry, local-first browser data, tracking protection, and direct access to peer-to-peer apps and sites." />
   <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
   <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260722-privacy" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260722-private-search" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -74,7 +74,30 @@
     </div>
   </header>
 
-  <!-- SEARCH -->
+  <!-- PRIVATE WEB SEARCH -->
+  <section class="block" aria-labelledby="web-search-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">Private web search · <span class="pill live"><span class="ld"></span>Live</span></span>
+      <h2 class="section reveal" id="web-search-h">Private search on the page you open first.</h2>
+      <p class="lede reveal">PearBrowser Home opens as the active first tab with DuckDuckGo search. PearBrowser sends no search analytics, excludes submitted queries from the optional persistent visit log, and keeps Content Shield enabled for results.</p>
+      <div class="tiles">
+        <div class="tile reveal">
+          <h3>No PearBrowser search profile</h3>
+          <p>There is no PearBrowser search account, analytics collector, ad profile, or query telemetry endpoint.</p>
+        </div>
+        <div class="tile reveal d1">
+          <h3>A provider with a clear policy</h3>
+          <p>DuckDuckGo receives the query and network address to return results. <a href="https://duckduckgo.com/privacy">Its policy says it does not save or share search history</a>.</p>
+        </div>
+        <div class="tile reveal d2">
+          <h3>Private, not anonymous</h3>
+          <p>The provider and network can still observe what is required to serve the request. PearBrowser states that boundary on the home page before a search is sent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL-FIRST SEARCH -->
   <section class="block" aria-labelledby="search-h">
     <div class="wrap">
       <span class="eyebrow reveal">Lighthouse · <span class="pill live"><span class="ld"></span>Live</span></span>

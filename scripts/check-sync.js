@@ -16,6 +16,8 @@ const requiredPhrases = [
   "PearBrowser doesn't track you.",
   'No telemetry. No analytics. No ads. No tracking SDKs. No central account.',
   'Private, not anonymous.',
+  'Open the browser. Search without a profile.',
+  'DuckDuckGo receives the query and your network address',
   'Legacy fallback:',
   'PearBrowser Mobile',
   'https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md',
@@ -194,6 +196,10 @@ try {
   requireEqual(manifest.privacy && manifest.privacy.telemetry, false, 'manifest telemetry claim')
   requireEqual(manifest.privacy && manifest.privacy.remoteAnalytics, false, 'manifest remote analytics claim')
   requireEqual(manifest.privacy && manifest.privacy.anonymity, 'not-an-anonymity-network', 'manifest anonymity boundary')
+  requireEqual(manifest.webSearch && manifest.webSearch.provider, 'DuckDuckGo', 'manifest web search provider')
+  requireEqual(manifest.webSearch && manifest.webSearch.pearBrowserSearchAnalytics, false, 'manifest search analytics claim')
+  requireEqual(manifest.webSearch && manifest.webSearch.optionalPersistentVisitLogEntry, false, 'manifest search visit-log claim')
+  requireEqual(manifest.webSearch && manifest.webSearch.anonymity, false, 'manifest web search anonymity boundary')
 
   requireEqual(downloads.version, version, 'downloads release version')
   requireEqual(downloads.releaseUrl, `${releaseUrl}/tag/${version}`, 'downloads release URL')
@@ -225,6 +231,8 @@ try {
   if (!robots.includes('User-agent: OAI-SearchBot')) fail('robots.txt must explicitly allow OAI-SearchBot')
   if (!robots.includes('Sitemap: https://pearbrowser.com/sitemap.xml')) fail('robots.txt is missing the canonical sitemap URL')
   if (!llms.includes("PearBrowser is private, not anonymous.")) fail('llms.txt is missing the anonymity boundary')
+  if (!llms.includes('DuckDuckGo receives the query and network address')) fail('llms.txt is missing the web-search provider boundary')
+  if (!llmsFull.includes('explicitly excludes submitted web searches from its optional persistent visit log')) fail('llms-full.txt is missing the web-search visit-log behavior')
   if (!llmsFull.includes('does not automatically detect those endpoints or route browser traffic through Tor')) fail('llms-full.txt is missing the Tor routing boundary')
 
   const publicTextFiles = [...htmlPages, 'README.md', 'site-manifest.json', 'llms.txt', 'llms-full.txt']
