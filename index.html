@@ -3,18 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PearBrowser — the desktop for the peer-to-peer web</title>
-  <meta name="description" content="PearBrowser is the desktop for the peer-to-peer web: browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, search people you trust, and publish pages that stay online without servers. macOS, Windows, Linux. No accounts, no DNS." />
+  <title>PearBrowser — The Browser That Doesn't Track You</title>
+  <meta name="description" content="PearBrowser is a private desktop browser with no telemetry, analytics, ads, tracking SDKs, or central account. Your browsing data stays local by default." />
   <meta name="theme-color" content="#f6f8f7" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/" />
-  <meta property="og:title" content="PearBrowser — the desktop for the peer-to-peer web" />
-  <meta property="og:description" content="Browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, and publish pages that stay online without servers." />
+  <meta property="og:title" content="PearBrowser — The Browser That Doesn't Track You" />
+  <meta property="og:description" content="No telemetry. No ads. No tracking SDKs. No central account. Your browsing data stays local by default." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pearbrowser.com/" />
+  <meta property="og:site_name" content="PearBrowser" />
+  <meta property="og:image" content="https://pearbrowser.com/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PearBrowser — the browser with no servers behind it" />
-  <meta name="twitter:description" content="Browse hyper:// sites, run Pear apps from decentralized catalogues, seed and pin apps on HiveRelay, and publish pages that stay online without servers." />
+  <meta name="twitter:title" content="PearBrowser — The Browser That Doesn't Track You" />
+  <meta name="twitter:description" content="No telemetry. No ads. No tracking SDKs. No central account. Your browsing data stays local by default." />
+  <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
+  <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260701-light-app" />
+  <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260722-privacy" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://pearbrowser.com/#website",
+        "url": "https://pearbrowser.com/",
+        "name": "PearBrowser",
+        "description": "A private desktop browser with no telemetry, analytics, ads, tracking SDKs, or central account."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://pearbrowser.com/#app",
+        "name": "PearBrowser",
+        "url": "https://pearbrowser.com/",
+        "downloadUrl": "https://pearbrowser.com/download",
+        "softwareVersion": "0.7.1",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "macOS, Windows, Linux",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+        "codeRepository": "https://github.com/bigdestiny2/pearbrowser-desktop",
+        "description": "PearBrowser is a privacy-first desktop browser for the regular and peer-to-peer web. It ships without telemetry or remote analytics, keeps history and local search indexing off by default, and enables Content Shield by default."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -45,6 +88,7 @@
       </button>
       <div class="links" id="navLinks">
         <a href="index.html" class="active">Home</a>
+        <a href="privacy.html">Privacy</a>
         <a href="features.html">Features</a>
         <a href="apps.html">Apps</a>
         <a href="docs.html">Docs</a>
@@ -65,57 +109,100 @@
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
-        <span class="grad">the desktop for the peer-to-peer web</span>.
+        <span class="grad">the browser that doesn't track you</span>.
       </h1>
       <p class="hero-sub">
-        Browse <strong>hyper://</strong> sites, run Pear apps from decentralized catalogues, seed and pin your own app on HiveRelay, and publish pages that stay online without servers.
-        <span class="hl">No accounts. No DNS. No manual updates.</span>
+        No telemetry. No analytics. No ads. No tracking SDKs. No central account.
+        <strong>Your browsing data stays on your device by default</strong>, while privacy protections block common tracking across the regular web.
+        <span class="hl">Private by default, open source, and built for people—not profiles.</span>
       </p>
 
-      <div class="hero-cmd" data-copy="https://pearbrowser.com/download">
-        <code>Preview builds: macOS .app.zip · Windows .msix · Linux .AppImage</code>
-        <button class="copy-btn" type="button" aria-label="Copy download URL">Copy download URL</button>
+      <div class="privacy-proof" aria-label="PearBrowser privacy promise">
+        <span><strong>0</strong> telemetry events</span>
+        <span><strong>0</strong> advertising profiles</span>
+        <span><strong>0</strong> tracking SDKs</span>
       </div>
 
       <div class="hero-actions">
         <a class="btn primary" href="download.html">Download for desktop →</a>
-        <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">All releases</a>
-        <a class="btn subtle" href="hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/">Open the P2P edition ↗</a>
+        <a class="btn subtle" href="privacy.html">Read the privacy promise</a>
+        <a class="btn subtle" href="features.html">See every feature</a>
       </div>
 
       <div class="hero-mini">
-        This very page is also served peer-to-peer at
-        <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.
-        Desktop downloads are unsigned preview builds today — signed, notarized installers land as code-signing credentials are wired in.
+        Free and open source for macOS, Windows, and Linux. Current desktop downloads are unsigned preview builds.<br />
+        This website is also served peer-to-peer at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.
       </div>
 
       <div class="trust-strip">
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/></svg>
-          No accounts · no DNS · no servers
+          No PearBrowser telemetry or analytics
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
-          Provenance badges on search, apps, and sites
+          History and local search are off by default
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          Sites pinned 24/7 on HiveRelay
+          Content Shield is on by default
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
-          Shared catalog + gateway contract with PearBrowser Mobile · app store: seed, pin, publish
+          Open-source code you can inspect
         </span>
       </div>
 
       <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
-        <div class="proof-card"><strong>Browse</strong><span>Real hyper:// tabs with P2P Content Shield lists and capability-gated Pear Plugins.</span></div>
-        <div class="proof-card"><strong>Search</strong><span>Local first-paint, trusted-peer federation, and row-level proof badges.</span></div>
-        <div class="proof-card"><strong>Publish</strong><span>Block editor or app bundle → seed to HiveRelay → pin proof → shareable key.</span></div>
-        <div class="proof-card"><strong>App store</strong><span>Submit your pinned app to a catalogue so other peers can discover and launch it.</span></div>
+        <div class="proof-card"><strong>No surveillance business model</strong><span>PearBrowser does not collect usage telemetry or build a profile to sell ads.</span></div>
+        <div class="proof-card"><strong>Local-first browser data</strong><span>History and full-text search stay off until you opt in, then remain on your device unless you choose device sync.</span></div>
+        <div class="proof-card"><strong>Everyday web protection</strong><span>HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, fingerprint farbling, and Content Shield.</span></div>
+        <div class="proof-card"><strong>Peer-to-peer power</strong><span>Browse <code>hyper://</code> sites, run Pear apps, search people you trust, and publish without a central platform account.</span></div>
       </div>
     </div>
   </header>
+
+  <!-- PRIVACY PROMISE -->
+  <section id="privacy-promise" class="block privacy-block" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">The privacy promise</span>
+      <div class="privacy-heading">
+        <h2 class="section reveal" id="privacy-h">PearBrowser doesn't track you.</h2>
+        <p class="lede reveal">That means something specific: the browser has no telemetry collector, no remote analytics, no ad network, and no tracking SDK. It never uploads your browsing history to an analytics, advertising, or profiling service.</p>
+      </div>
+
+      <div class="privacy-grid">
+        <article class="privacy-card reveal">
+          <span class="privacy-mark" aria-hidden="true">01</span>
+          <h3>No telemetry. Ever.</h3>
+          <p>Telemetry is hard-disabled in the browser. There is no collector endpoint, and the setting cannot be switched on.</p>
+        </article>
+        <article class="privacy-card reveal d1">
+          <span class="privacy-mark" aria-hidden="true">02</span>
+          <h3>Your history starts off.</h3>
+          <p>Browsing history and local page indexing are opt-in. If you enable them, they are stored locally rather than sent to PearBrowser.</p>
+        </article>
+        <article class="privacy-card reveal d2">
+          <span class="privacy-mark" aria-hidden="true">03</span>
+          <h3>Trackers start blocked.</h3>
+          <p>Content Shield is on by default, alongside HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling.</p>
+        </article>
+        <article class="privacy-card reveal d3">
+          <span class="privacy-mark" aria-hidden="true">04</span>
+          <h3>No central account.</h3>
+          <p>Your identity and app permissions are yours. PearBrowser does not require a central profile to browse, search, publish, or run P2P apps.</p>
+        </article>
+      </div>
+
+      <aside class="privacy-boundary reveal" aria-label="Privacy limits">
+        <div>
+          <strong>Private, not anonymous.</strong>
+          <p>Websites, relay operators, and P2P peers can still receive the network information needed to serve content, which may include your IP address and what you request. Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
+        </div>
+        <a class="btn subtle" href="privacy.html">See exactly what is—and isn't—protected →</a>
+      </aside>
+    </div>
+  </section>
 
   <!-- DEMO FLOW -->
   <section id="demo" class="block" aria-labelledby="demo-h">
@@ -305,7 +392,7 @@
           Today's web is rented. The site you bookmarked five years ago is probably a 404 by now — the domain expired, the company pivoted, the host shut down, and your link died with it.
         </p>
         <p style="color:var(--fg-soft); margin-bottom:14px">
-          PearBrowser sites are <strong style="color:var(--fg)">Hyperdrives addressed by public key</strong> — no accounts, no DNS, no servers — replicated peer-to-peer and pinned 24/7 on the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. The publisher being offline doesn't take the site down, because the relays carry the bytes.
+          PearBrowser sites are <strong style="color:var(--fg)">Hyperdrives addressed by public key</strong> — no central account or DNS dependency — replicated peer-to-peer and pinned 24/7 on the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. The publisher being offline doesn't take the site down, because peers and relays can carry the bytes.
         </p>
         <p style="color:var(--fg-soft)">
           When you bookmark a <code>hyper://</code> URL, you bookmark <strong style="color:var(--fg)">a thing that exists</strong> — not a thing that resolves to a thing if a company keeps paying for it.
@@ -350,7 +437,7 @@
         <a class="eco-card big reveal d1" href="hyper://ac1977a75cc84b46af0af8bb559cd4ebbe10507eb0f51d863e289d09635f6d74/">
           <div class="eco-icon pb" aria-hidden="true">P</div>
           <div class="eco-name">P2P Builders <span class="eco-tag">Hub</span></div>
-          <div class="eco-desc">The ecosystem hub — a permissionless gathering spot for the people building the peer-to-peer web. No accounts, no moderators, no servers; reachable over <code>hyper://</code>.</div>
+          <div class="eco-desc">The ecosystem hub — a permissionless gathering spot for the people building the peer-to-peer web. No central account or DNS dependency; reachable over <code>hyper://</code>.</div>
           <div class="eco-link"><strong>hyper://</strong>ac1977a7…635f6d74 →</div>
         </a>
       </div>
@@ -475,6 +562,21 @@
       <div class="faq reveal" style="max-width: 800px">
 
         <details>
+          <summary>Does PearBrowser collect or sell my browsing data?</summary>
+          <p>No. PearBrowser ships without telemetry, remote analytics, an ad network, or tracking SDKs. It does not upload your browsing history to PearBrowser or sell it to advertisers. History and local page indexing are off by default; if you enable them, the data stays local unless you explicitly choose device sync.</p>
+        </details>
+
+        <details>
+          <summary>Is PearBrowser anonymous?</summary>
+          <p>No. PearBrowser is private by default, but it is not an anonymity network. Websites, relay operators, and P2P peers may receive the network information required to serve your request, including your IP address and requested content. Some HiveRelay operators can expose Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
+        </details>
+
+        <details>
+          <summary>What privacy protections are on by default?</summary>
+          <p>Content Shield, HTTPS-only navigation, common tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are enabled by default. Browsing history and local full-text search indexing are disabled until you opt in. Telemetry stays off and cannot be enabled.</p>
+        </details>
+
+        <details>
           <summary>Is Lighthouse search a global crawler?</summary>
           <p>No — that's the whole point. Lighthouse is a <strong>local-first personal index</strong>: pages you browse are tokenized, signed by a per-app <code>search</code> subkey, and stored in a local Hyperbee. Library search returns in under 5ms with zero network. If you opt in to “include trusted peers,” the query also fans out to your trust graph over Hyperswarm — never to a central crawler.</p>
         </details>
@@ -526,8 +628,8 @@
   <!-- FINAL CTA -->
   <section class="final" aria-labelledby="cta-h">
     <div class="wrap reveal">
-      <h2 id="cta-h">Take your web off the cloud.</h2>
-      <p>Run PearBrowser today: browse the <code>hyper://</code> web, launch real Pear apps from decentralized catalogues, search with provenance, and publish a site or app that stays online after you close your laptop.</p>
+      <h2 id="cta-h">Browse without becoming the product.</h2>
+      <p>Get a browser with no telemetry, no ad profile, and local-first data—plus direct access to the peer-to-peer web.</p>
       <div class="hero-actions">
         <a class="btn primary" href="download.html">Go to downloads →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
@@ -546,12 +648,13 @@
             <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/><circle cx="60" cy="104" r="8.5" fill="#7ee787"/></svg>
             <span><strong>Pear</strong>Browser</span>
           </a>
-          <p>The desktop browser for the peer-to-peer web. No servers behind it. Apache-2.0 · macOS, Windows, Linux.</p>
+          <p>The browser that doesn't track you. No telemetry, analytics, ads, tracking SDKs, or central account. Apache-2.0 · macOS, Windows, Linux.</p>
         </div>
         <div>
           <div class="footer-title">The app</div>
           <ul>
             <li><a href="#install">Install</a></li>
+            <li><a href="privacy.html">Privacy promise</a></li>
             <li><a href="#demo">Product demo</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>

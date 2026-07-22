@@ -1,9 +1,22 @@
 {
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
-  "description": "Static public and Hyperdrive-ready website for PearBrowser Desktop, its mobile sibling, and the HiveRelay-backed Pear app ecosystem.",
+  "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser with no telemetry or remote analytics.",
   "version": "0.7.1",
-  "updated": "2026-07-16",
+  "updated": "2026-07-22",
+  "privacy": {
+    "claim": "PearBrowser doesn't track you.",
+    "telemetry": false,
+    "remoteAnalytics": false,
+    "advertisingNetwork": false,
+    "trackingSdks": false,
+    "centralAccountRequired": false,
+    "historyDefault": "off-local-opt-in",
+    "searchIndexDefault": "off-local-opt-in",
+    "contentShieldDefault": "on",
+    "anonymity": "not-an-anonymity-network",
+    "tor": "optional HiveRelay transport exists; PearBrowser Desktop does not route through Tor automatically"
+  },
   "hyperdrive": {
     "driveKey": "03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f",
     "url": "hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/",
@@ -43,6 +56,10 @@
       "role": "feature-index"
     },
     {
+      "path": "privacy.html",
+      "role": "privacy-promise"
+    },
+    {
       "path": "apps.html",
       "role": "ecosystem-catalog"
     },
@@ -65,11 +82,32 @@
     {
       "path": "assets/styles.css",
       "role": "shared-styles"
+    },
+    {
+      "path": "assets/og.png",
+      "role": "social-preview"
+    },
+    {
+      "path": "robots.txt",
+      "role": "crawler-policy"
+    },
+    {
+      "path": "sitemap.xml",
+      "role": "search-sitemap"
+    },
+    {
+      "path": "llms.txt",
+      "role": "ai-discovery-summary"
+    },
+    {
+      "path": "llms-full.txt",
+      "role": "ai-factual-reference"
     }
   ],
   "checks": [
     "release metadata matches PearBrowser Desktop README",
     "local page, asset, and anchor links resolve",
-    "manifest release, installer URL, legacy fallback, and Hyperdrive keys match the public HTML"
+    "manifest release, installer URL, legacy fallback, and Hyperdrive keys match the public HTML",
+    "privacy copy, structured data, social metadata, sitemap, robots, and AI discovery files stay consistent"
   ]
 }

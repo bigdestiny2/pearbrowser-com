@@ -3,9 +3,10 @@
 This is a **static site** — plain HTML/CSS at the repo root, no build step. Files:
 
 ```
-index.html  features.html  apps.html  docs.html  download.html  ← pages
+index.html  privacy.html  features.html  apps.html  docs.html  download.html  ← pages
 downloads.json                                               ← verified native-download metadata
 site-manifest.json                                           ← Hyperdrive/publish metadata
+robots.txt  sitemap.xml  llms.txt  llms-full.txt              ← search and AI discovery
 assets/styles.css                                            ← shared design system
 vercel.json                                                  ← Vercel static config (pretty URLs + asset caching)
 ```

@@ -4,9 +4,11 @@ Static landing page for [PearBrowser Desktop](https://github.com/bigdestiny2/pea
 
 This repo stays intentionally small:
 
-- `index.html`, `features.html`, `apps.html`, `docs.html`, and `download.html` are the static site.
+- `index.html`, `privacy.html`, `features.html`, `apps.html`, `docs.html`, and `download.html` are the static site.
 - `downloads.json` is the machine-readable native-download manifest; its file sizes and SHA-256 values come from verified GitHub release assets.
 - `site-manifest.json` is the machine-readable Hyperdrive/publish surface for the public site.
+- `robots.txt` and `sitemap.xml` expose the canonical crawl surface to search engines and answer engines.
+- `llms.txt` and `llms-full.txt` provide a supplemental, plain-text factual reference; they complement the canonical HTML rather than replacing it.
 - `scripts/check-sync.js` is a no-deps guardrail that verifies the site still matches the current desktop release metadata, manifest, local page links, local assets, and anchor links.
 - `package.json` exists only to make preview and validation repeatable.
 
@@ -25,10 +27,12 @@ The public page should describe the desktop browser accurately while making it c
 ```sh
 npm run check
 npm run preview
+npm run build:sites
 ```
 
-- `npm run check` validates the release/download URL, legacy Pear CLI fallback, release version, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, local assets, and mobile/browser ecosystem anchors.
+- `npm run check` validates the release/download URL, legacy Pear CLI fallback, release version, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, metadata, JSON-LD, sitemap, crawler directives, AI facts files, privacy boundaries, and mobile/browser ecosystem anchors.
 - `npm run preview` serves the static site at `http://127.0.0.1:4173`.
+- `npm run build:sites` packages the same static source into the Cloudflare Workers-compatible entrypoint used for private Sites deployment.
 
 No bundler, no framework, no install step beyond having Node and Python available locally.
 

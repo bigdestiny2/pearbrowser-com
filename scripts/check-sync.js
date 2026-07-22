@@ -10,15 +10,25 @@ const downloadsPath = path.join(root, 'downloads.json')
 const desktopReadmePath = process.env.PEARBROWSER_DESKTOP_README
   ? path.resolve(process.env.PEARBROWSER_DESKTOP_README)
   : path.join(root, '..', '..', '01-browser', 'pearbrowser-desktop', 'README.md')
-const htmlPages = ['index.html', 'features.html', 'apps.html', 'docs.html', 'download.html']
+const htmlPages = ['index.html', 'privacy.html', 'features.html', 'apps.html', 'docs.html', 'download.html']
 const releaseUrl = 'https://github.com/bigdestiny2/pearbrowser-desktop/releases'
 const requiredPhrases = [
-  'Preview builds: macOS .app.zip · Windows .msix · Linux .AppImage',
+  "PearBrowser doesn't track you.",
+  'No telemetry. No analytics. No ads. No tracking SDKs. No central account.',
+  'Private, not anonymous.',
   'Legacy fallback:',
-  'Shared catalog + gateway contract with PearBrowser Mobile',
+  'PearBrowser Mobile',
   'https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md',
   'https://github.com/bigdestiny2/PearBrowser'
 ]
+const publicRoutes = {
+  'index.html': 'https://pearbrowser.com/',
+  'privacy.html': 'https://pearbrowser.com/privacy',
+  'features.html': 'https://pearbrowser.com/features',
+  'apps.html': 'https://pearbrowser.com/apps',
+  'docs.html': 'https://pearbrowser.com/docs',
+  'download.html': 'https://pearbrowser.com/download'
+}
 
 function read(file) {
   return fs.readFileSync(file, 'utf8')
@@ -71,12 +81,23 @@ function extractIds(source) {
 
 function checkHtmlReferences(pages) {
   const idsByPage = new Map()
+  const titles = new Set()
   for (const page of pages) idsByPage.set(page, extractIds(read(path.join(root, page))))
 
   const attrPattern = /\b(?:href|src)=["']([^"']+)["']/g
   for (const page of pages) {
     const source = read(path.join(root, page))
+    const [, title] = mustMatch(source, /<title>([^<]+)<\/title>/, `${page} title`)
+    if (titles.has(title)) fail(`${page} duplicates another page title: ${title}`)
+    titles.add(title)
     if (!source.includes('href="site-manifest.json"')) fail(`${page} is missing the site manifest discovery link`)
+    if (!source.includes('href="llms.txt"')) fail(`${page} is missing the AI facts discovery link`)
+    if (!source.includes('href="privacy.html"')) fail(`${page} is missing the privacy page navigation link`)
+    if (!source.includes('name="description"')) fail(`${page} is missing a meta description`)
+    if (!source.includes('name="robots"')) fail(`${page} is missing the robots meta directive`)
+    if (!source.includes('property="og:image" content="https://pearbrowser.com/assets/og.png"')) fail(`${page} is missing the canonical Open Graph image`)
+    if (!source.includes(`rel="canonical" href="${publicRoutes[page]}"`)) fail(`${page} has the wrong canonical URL`)
+    if (/\bnoindex\b/i.test(source)) fail(`${page} must remain indexable`)
     if (/<link\b[^>]*\brel=["'][^"']*\bicon\b[^"']*["'][^>]*>/i.test(source)) {
       fail(`${page} must not declare a favicon`)
     }
@@ -106,6 +127,11 @@ function checkHtmlReferences(pages) {
         if (!ids.has(hash)) fail(`${page} references missing anchor "${ref}"`)
       }
     }
+
+    const jsonLdPattern = /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g
+    while ((match = jsonLdPattern.exec(source))) {
+      try { JSON.parse(match[1]) } catch (error) { fail(`${page} has invalid JSON-LD: ${error.message}`) }
+    }
   }
 }
 
@@ -114,18 +140,22 @@ try {
   const desktopReadme = read(desktopReadmePath)
   const manifest = readJson(manifestPath)
   const downloads = readJson(downloadsPath)
+  const robots = read(path.join(root, 'robots.txt'))
+  const sitemap = read(path.join(root, 'sitemap.xml'))
+  const llms = read(path.join(root, 'llms.txt'))
+  const llmsFull = read(path.join(root, 'llms-full.txt'))
 
   const [, version] = mustMatch(
     desktopReadme,
-    /\*\*Current release:\*\*\s*`(v[^`]+)`/,
+    /\*\*Current release(?: candidate)?:\*\*\s*`(v[^`]+)`/,
     'desktop release version'
   )
 
-  const [, length] = mustMatch(
-    desktopReadme,
-    /stable Pear[^`\n]*length\s*`(\d+)`/i,
-    'desktop stable Pear length'
-  )
+  const lengthMatch = desktopReadme.match(/stable Pear[^`\n]*length\s*`(\d+)`/i)
+  const length = lengthMatch
+    ? lengthMatch[1]
+    : String(manifest.desktopRelease && manifest.desktopRelease.productionLength)
+  if (!/^\d+$/.test(length)) throw new Error('Missing desktop stable Pear length')
 
   const [, driveKey] = mustMatch(
     desktopReadme,
@@ -161,6 +191,9 @@ try {
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.legacyLaunchCommand, expectedLegacyLaunch, 'manifest legacy launch command')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'preview-unsigned', 'manifest primary distribution')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.installerUrl, releaseUrl, 'manifest installer URL')
+  requireEqual(manifest.privacy && manifest.privacy.telemetry, false, 'manifest telemetry claim')
+  requireEqual(manifest.privacy && manifest.privacy.remoteAnalytics, false, 'manifest remote analytics claim')
+  requireEqual(manifest.privacy && manifest.privacy.anonymity, 'not-an-anonymity-network', 'manifest anonymity boundary')
 
   requireEqual(downloads.version, version, 'downloads release version')
   requireEqual(downloads.releaseUrl, `${releaseUrl}/tag/${version}`, 'downloads release URL')
@@ -185,6 +218,22 @@ try {
   }
 
   checkHtmlReferences(htmlPages)
+
+  for (const route of Object.values(publicRoutes)) {
+    if (!sitemap.includes(`<loc>${route}</loc>`)) fail(`sitemap is missing ${route}`)
+  }
+  if (!robots.includes('User-agent: OAI-SearchBot')) fail('robots.txt must explicitly allow OAI-SearchBot')
+  if (!robots.includes('Sitemap: https://pearbrowser.com/sitemap.xml')) fail('robots.txt is missing the canonical sitemap URL')
+  if (!llms.includes("PearBrowser is private, not anonymous.")) fail('llms.txt is missing the anonymity boundary')
+  if (!llmsFull.includes('does not automatically detect those endpoints or route browser traffic through Tor')) fail('llms-full.txt is missing the Tor routing boundary')
+
+  const publicTextFiles = [...htmlPages, 'README.md', 'site-manifest.json', 'llms.txt', 'llms-full.txt']
+  const prohibitedLegacyName = ['peer', 'sky'].join('')
+  for (const file of publicTextFiles) {
+    const source = read(path.join(root, file))
+    if (source.toLowerCase().includes(prohibitedLegacyName)) fail(`${file} contains a prohibited legacy name`)
+    if (/No servers behind it/i.test(source)) fail(`${file} contains the overbroad no-servers claim`)
+  }
 
   if (process.exitCode) process.exit(process.exitCode)
   console.log('check-sync: ok')

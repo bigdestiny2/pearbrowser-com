@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PearBrowser Privacy — No Telemetry or Tracking</title>
+  <meta name="description" content="PearBrowser doesn't track you: no telemetry, remote analytics, ads, tracking SDKs, or central account. See what stays local and the limits of protection." />
+  <meta name="theme-color" content="#f6f8f7" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://pearbrowser.com/privacy" />
+  <meta property="og:title" content="PearBrowser Privacy — No Telemetry or Tracking" />
+  <meta property="og:description" content="PearBrowser doesn't track you. No telemetry, analytics, ads, tracking SDKs, or central account—with honest limits explained." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pearbrowser.com/privacy" />
+  <meta property="og:site_name" content="PearBrowser" />
+  <meta property="og:image" content="https://pearbrowser.com/assets/og.png" />
+  <meta property="og:image:alt" content="PearBrowser — the browser that doesn't track you" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PearBrowser Privacy — No Telemetry or Tracking" />
+  <meta name="twitter:description" content="PearBrowser doesn't track you. No telemetry, analytics, ads, tracking SDKs, or central account—with honest limits explained." />
+  <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
+  <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
+  <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
+  <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260722-privacy" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://pearbrowser.com/privacy#page",
+        "url": "https://pearbrowser.com/privacy",
+        "name": "PearBrowser Privacy — No Telemetry or Tracking",
+        "description": "The plain-language scope and limits of PearBrowser's privacy promise.",
+        "isPartOf": { "@id": "https://pearbrowser.com/#website" },
+        "about": { "@id": "https://pearbrowser.com/#app" },
+        "dateModified": "2026-07-22"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What data does PearBrowser collect?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PearBrowser does not collect usage telemetry, remote analytics, advertising identifiers, or a central browsing profile. History and local search indexing are off by default and stay local when enabled unless the user explicitly chooses device sync."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does PearBrowser send telemetry?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. PearBrowser has no telemetry collector, and its telemetry setting is hard-disabled."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is PearBrowser anonymous?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. PearBrowser is privacy-first but is not an anonymity network. Websites, relay operators, and P2P peers may receive network information required to serve content."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does PearBrowser use Tor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does PearBrowser block ads and trackers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="top" aria-label="Primary">
+    <div class="inner">
+      <a class="brand" href="index.html" aria-label="PearBrowser home">
+        <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
+          <defs><radialGradient id="gN" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7ee787"/><stop offset="100%" stop-color="#238636"/></radialGradient></defs>
+          <circle cx="60" cy="30" r="5" fill="url(#gN)"/><circle cx="42" cy="52" r="6" fill="url(#gN)"/><circle cx="78" cy="52" r="6" fill="url(#gN)"/><circle cx="60" cy="72" r="7" fill="url(#gN)"/><circle cx="36" cy="90" r="7.5" fill="url(#gN)"/><circle cx="84" cy="90" r="7.5" fill="url(#gN)"/><circle cx="60" cy="104" r="8.5" fill="url(#gN)"/>
+        </svg>
+        <span><strong>Pear</strong>Browser</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="privacy.html" class="active">Privacy</a>
+        <a href="features.html">Features</a>
+        <a href="apps.html">Apps</a>
+        <a href="docs.html">Docs</a>
+        <a href="download.html">Download</a>
+        <a href="https://github.com/bigdestiny2/pearbrowser-desktop" class="cta">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="page-hero privacy-page-hero">
+      <div class="wrap">
+        <span class="eyebrow reveal">Privacy, in plain English</span>
+        <h1 class="reveal">PearBrowser <span class="grad">doesn't track you</span>.</h1>
+        <p class="lede reveal">No telemetry. No remote analytics. No ads. No tracking SDKs. No central account. PearBrowser never uploads your browsing history to an analytics, advertising, or profiling service.</p>
+        <div class="hero-actions reveal" style="justify-content:flex-start">
+          <a class="btn primary" href="download.html">Download PearBrowser →</a>
+          <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Inspect the source</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="block" aria-labelledby="summary-h">
+      <div class="wrap">
+        <span class="eyebrow reveal">The short answer</span>
+        <h2 class="section reveal" id="summary-h">Your browser data is local-first and under your control.</h2>
+        <div class="privacy-facts">
+          <article class="privacy-fact reveal">
+            <strong>Never collected by PearBrowser</strong>
+            <p>Usage telemetry, remote analytics, advertising identifiers, ad profiles, and centrally stored browsing history.</p>
+          </article>
+          <article class="privacy-fact reveal d1">
+            <strong>Off by default</strong>
+            <p>Browsing history and local full-text page indexing. If enabled, they are stored on your device.</p>
+          </article>
+          <article class="privacy-fact reveal d2">
+            <strong>On by default</strong>
+            <p>Content Shield, HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, and fingerprint farbling.</p>
+          </article>
+          <article class="privacy-fact reveal d3">
+            <strong>Shared only by your choice</strong>
+            <p>Selected browser data can sync between your devices only after you explicitly enable encrypted device sync.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="proof-h">
+      <div class="wrap">
+        <span class="eyebrow reveal">Verifiable by design</span>
+        <h2 class="section reveal" id="proof-h">A promise backed by shipped defaults.</h2>
+        <p class="lede reveal">The privacy claim is not a vague policy statement. It is encoded in the browser's defaults and covered by automated tests.</p>
+        <div class="tiles">
+          <article class="tile reveal">
+            <h3>Telemetry cannot be enabled</h3>
+            <p>The backend forces telemetry to <code>false</code> even if a caller tries to turn it on. PearBrowser has no remote analytics collector.</p>
+            <a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/backend/index.js">View the backend source →</a>
+          </article>
+          <article class="tile reveal d1">
+            <h3>History requires an opt-in</h3>
+            <p>History and local search indexing start disabled. Turning history off also clears previously stored visits.</p>
+            <a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/backend/privacy-policy.cjs">View the privacy defaults →</a>
+          </article>
+          <article class="tile reveal d2">
+            <h3>Tracker blocking starts on</h3>
+            <p>Content Shield blocks common advertising and tracking requests before they leave the browser and stores counters, not visited URLs.</p>
+            <a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/backend/content-shield.cjs">View Content Shield →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block privacy-limits" aria-labelledby="limits-h">
+      <div class="wrap">
+        <span class="eyebrow reveal">The honest boundary</span>
+        <h2 class="section reveal" id="limits-h">Private does not mean anonymous.</h2>
+        <p class="lede reveal">PearBrowser minimizes data collection by the browser itself and blocks common web tracking. It does not hide every network interaction.</p>
+        <div class="privacy-boundary-list reveal">
+          <div>
+            <strong>Regular websites</strong>
+            <p>A website may receive your IP address and the request data required to load its content. PearBrowser's protections reduce tracking; they do not make a website blind to your connection.</p>
+          </div>
+          <div>
+            <strong>P2P peers</strong>
+            <p>Direct peer-to-peer connections can expose network metadata to the peers exchanging data with you.</p>
+          </div>
+          <div>
+            <strong>HiveRelay operators</strong>
+            <p>A relay can receive the requests routed through it. Signed records are verified client-side, so a relay is a transport and replication point rather than a trust authority.</p>
+          </div>
+          <div>
+            <strong>Tor transport</strong>
+            <p>Some HiveRelay operators support optional Tor endpoints for relay-layer IP obscuring. PearBrowser Desktop does not yet detect and route browser traffic through those endpoints automatically, so do not treat current browsing as Tor-protected.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="privacy-faq-h">
+      <div class="wrap">
+        <span class="eyebrow reveal">Privacy FAQ</span>
+        <h2 class="section reveal" id="privacy-faq-h">Direct answers.</h2>
+        <div class="faq reveal" style="max-width: 820px">
+          <details open>
+            <summary>What data does PearBrowser collect?</summary>
+            <p>PearBrowser does not collect usage telemetry, remote analytics, advertising identifiers, or a central browsing profile. History and local search indexing are off by default and stay local when enabled unless you explicitly choose device sync.</p>
+          </details>
+          <details>
+            <summary>Does PearBrowser send telemetry?</summary>
+            <p>No. PearBrowser has no telemetry collector, and its telemetry setting is hard-disabled.</p>
+          </details>
+          <details>
+            <summary>Is PearBrowser anonymous?</summary>
+            <p>No. PearBrowser is privacy-first but is not an anonymity network. Websites, relay operators, and P2P peers may receive network information required to serve content.</p>
+          </details>
+          <details>
+            <summary>Does PearBrowser use Tor?</summary>
+            <p>Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
+          </details>
+          <details>
+            <summary>Does PearBrowser block ads and trackers?</summary>
+            <p>PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" aria-labelledby="cta-h">
+      <div class="wrap reveal">
+        <h2 id="cta-h">Browse without becoming the product.</h2>
+        <p>PearBrowser is free, open source, and available as an unsigned desktop preview for macOS, Windows, and Linux.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="download.html">Go to downloads →</a>
+          <a class="btn subtle" href="features.html">Explore the browser</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg class="brand-logo" viewBox="0 0 120 120" width="22" height="22" aria-hidden="true"><circle cx="60" cy="30" r="5" fill="#7ee787"/><circle cx="42" cy="52" r="6" fill="#7ee787"/><circle cx="78" cy="52" r="6" fill="#7ee787"/><circle cx="60" cy="72" r="7" fill="#7ee787"/><circle cx="36" cy="90" r="7.5" fill="#7ee787"/><circle cx="84" cy="90" r="7.5" fill="#7ee787"/><circle cx="60" cy="104" r="8.5" fill="#7ee787"/></svg>
+            <span><strong>Pear</strong>Browser</span>
+          </a>
+          <p>The browser that doesn't track you. No telemetry, analytics, ads, tracking SDKs, or central account. Apache-2.0 · macOS, Windows, Linux.</p>
+        </div>
+        <div>
+          <div class="footer-title">Explore</div>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="download.html">Download</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Ecosystem</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay</a> <span class="tag">— backbone</span></li>
+            <li><a href="https://github.com/bigdestiny2/PearBrowser">PearBrowser Mobile</a> <span class="tag">— sibling</span></li>
+            <li><a href="https://pears.com">Pear Runtime</a> <span class="tag">— platform</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Source</div>
+          <ul>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Desktop repo</a></li>
+            <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>Privacy claim last reviewed against PearBrowser Desktop v0.7.1 on 22 July 2026.</span>
+        <span class="badges"><span class="pill live"><span class="ld"></span>No telemetry</span><span class="pill live"><span class="ld"></span>Local-first data</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

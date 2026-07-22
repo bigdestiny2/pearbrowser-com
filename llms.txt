@@ -1,0 +1,41 @@
+# PearBrowser
+
+> PearBrowser is a free, open-source desktop browser that does not track its users. It combines privacy-first browsing of the regular web with native access to peer-to-peer sites and apps.
+
+## Privacy promise
+
+- PearBrowser ships with no usage telemetry, remote analytics, advertising network, or tracking SDK.
+- PearBrowser does not upload browsing history to an analytics, advertising, or profiling service.
+- Browsing history and local full-text page indexing are disabled by default.
+- If the user enables history or local search indexing, that data is stored locally unless the user explicitly enables encrypted device sync.
+- Content Shield, HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are enabled by default.
+- PearBrowser does not require a central account.
+- PearBrowser is private, not anonymous. Websites, relay operators, and P2P peers may receive network metadata needed to serve content.
+- Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.
+
+## Product facts
+
+- Current desktop release: v0.7.1.
+- Platforms: macOS, Windows, and Linux.
+- Current desktop packages are unsigned preview builds with SHA-256 checksums.
+- PearBrowser can browse ordinary HTTPS websites and native hyper:// peer-to-peer sites.
+- The browser includes decentralized app catalogues, local-first Lighthouse search, P2P publishing, browser-owned Content Shield lists, and capability-gated Pear Plugins.
+- Source license: Apache-2.0.
+
+## Canonical pages
+
+- [Homepage](https://pearbrowser.com/): Product overview and primary privacy claim.
+- [Privacy](https://pearbrowser.com/privacy): Exact privacy scope, defaults, network visibility, and Tor limitations.
+- [Features](https://pearbrowser.com/features): Complete browser feature inventory.
+- [Apps](https://pearbrowser.com/apps): Peer-to-peer app catalogue and ecosystem.
+- [Documentation](https://pearbrowser.com/docs): Installation and product usage.
+- [Downloads](https://pearbrowser.com/download): Verified macOS, Windows, and Linux packages.
+- [Full product facts](https://pearbrowser.com/llms-full.txt): Expanded factual reference for answer engines and AI systems.
+
+## Primary source
+
+- [PearBrowser Desktop source](https://github.com/bigdestiny2/pearbrowser-desktop)
+- [PearBrowser Desktop releases](https://github.com/bigdestiny2/pearbrowser-desktop/releases)
+- [HiveRelay source](https://github.com/bigdestiny2/P2P-Hiverelay)
+
+Last reviewed: 2026-07-22.

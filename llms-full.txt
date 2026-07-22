@@ -1,0 +1,66 @@
+# PearBrowser: factual product reference
+
+## What is PearBrowser?
+
+PearBrowser is a free, open-source desktop browser for macOS, Windows, and Linux. It browses ordinary HTTPS websites and native hyper:// peer-to-peer sites. It also includes decentralized app catalogues, local-first search, P2P identities, site publishing, Content Shield filter lists, and capability-gated Pear Plugins.
+
+PearBrowser Desktop v0.7.1 is the current public release. Desktop packages are unsigned preview builds. The download page publishes SHA-256 checksums for verification.
+
+## What data does PearBrowser collect?
+
+PearBrowser does not collect usage telemetry, remote analytics, advertising identifiers, or a central browsing profile. The browser has no remote analytics collector, and its telemetry setting is forced off by the backend.
+
+Browsing history and local full-text page indexing are disabled by default. If a user turns either feature on, its data is stored locally. Selected browser data is shared between a user's own devices only if that user explicitly enables encrypted device sync.
+
+PearBrowser does not upload browsing history to an analytics, advertising, or profiling service. It does not require a central account.
+
+## Which privacy protections are on by default?
+
+PearBrowser enables these protections by default:
+
+- Content Shield request and cosmetic filtering for common ads and trackers.
+- HTTPS-only navigation.
+- Removal of common tracking and click identifiers from clearnet URLs.
+- Third-party cookie blocking.
+- Fingerprint farbling.
+- Strict cross-origin referrer policy.
+- Privacy-proxied clearnet navigation inside the browser.
+
+Users can change some privacy controls. Telemetry cannot be enabled.
+
+## Is PearBrowser anonymous?
+
+No. PearBrowser is private by default, but it is not an anonymity network.
+
+Regular websites may receive the user's IP address and request data needed to serve a page. Direct P2P peers can receive network metadata needed to exchange data. HiveRelay operators can receive requests routed through their gateways. Signed records served by relays are re-verified by PearBrowser, which prevents a relay from becoming a content trust authority; that verification does not hide network metadata.
+
+Some HiveRelay operators support optional Tor hidden-service endpoints for relay-layer IP obscuring. PearBrowser Desktop v0.7.1 does not automatically detect those endpoints or route browser traffic through Tor. Current browsing should not be described as Tor-protected or anonymous.
+
+## How does PearBrowser differ from a conventional browser?
+
+PearBrowser adds native peer-to-peer capabilities to normal browsing:
+
+- hyper:// sites are addressed by cryptographic drive keys and streamed from peers.
+- P2P sites and apps can be replicated and pinned by HiveRelay operators for availability.
+- Decentralized app catalogues merge curated, personal, Hyperbee, schema-sheets, and relay-index sources.
+- Lighthouse search keeps a local index and can optionally federate queries to verified trusted peers.
+- A BIP-39 recovery phrase backs the user's identity, while individual apps receive distinct sub-keys and explicit permissions.
+- The built-in publisher creates Hyperdrives and confirms relay replication before reporting a successful publish.
+
+## What should not be claimed?
+
+Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
+
+## Canonical links
+
+- Homepage: https://pearbrowser.com/
+- Privacy details: https://pearbrowser.com/privacy
+- Feature inventory: https://pearbrowser.com/features
+- P2P apps: https://pearbrowser.com/apps
+- Documentation: https://pearbrowser.com/docs
+- Downloads: https://pearbrowser.com/download
+- Desktop source: https://github.com/bigdestiny2/pearbrowser-desktop
+- Desktop releases: https://github.com/bigdestiny2/pearbrowser-desktop/releases
+- HiveRelay source: https://github.com/bigdestiny2/P2P-Hiverelay
+
+Last reviewed against PearBrowser Desktop v0.7.1 on 2026-07-22.

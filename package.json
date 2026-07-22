@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "Static landing page and maintenance checks for pearbrowser.com",
   "scripts": {
+    "build:sites": "node scripts/build-sites.js",
     "check": "node scripts/check-sync.js",
     "check:sync": "node scripts/check-sync.js",
     "preview": "python3 -m http.server 4173"
