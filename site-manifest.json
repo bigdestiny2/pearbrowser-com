@@ -46,10 +46,10 @@
         "Windows .msix",
         "Linux .AppImage"
       ],
-      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The pear:// P2P launch path works today."
+      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The legacy pear:// record is migration-only and is not a v3 launch path."
     },
-    "legacyLaunchCommand": "pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
-    "source": "../../01-browser/pearbrowser-desktop/README.md"
+    "legacyMigrationKey": "pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
+    "source": "https://github.com/bigdestiny2/pearbrowser-desktop/releases"
   },
   "ecosystemAnchors": {
     "desktop": "../../01-browser/pearbrowser-desktop",
@@ -116,9 +116,9 @@
     }
   ],
   "checks": [
-    "release metadata matches PearBrowser Desktop README",
+    "release metadata matches the approved public native-release record",
     "local page, asset, and anchor links resolve",
-    "manifest release, installer URL, legacy fallback, and Hyperdrive keys match the public HTML",
+    "manifest release, installer URL, legacy migration record, and Hyperdrive keys match the public HTML",
     "privacy copy, structured data, social metadata, sitemap, robots, and AI discovery files stay consistent"
   ]
 }

@@ -101,10 +101,8 @@
             <pre><code># Download &amp; verify (example)
 shasum -a 256 PearBrowser-0.7.1-macos-arm64.app.zip
 
-# Or launch over P2P — works today, no signing caveats
-npm i -g pear
-pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
-            <p>The installer path will carry the desktop shell while the stable Pear release keeps P2P updates and the content-addressed launch key intact. The Pear CLI fallback still works today, but Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so it is a compatibility bridge rather than the finished distribution story. You can also open the P2P edition of this very website inside the browser at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.</p>
+Legacy migration record: pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
+            <p>The native package carries the desktop shell. The legacy Pear key identifies an older installation only: it is not a v3 launch command and is never supplied to <code>PearRuntime.run()</code>. You can open the P2P edition of this website at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.</p>
           </div>
 
           <div class="doc-section reveal" id="schemes">
@@ -112,7 +110,7 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
             <p>The URL bar understands more than <code>https://</code>:</p>
             <ul>
               <li><code>hyper://&lt;key&gt;/</code> — a Hyperdrive site or app, addressed by its 64-hex public key and served by whoever is seeding it.</li>
-              <li><code>pear://&lt;key&gt;</code> — a full Pear runtime app (it launches in its own window).</li>
+              <li><code>pear://&lt;key&gt;</code> — a legacy migration identifier; it is not a current app launcher.</li>
               <li><code>pearname://&lt;name&gt;</code> — a memorable name resolved through the naming layer (below). Typing a bare word like <code>keet</code> triggers the same resolver.</li>
             </ul>
             <p>Whenever a name resolves, a small <strong>provenance chip</strong> appears next to the address showing <em>how</em> it resolved (your saved name, the registry, a contact, or the curated floor) — the address never lies about where it came from.</p>
@@ -173,7 +171,7 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
           <div class="doc-section reveal" id="help">
             <h2>Troubleshooting</h2>
             <h3>“Could not reach backend”</h3>
-            <p>Until native installer artifacts are attached, use the legacy fallback above. If that fallback hangs, the most common cause is a stale partial download in Pear's cache — clear it and relaunch the <code>pear run</code> command.</p>
+            <p>Use the native package listed on the download page. If an older legacy installation needs recovery, keep its data intact and use the migration guidance rather than retrying a removed launch command.</p>
             <h3>Experimental features are off</h3>
             <p>Naming, device sync, and some Nostr surfaces are gated behind toggles in Settings → Experimental. They're off by default and clearly scoped — turn them on there.</p>
             <h3>Still stuck?</h3>
