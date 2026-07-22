@@ -104,8 +104,8 @@
     var card = document.getElementById('dl-p2p')
     if (card) {
       card.innerHTML =
-        '<div class="dl-build-row"><span class="dl-build-arch">Legacy migration record</span></div>' +
-        '<div class="dl-cmd" style="margin:0;"><code>' + esc(data.p2p.pearKey) + '</code></div>' +
+        '<div class="dl-build-row"><span class="dl-build-arch">Legacy migration identifier</span></div>' +
+        '<div class="dl-cmd" style="margin:0;"><code>' + esc(data.p2p.legacyMigrationId) + '</code></div>' +
         '<p class="dl-note">This identifies an older installation; it is not a v3 launch or install command.</p>' +
         '<div class="dl-build-row" style="border-top:1px solid var(--line);padding-top:10px;">' +
         '<a class="btn subtle" href="' + esc(data.p2p.hyper) + '">Open the P2P edition of this site ↗</a></div>'
