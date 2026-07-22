@@ -35,7 +35,7 @@
       "signing": "unsigned",
       "status": "preview",
       "statusLabel": "Unsigned sideload preview",
-      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install. Download it only if you understand sideloading (Developer Mode + Add-AppxPackage), or use the P2P launch path below.",
+      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install. Download it only if you understand sideloading (Developer Mode + Add-AppxPackage). The former Pear link is not an alternative launch path.",
       "builds": [
         {
           "arch": "x64",
