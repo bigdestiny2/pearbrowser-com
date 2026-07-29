@@ -7,9 +7,6 @@ const root = path.resolve(__dirname, '..')
 const indexPath = path.join(root, 'index.html')
 const manifestPath = path.join(root, 'site-manifest.json')
 const downloadsPath = path.join(root, 'downloads.json')
-const desktopReadmePath = process.env.PEARBROWSER_DESKTOP_README
-  ? path.resolve(process.env.PEARBROWSER_DESKTOP_README)
-  : path.join(root, '..', '..', '01-browser', 'pearbrowser-desktop', 'README.md')
 const htmlPages = ['index.html', 'privacy.html', 'features.html', 'apps.html', 'docs.html', 'download.html']
 const releaseUrl = 'https://github.com/bigdestiny2/pearbrowser-desktop/releases'
 const requiredPhrases = [
@@ -18,7 +15,8 @@ const requiredPhrases = [
   'Private, not anonymous.',
   'Open the browser. Search without a profile.',
   'DuckDuckGo receives the query and your network address',
-  'Legacy fallback:',
+  'Package-proof builds: macOS .app.zip · Windows .msix · Linux .AppImage',
+  'Migration boundary:',
   'PearBrowser Mobile',
   'https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md',
   'https://github.com/bigdestiny2/PearBrowser'
@@ -139,7 +137,6 @@ function checkHtmlReferences(pages) {
 
 try {
   const site = read(indexPath)
-  const desktopReadme = read(desktopReadmePath)
   const manifest = readJson(manifestPath)
   const downloads = readJson(downloadsPath)
   const robots = read(path.join(root, 'robots.txt'))
@@ -147,23 +144,12 @@ try {
   const llms = read(path.join(root, 'llms.txt'))
   const llmsFull = read(path.join(root, 'llms-full.txt'))
 
-  const [, version] = mustMatch(
-    desktopReadme,
-    /\*\*Current release(?: candidate)?:\*\*\s*`(v[^`]+)`/,
-    'desktop release version'
-  )
-
-  const lengthMatch = desktopReadme.match(/stable Pear[^`\n]*length\s*`(\d+)`/i)
-  const length = lengthMatch
-    ? lengthMatch[1]
-    : String(manifest.desktopRelease && manifest.desktopRelease.productionLength)
-  if (!/^\d+$/.test(length)) throw new Error('Missing desktop stable Pear length')
-
-  const [, driveKey] = mustMatch(
-    desktopReadme,
-    /pear run (pear:\/\/[a-z0-9]+)/,
-    'desktop launch key'
-  )
+  const version = String(manifest.desktopRelease && manifest.desktopRelease.version || '')
+  const catalogueVersion = String(manifest.desktopRelease && manifest.desktopRelease.catalogueVersion || '')
+  const legacyMigrationId = String(manifest.desktopRelease && manifest.desktopRelease.legacyMigrationId || '')
+  if (!/^v\d+\.\d+\.\d+$/.test(version)) throw new Error('Missing desktop release version in site manifest')
+  if (!/^\d+$/.test(catalogueVersion)) throw new Error('Missing signed catalogue version in site manifest')
+  if (!/^[a-z0-9]+$/.test(legacyMigrationId)) throw new Error('Missing legacy migration identifier in site manifest')
 
   const [, siteDriveKey] = mustMatch(
     site,
@@ -171,14 +157,14 @@ try {
     'site Hyperdrive key'
   )
 
-  const expectedHero = `Desktop ${version} · production length ${length} · preview builds live · macOS · Windows · Linux`
-  const expectedSpec = `${version} · production length ${length} · pinned on the HiveRelay backbone`
-  const expectedLegacyLaunch = `pear run ${driveKey}`
+  const expectedHero = `Desktop ${version} · signed catalogue v${catalogueVersion} live · package-proof builds · macOS · Windows · Linux`
+  const expectedSpec = `${version} · signed catalogue v${catalogueVersion} · package-proof release`
+  const expectedLegacyMigration = `Legacy migration identifier: ${legacyMigrationId}`
 
   if (!site.includes(expectedHero)) fail(`hero release line is out of sync; expected "${expectedHero}"`)
   if (!site.includes(expectedSpec)) fail(`spec table release line is out of sync; expected "${expectedSpec}"`)
   if (!site.includes(releaseUrl)) fail(`installer URL is missing from the public HTML; expected "${releaseUrl}"`)
-  if (!site.includes(expectedLegacyLaunch)) fail(`legacy launch command is out of sync; expected "${expectedLegacyLaunch}"`)
+  if (!site.includes(expectedLegacyMigration)) fail(`legacy migration record is out of sync; expected "${expectedLegacyMigration}"`)
 
   for (const phrase of requiredPhrases) {
     if (!site.includes(phrase)) fail(`site is missing expected ecosystem anchor: ${phrase}`)
@@ -188,10 +174,7 @@ try {
   requireEqual(manifest.version, version.replace(/^v/, ''), 'manifest version')
   requireEqual(manifest.hyperdrive && manifest.hyperdrive.driveKey, siteDriveKey, 'manifest Hyperdrive key')
   requireEqual(manifest.hyperdrive && manifest.hyperdrive.url, `hyper://${siteDriveKey}/`, 'manifest Hyperdrive URL')
-  requireEqual(manifest.desktopRelease && manifest.desktopRelease.version, version, 'manifest desktop release version')
-  requireEqual(manifest.desktopRelease && manifest.desktopRelease.productionLength, Number(length), 'manifest production length')
-  requireEqual(manifest.desktopRelease && manifest.desktopRelease.legacyLaunchCommand, expectedLegacyLaunch, 'manifest legacy launch command')
-  requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'preview-unsigned', 'manifest primary distribution')
+  requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'package-proof', 'manifest primary distribution')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.installerUrl, releaseUrl, 'manifest installer URL')
   requireEqual(manifest.privacy && manifest.privacy.telemetry, false, 'manifest telemetry claim')
   requireEqual(manifest.privacy && manifest.privacy.remoteAnalytics, false, 'manifest remote analytics claim')
@@ -202,6 +185,7 @@ try {
   requireEqual(manifest.webSearch && manifest.webSearch.anonymity, false, 'manifest web search anonymity boundary')
 
   requireEqual(downloads.version, version, 'downloads release version')
+  requireEqual(downloads.p2p && downloads.p2p.legacyMigrationId, legacyMigrationId, 'downloads legacy migration identifier')
   requireEqual(downloads.releaseUrl, `${releaseUrl}/tag/${version}`, 'downloads release URL')
   requireEqual(downloads.assetBase, `${releaseUrl}/download/${version}/`, 'downloads asset base')
   const builds = (downloads.platforms || []).flatMap((platform) => platform.builds || [])

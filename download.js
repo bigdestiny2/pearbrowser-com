@@ -92,7 +92,7 @@
     var p = data.platforms.find(function (x) { return x.os === detected.os })
     if (!p) { text.textContent = 'Pick your platform below.'; return }
     if (p.status === 'blocked') {
-      text.innerHTML = 'Detected <strong>' + esc(p.label) + '</strong> — desktop build is an unsigned preview; see the P2P launch path below.'
+      text.innerHTML = 'Detected <strong>' + esc(p.label) + '</strong> — this is a package-proof build, not a public-trust installer; verify the checksum before opening it.'
       return
     }
     var b = p.builds.find(function (x) { return x.arch === detected.arch }) || p.builds[0]
@@ -103,12 +103,10 @@
   function renderP2P (data) {
     var card = document.getElementById('dl-p2p')
     if (card) {
-      card.setAttribute('data-copy', data.p2p.pearRunCommand)
       card.innerHTML =
-        '<div class="dl-build-row"><span class="dl-build-arch">Launch over Pear</span>' +
-        '<button class="dl-copy" type="button" aria-label="Copy launch command">copy command</button></div>' +
-        '<div class="dl-cmd" style="margin:0;"><code>' + esc(data.p2p.pearRunCommand) + '</code></div>' +
-        '<p class="dl-note">First install the runtime: <code>npm i -g pear</code></p>' +
+        '<div class="dl-build-row"><span class="dl-build-arch">Legacy migration identifier</span></div>' +
+        '<div class="dl-cmd" style="margin:0;"><code>' + esc(data.p2p.legacyMigrationId) + '</code></div>' +
+        '<p class="dl-note">This identifies an older installation; it is not a v3 launch or install command.</p>' +
         '<div class="dl-build-row" style="border-top:1px solid var(--line);padding-top:10px;">' +
         '<a class="btn subtle" href="' + esc(data.p2p.hyper) + '">Open the P2P edition of this site ↗</a></div>'
     }

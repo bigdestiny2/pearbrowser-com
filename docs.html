@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PearBrowser Documentation — Private P2P Browsing</title>
-  <meta name="description" content="Install PearBrowser and learn its privacy defaults, hyper:// browsing, local-first search, identity, trusted contacts, decentralized app catalogues, and publishing." />
+  <meta name="description" content="Install PearBrowser and learn its privacy defaults, verified native apps, hyper:// browsing, local-first search, identity, trusted contacts, decentralized catalogues, and publishing." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/docs" />
@@ -97,14 +97,12 @@
 
           <div class="doc-section reveal" id="install">
             <h2>Install &amp; launch</h2>
-            <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.7.1">v0.7.1 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. The builds are unsigned previews — verify them with SHA-256; signed/notarized installers are in progress.</p>
+            <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0">v0.8.0 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. These are package-proof artifacts, not public-trust installers: verify them with SHA-256; Developer ID/notarization and Windows signing remain in progress.</p>
             <pre><code># Download &amp; verify (example)
-shasum -a 256 PearBrowser-0.7.1-macos-arm64.app.zip
+shasum -a 256 PearBrowser-0.8.0-macos-arm64.app.zip
 
-# Or launch over P2P — works today, no signing caveats
-npm i -g pear
-pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
-            <p>The installer path will carry the desktop shell while the stable Pear release keeps P2P updates and the content-addressed launch key intact. The Pear CLI fallback still works today, but Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so it is a compatibility bridge rather than the finished distribution story. You can also open the P2P edition of this very website inside the browser at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.</p>
+Legacy migration identifier: tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
+            <p>The native package carries the desktop shell. The legacy Pear key identifies an older installation only: it is not a v3 launch command and is never supplied to <code>PearRuntime.run()</code>. You can open the P2P edition of this website at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.</p>
           </div>
 
           <div class="doc-section reveal" id="schemes">
@@ -112,7 +110,7 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
             <p>The URL bar understands more than <code>https://</code>:</p>
             <ul>
               <li><code>hyper://&lt;key&gt;/</code> — a Hyperdrive site or app, addressed by its 64-hex public key and served by whoever is seeding it.</li>
-              <li><code>pear://&lt;key&gt;</code> — a full Pear runtime app (it launches in its own window).</li>
+              <li>Older installations are recognized by a local migration identifier; it is not a browser address or app launcher.</li>
               <li><code>pearname://&lt;name&gt;</code> — a memorable name resolved through the naming layer (below). Typing a bare word like <code>keet</code> triggers the same resolver.</li>
             </ul>
             <p>Whenever a name resolves, a small <strong>provenance chip</strong> appears next to the address showing <em>how</em> it resolved (your saved name, the registry, a contact, or the curated floor) — the address never lies about where it came from.</p>
@@ -150,17 +148,17 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
 
           <div class="doc-section reveal" id="contacts">
             <h2>Trusted contacts</h2>
-            <p>The trust graph behind search, names, and your feed is your contacts. Add one from a signed invite URL — in the Library's “Trusted peers” panel, copy your own <code>pear://contact…</code> invite and paste a friend's. The invite carries their pubkey + name + signature + binding key, and is <strong>rejected if the signature doesn't verify</strong>. One verified contact then powers all the federation.</p>
+            <p>The trust graph behind search, names, and your feed is your contacts. In the Library's “Trusted peers” panel, copy a signed contact invitation and paste a friend's. The invitation carries their public key, name, signature, and binding key, and is <strong>rejected if the signature doesn't verify</strong>. One verified contact then powers all the federation.</p>
           </div>
 
           <div class="doc-section reveal" id="publish">
             <h2>Publish a site or app</h2>
-            <p>PearBrowser includes a site builder and a decentralized app catalogue. Create a site, publish it, and it becomes a Hyperdrive addressed by key. Build a Pear or <code>hyper://</code> app, seed it to HiveRelay, pin it for availability, then publish the app entry to a catalogue so other users can discover and launch it.</p>
+            <p>PearBrowser includes a site builder and a decentralized app catalogue. Create a site, publish it, and it becomes a Hyperdrive addressed by key. Publish browser content as <code>hyper://</code>; native apps need a signed release, platform artifact metadata, and an explicit local install flow. HiveRelay can replicate either content or release artifacts, but it does not attest binaries.</p>
             <ul>
               <li>Build &amp; publish from the <strong>Sites</strong> tab.</li>
               <li>Your site is reachable at <code>hyper://&lt;your-key&gt;/</code> the moment a peer (or HiveRelay) is seeding it.</li>
-              <li>Package apps as either a browsable Hyperdrive or a Pear app link, then request a HiveRelay seed and pin so the app stays online after your machine goes offline.</li>
-              <li>Publish the catalogue entry with the app key/link, launch type, source, version, and provenance so it appears in the Apps tab as part of the decentralized app store.</li>
+              <li>Package browser content as a browsable Hyperdrive. Package native apps as signed local artifacts, then request HiveRelay replication so the declared bytes remain available after your machine goes offline.</li>
+              <li>Publish the catalogue entry with its kind, source, version, provenance, and platform support. People can open sites or review and install compatible signed native apps; a catalogue value never executes remotely.</li>
             </ul>
           </div>
 
@@ -173,7 +171,7 @@ pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre
           <div class="doc-section reveal" id="help">
             <h2>Troubleshooting</h2>
             <h3>“Could not reach backend”</h3>
-            <p>Until native installer artifacts are attached, use the legacy fallback above. If that fallback hangs, the most common cause is a stale partial download in Pear's cache — clear it and relaunch the <code>pear run</code> command.</p>
+            <p>Use the native package listed on the download page. If an older legacy installation needs recovery, keep its data intact and use the migration guidance rather than retrying a removed launch command.</p>
             <h3>Experimental features are off</h3>
             <p>Naming, device sync, and some Nostr surfaces are gated behind toggles in Settings → Experimental. They're off by default and clearly scoped — turn them on there.</p>
             <h3>Still stuck?</h3>

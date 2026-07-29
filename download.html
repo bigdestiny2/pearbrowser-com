@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Download PearBrowser — Private Browser for Desktop</title>
-  <meta name="description" content="Download PearBrowser, the private desktop browser with no telemetry or remote analytics, for macOS, Windows, and Linux. Verify every build with SHA-256." />
+  <meta name="description" content="Download PearBrowser, the private desktop browser with no telemetry or remote analytics, for macOS, Windows, and Linux. Verify every build with SHA-256; the former Pear key is a migration record, not an install path." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/download" />
   <meta property="og:title" content="Download PearBrowser — Private Browser for Desktop" />
-  <meta property="og:description" content="No telemetry or remote analytics. Download PearBrowser for macOS, Windows, or Linux and verify every build with SHA-256." />
+  <meta property="og:description" content="No telemetry or remote analytics. Download PearBrowser for macOS, Windows, or Linux, verify every build with SHA-256, and treat the former Pear key as migration-only." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pearbrowser.com/download" />
   <meta property="og:site_name" content="PearBrowser" />
@@ -108,12 +108,12 @@
   <main id="main">
     <header class="dl-hero">
       <div class="dl-wrap">
-        <span class="pill"><span class="ld"></span>Desktop <span id="dl-version">v0.7.1</span> · verify with SHA-256</span>
+        <span class="pill"><span class="ld"></span>Desktop <span id="dl-version">v0.8.0</span> · verify with SHA-256</span>
         <h1 style="margin:14px 0 8px;font-size:clamp(2rem,5vw,3rem);">Download <span class="grad">PearBrowser</span>.</h1>
         <p class="lede">
-          Desktop builds for macOS, Windows, and Linux — or launch it over the peer-to-peer Pear network with no download at all.
-          Desktop packages are <strong>unsigned preview builds today</strong>; signed and notarized installers land as code-signing
-          credentials are wired in. Every build below is checksum-verifiable.
+          Desktop builds for macOS, Windows, and Linux. The former peer-to-peer Pear launch is retained only as a migration record.
+          Desktop packages are <strong>package-proof builds</strong>: macOS is ad-hoc signed but not notarized, Windows is unsigned,
+          and Linux is checksum-verified. They are not public-trust installers. Every build below is SHA-256-verifiable.
         </p>
 
         <div class="dl-detected" id="dl-detected" hidden>
@@ -137,9 +137,8 @@
 
     <section>
       <div class="dl-wrap">
-        <h2 class="dl-section-h">Run it over P2P <span class="tag">— works on every desktop today</span></h2>
-        <p class="dl-note">No installer, no signing caveats. Install the Pear runtime once, then launch PearBrowser straight from its
-        content-addressed key — it hot-syncs the current release from the swarm.</p>
+        <h2 class="dl-section-h">Legacy migration record</h2>
+        <p class="dl-note">If you have an older PearBrowser installation, keep this record for migration support. It does not launch or install a v3 app.</p>
         <div class="dl-card p2p" id="dl-p2p" style="margin-top:14px;"></div>
         <p class="dl-callout p2p" id="dl-p2p-note"></p>
       </div>
@@ -156,7 +155,7 @@
       <div class="dl-wrap">
         <h2 class="dl-section-h">Verify your download</h2>
         <p class="dl-note">Each desktop card shows the SHA-256 of its asset. After downloading, compute the hash locally and confirm it matches:</p>
-        <div class="dl-cmd" data-copy="shasum -a 256 ~/Downloads/PearBrowser-0.7.1-macos-arm64.app.zip">
+        <div class="dl-cmd" data-copy="shasum -a 256 ~/Downloads/PearBrowser-0.8.0-macos-arm64.app.zip">
           <code>macOS / Linux: shasum -a 256 &lt;file&gt;</code><button class="copy-btn" type="button" aria-label="Copy command">Copy</button>
         </div>
         <div class="dl-cmd" data-copy="certutil -hashfile PearBrowser-0.7.1-windows-x64.msix SHA256">

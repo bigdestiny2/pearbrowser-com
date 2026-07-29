@@ -111,7 +111,7 @@
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.7.1 · production length 92858 · preview builds live · macOS · Windows · Linux</span>
+        <span>Desktop v0.8.0 · signed catalogue v11 live · package-proof builds · macOS · Windows · Linux</span>
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
@@ -136,7 +136,7 @@
       </div>
 
       <div class="hero-mini">
-        Free and open source for macOS, Windows, and Linux. Current desktop downloads are unsigned preview builds.<br />
+        Free and open source for macOS, Windows, and Linux. Current downloads are checksum-verified package-proof builds; public-trust signing remains pending.<br />
         This website is also served peer-to-peer at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.
       </div>
 
@@ -163,7 +163,7 @@
         <div class="proof-card"><strong>No surveillance business model</strong><span>PearBrowser does not collect usage telemetry or build a profile to sell ads.</span></div>
         <div class="proof-card"><strong>Private search on launch</strong><span>The first tab opens to DuckDuckGo search. PearBrowser sends no search analytics and skips its optional persistent visit log.</span></div>
         <div class="proof-card"><strong>Everyday web protection</strong><span>HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, fingerprint farbling, and Content Shield.</span></div>
-        <div class="proof-card"><strong>Peer-to-peer power</strong><span>Browse <code>hyper://</code> sites, run Pear apps, search people you trust, and publish without a central platform account.</span></div>
+        <div class="proof-card"><strong>App store</strong><span>Submit browser content or a signed native release so other peers can open it or review and install it locally.</span></div>
       </div>
     </div>
   </header>
@@ -507,43 +507,37 @@
     <div class="wrap">
       <span class="eyebrow reveal">Quickstart</span>
       <h2 class="section reveal" id="inst-h">Get PearBrowser.</h2>
-      <p class="lede reveal"><code>v0.7.1</code> fixes the renderer/backend handoff behind the cluster of unrelated <code>RPC timeout</code> messages some users saw after a reload or live update. Calls now fail immediately if the local socket closes, the authenticated renderer reconnects during a bounded grace window, and the shell shows a clear resume state. It retains the P2P Content Shield lists, capability-gated Pear Plugins, and one-click plugin catalogue from <code>v0.7.0</code>. Desktop preview builds are attached for macOS, Windows, and Linux; the <a href="download.html">download page</a> has per-platform builds with SHA-256 checksums.</p>
+      <p class="lede reveal"><code>v0.8.0</code> moves native apps behind an explicit Pear v3 install boundary: catalogue submissions bind canonical production identity, product, version and targets to one signed receipt; optional icons are byte-validated and bounded; the host verifies identity before OS launch. Signed catalogue v11 is live, and the <a href="download.html">download page</a> lists checksum-verified package-proof builds for macOS, Windows and Linux.</p>
 
       <div class="install-grid">
         <div class="reveal">
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
-              <span class="terminal-title">PearBrowser v0.7.1 downloads</span>
+              <span class="terminal-title">PearBrowser v0.8.0 downloads</span>
             </div>
             <div class="terminal-body">
-              <span class="comment"># Unsigned preview builds (verify with SHA-256)</span><br>
-              macOS: PearBrowser-0.7.1-macos-arm64.app.zip · -x64.app.zip<br>
-              Windows: PearBrowser-0.7.1-windows-x64.msix<br>
-              Linux: PearBrowser-0.7.1-linux-x64.AppImage<br>
+              <span class="comment"># Package-proof builds: macOS .app.zip · Windows .msix · Linux .AppImage</span><br>
+              macOS: PearBrowser-0.8.0-macos-arm64.app.zip · -x64.app.zip<br>
+              Windows: PearBrowser-0.8.0-windows-x64.msix<br>
+              Linux: PearBrowser-0.8.0-linux-x64.AppImage<br>
               <br>
-              <span class="comment"># Or launch over P2P — no download, no signing caveats</span><br>
-              npm i -g pear<br>
-              pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty
+              <span class="comment"># Legacy migration identifier — not a v3 launch command</span><br>
+              Legacy migration identifier: tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty
             </div>
-          </div>
-
-          <div class="copy-inline" data-copy="pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty">
-            <code>pear run pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code>
-            <button class="copy-btn" type="button" aria-label="Copy launch command">Copy</button>
           </div>
 
           <div class="callout">
-            <strong>Legacy fallback:</strong> the <code>pear run pear://…</code> path hot-syncs the current release from the swarm and works on every desktop today. Pear runtime <code>v2.4.0</code> deprecates <code>pear run</code>, so it is a compatibility path while signed native installers become the primary distribution story.
+            <strong>Migration boundary:</strong> the legacy identifier is retained only to identify an older installation. It is not a URL, is never passed to <code>PearRuntime.run()</code>, and cannot install or update this browser. Use the native package for your platform.
           </div>
         </div>
 
         <div class="reveal d1">
           <ol class="step-list">
             <li><strong>Pick your platform</strong> on the <a href="download.html">download page</a> — it auto-detects your OS and shows a verifiable SHA-256 for each build.</li>
-            <li><strong>Unsigned today</strong> — macOS needs a right-click → Open the first time; a signed Windows installer and notarized macOS build are in progress.</li>
+            <li><strong>Package proof, not public trust</strong> — macOS is ad-hoc signed but not notarized, Windows is unsigned, and Linux is checksum-verified.</li>
             <li><strong>First-launch onboarding</strong> generates a BIP-39-backed identity and helps you pick a first site to visit.</li>
-            <li><strong>P2P updates still apply</strong> — the shell carries the app while the stable Pear release keeps hot-syncing current app bytes from the swarm.</li>
+            <li><strong>Local runtime boundary</strong> — the native shell starts only its bundled local worker; a legacy remote record is never a runtime entrypoint.</li>
           </ol>
         </div>
       </div>
@@ -559,17 +553,17 @@
       <div class="spec reveal">
         <table>
           <tbody>
-          <tr><th scope="row">Desktop version</th><td>v0.7.1 · production length 92858 · pinned on the HiveRelay backbone</td></tr>
-          <tr><th scope="row">Distribution</th><td>Unsigned preview builds attached to <code>v0.7.1</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; signed/notarized installers in progress; <code>pear run pear://…</code> P2P launch path works today</td></tr>
-          <tr><th scope="row">Runtime</th><td>Pear (Bare + Chromium via <code>pear-electron</code>); <code>pear run</code> is legacy because Pear runtime <code>v2.4.0</code> deprecates it</td></tr>
+          <tr><th scope="row">Desktop version</th><td>v0.8.0 · signed catalogue v11 · package-proof release</td></tr>
+          <tr><th scope="row">Distribution</th><td>Checksum-verified package-proof builds attached to <code>v0.8.0</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; public-trust signing/notarization remains pending; the legacy migration identifier is migration-only</td></tr>
+          <tr><th scope="row">Runtime</th><td>Native desktop shell with a local bundled worker; remote deployment links are never runtime entrypoints</td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
           <tr><th scope="row">Identity</th><td>BIP-39 → Ed25519 root with per-app sub-keys; opt-in Nostr (secp256k1/BIP-340) — Phase 3: attested binding, post notes, federated feed over your trust graph (no public relays yet)</td></tr>
           <tr><th scope="row">Bridge surface</th><td><code>window.pear.swarm.v1</code> — three trust tiers, per-app rate limits, 1&nbsp;MB/s/peer cap (<a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
           <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing for bookmarks, tabs, settings, profile, history, contacts, and app grants</td></tr>
-          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — preview builds on the <a href="download.html">download page</a>; Android and iOS (App Store / TestFlight) in progress</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — package-proof builds on the <a href="download.html">download page</a>; Android and iOS source is merged and store delivery remains pending</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
-          <tr><th scope="row">Legacy launch key</th><td><span class="key-block">pear://tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
+          <tr><th scope="row">Legacy migration identifier</th><td><span class="key-block">tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
           <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</span> — the same page, pinned 24/7 on HiveRelay</td></tr>
           </tbody>
         </table>
@@ -641,8 +635,8 @@
         </details>
 
         <details>
-          <summary>How do I install it — and what about <code>pear run</code>?</summary>
-          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.7.1">v0.7.1 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>unsigned preview builds</strong> today, so <code>pear run pear://…</code> stays available as a friction-free P2P launch path while signed/notarized installers land; Pear runtime <code>v2.4.0</code> deprecates that command, so it is a compatibility path, not the finished story.</p>
+          <summary>How do I install it?</summary>
+          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0">v0.8.0 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>package-proof artifacts</strong>, not public-trust installers; verify the published checksum before opening them. The old migration identifier is for local support only, not an install command.</p>
         </details>
 
         <details>
@@ -658,7 +652,7 @@
   <section class="final" aria-labelledby="cta-h">
     <div class="wrap reveal">
       <h2 id="cta-h">Browse without becoming the product.</h2>
-      <p>Get a browser with no telemetry, no ad profile, and local-first data—plus direct access to the peer-to-peer web.</p>
+      <p>Get a browser with no telemetry, no ad profile, and local-first data—plus <code>hyper://</code> browsing and explicit local review before a compatible signed native app is installed.</p>
       <div class="hero-actions">
         <a class="btn primary" href="download.html">Go to downloads →</a>
         <a class="btn subtle" href="https://github.com/bigdestiny2/pearbrowser-desktop">Browse the code</a>
