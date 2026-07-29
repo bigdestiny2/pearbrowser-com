@@ -97,9 +97,9 @@
 
           <div class="doc-section reveal" id="install">
             <h2>Install &amp; launch</h2>
-            <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.7.1">v0.7.1 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. The builds are unsigned previews — verify them with SHA-256; signed/notarized installers are in progress.</p>
+            <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0">v0.8.0 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. These are package-proof artifacts, not public-trust installers: verify them with SHA-256; Developer ID/notarization and Windows signing remain in progress.</p>
             <pre><code># Download &amp; verify (example)
-shasum -a 256 PearBrowser-0.7.1-macos-arm64.app.zip
+shasum -a 256 PearBrowser-0.8.0-macos-arm64.app.zip
 
 Legacy migration identifier: tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
             <p>The native package carries the desktop shell. The legacy Pear key identifies an older installation only: it is not a v3 launch command and is never supplied to <code>PearRuntime.run()</code>. You can open the P2P edition of this website at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.</p>

@@ -92,7 +92,7 @@
     var p = data.platforms.find(function (x) { return x.os === detected.os })
     if (!p) { text.textContent = 'Pick your platform below.'; return }
     if (p.status === 'blocked') {
-      text.innerHTML = 'Detected <strong>' + esc(p.label) + '</strong> — desktop build is an unsigned preview; verify the package checksum before opening it.'
+      text.innerHTML = 'Detected <strong>' + esc(p.label) + '</strong> — this is a package-proof build, not a public-trust installer; verify the checksum before opening it.'
       return
     }
     var b = p.builds.find(function (x) { return x.arch === detected.arch }) || p.builds[0]

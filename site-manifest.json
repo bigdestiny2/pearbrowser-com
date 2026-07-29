@@ -2,8 +2,8 @@
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
   "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser with built-in DuckDuckGo search and no telemetry or remote analytics.",
-  "version": "0.7.1",
-  "updated": "2026-07-22",
+  "version": "0.8.0",
+  "updated": "2026-07-29",
   "privacy": {
     "claim": "PearBrowser doesn't track you.",
     "telemetry": false,
@@ -34,10 +34,11 @@
     "status": "pinned-on-hiverelay"
   },
   "desktopRelease": {
-    "version": "v0.7.1",
-    "productionLength": 92858,
+    "version": "v0.8.0",
+    "catalogueVersion": 11,
+    "releaseCommit": "c38bded1644da2eb049c267e0ac6a73fdbb3babf",
     "distribution": {
-      "primary": "preview-unsigned",
+      "primary": "package-proof",
       "installerUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases",
       "downloadsPage": "download.html",
       "downloadsData": "downloads.json",
@@ -46,7 +47,7 @@
         "Windows .msix",
         "Linux .AppImage"
       ],
-      "status": "Unsigned preview builds are attached to v0.7.1 for macOS, Windows, and Linux; signed/notarized installers land as code-signing credentials are wired in. The legacy migration identifier is only for local support and is not a v3 launch path."
+      "status": "SHA-256-verifiable package-proof builds are attached to v0.8.0 for macOS, Windows, and Linux. macOS is ad-hoc signed but not notarized, Windows is unsigned, and public-trust delivery remains a separate gate. The legacy migration identifier is not a v3 launch path."
     },
     "legacyMigrationId": "tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "source": "https://github.com/bigdestiny2/pearbrowser-desktop/releases"

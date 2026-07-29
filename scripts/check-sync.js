@@ -15,7 +15,7 @@ const requiredPhrases = [
   'Private, not anonymous.',
   'Open the browser. Search without a profile.',
   'DuckDuckGo receives the query and your network address',
-  'Preview builds: macOS .app.zip · Windows .msix · Linux .AppImage',
+  'Package-proof builds: macOS .app.zip · Windows .msix · Linux .AppImage',
   'Migration boundary:',
   'PearBrowser Mobile',
   'https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md',
@@ -145,10 +145,10 @@ try {
   const llmsFull = read(path.join(root, 'llms-full.txt'))
 
   const version = String(manifest.desktopRelease && manifest.desktopRelease.version || '')
-  const length = String(manifest.desktopRelease && manifest.desktopRelease.productionLength || '')
+  const catalogueVersion = String(manifest.desktopRelease && manifest.desktopRelease.catalogueVersion || '')
   const legacyMigrationId = String(manifest.desktopRelease && manifest.desktopRelease.legacyMigrationId || '')
   if (!/^v\d+\.\d+\.\d+$/.test(version)) throw new Error('Missing desktop release version in site manifest')
-  if (!/^\d+$/.test(length)) throw new Error('Missing desktop production length in site manifest')
+  if (!/^\d+$/.test(catalogueVersion)) throw new Error('Missing signed catalogue version in site manifest')
   if (!/^[a-z0-9]+$/.test(legacyMigrationId)) throw new Error('Missing legacy migration identifier in site manifest')
 
   const [, siteDriveKey] = mustMatch(
@@ -157,8 +157,8 @@ try {
     'site Hyperdrive key'
   )
 
-  const expectedHero = `Desktop ${version} · production length ${length} · preview builds live · macOS · Windows · Linux`
-  const expectedSpec = `${version} · production length ${length} · pinned on the HiveRelay backbone`
+  const expectedHero = `Desktop ${version} · signed catalogue v${catalogueVersion} live · package-proof builds · macOS · Windows · Linux`
+  const expectedSpec = `${version} · signed catalogue v${catalogueVersion} · package-proof release`
   const expectedLegacyMigration = `Legacy migration identifier: ${legacyMigrationId}`
 
   if (!site.includes(expectedHero)) fail(`hero release line is out of sync; expected "${expectedHero}"`)
@@ -174,7 +174,7 @@ try {
   requireEqual(manifest.version, version.replace(/^v/, ''), 'manifest version')
   requireEqual(manifest.hyperdrive && manifest.hyperdrive.driveKey, siteDriveKey, 'manifest Hyperdrive key')
   requireEqual(manifest.hyperdrive && manifest.hyperdrive.url, `hyper://${siteDriveKey}/`, 'manifest Hyperdrive URL')
-  requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'preview-unsigned', 'manifest primary distribution')
+  requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.primary, 'package-proof', 'manifest primary distribution')
   requireEqual(manifest.desktopRelease && manifest.desktopRelease.distribution && manifest.desktopRelease.distribution.installerUrl, releaseUrl, 'manifest installer URL')
   requireEqual(manifest.privacy && manifest.privacy.telemetry, false, 'manifest telemetry claim')
   requireEqual(manifest.privacy && manifest.privacy.remoteAnalytics, false, 'manifest remote analytics claim')

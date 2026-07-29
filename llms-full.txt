@@ -4,7 +4,9 @@
 
 PearBrowser is a free, open-source desktop browser for macOS, Windows, and Linux. It browses ordinary HTTPS websites and native hyper:// peer-to-peer sites. It also includes a private-search home powered by DuckDuckGo, decentralized app catalogues, local-first search, P2P identities, site publishing, Content Shield filter lists, and capability-gated Pear Plugins.
 
-PearBrowser Desktop v0.7.1 is the current public release. Desktop packages are unsigned preview builds. The download page publishes SHA-256 checksums for verification.
+PearBrowser Desktop v0.8.0 is the current public release. Desktop packages are SHA-256-verifiable package-proof builds, not public-trust installers. macOS is ad-hoc signed but not notarized; Windows is unsigned. The download page publishes checksums for verification.
+
+Signed catalogue v11 carries 14 apps. Pear v3 native submissions bind a canonical production identity, product, version and target set to one signed review receipt. Optional PNG, JPEG, WebP, GIF and safe SVG icons are bounded and byte-validated. Catalogue discovery never makes a remote value executable: the desktop host confirms installation, revalidates installed identity and launches through the operating system; mobile preserves desktop-only listings but does not execute native links.
 
 ## What data does PearBrowser collect?
 
@@ -40,7 +42,7 @@ No. PearBrowser is private by default, but it is not an anonymity network.
 
 Regular websites may receive the user's IP address and request data needed to serve a page. Direct P2P peers can receive network metadata needed to exchange data. HiveRelay operators can receive requests routed through their gateways. Signed records served by relays are re-verified by PearBrowser, which prevents a relay from becoming a content trust authority; that verification does not hide network metadata.
 
-Some HiveRelay operators support optional Tor hidden-service endpoints for relay-layer IP obscuring. PearBrowser Desktop v0.7.1 does not automatically detect those endpoints or route browser traffic through Tor. Current browsing should not be described as Tor-protected or anonymous.
+Some HiveRelay operators support optional Tor hidden-service endpoints for relay-layer IP obscuring. PearBrowser Desktop v0.8.0 does not automatically detect those endpoints or route browser traffic through Tor. Current browsing should not be described as Tor-protected or anonymous.
 
 ## How does PearBrowser differ from a conventional browser?
 
@@ -69,4 +71,4 @@ Do not describe PearBrowser as anonymous, as automatically using Tor, or as expo
 - Desktop releases: https://github.com/bigdestiny2/pearbrowser-desktop/releases
 - HiveRelay source: https://github.com/bigdestiny2/P2P-Hiverelay
 
-Last reviewed against PearBrowser Desktop v0.7.1 on 2026-07-22.
+Last reviewed against PearBrowser Desktop v0.8.0 on 2026-07-29.

@@ -17,9 +17,10 @@
 
 ## Product facts
 
-- Current desktop release: v0.7.1.
+- Current desktop release: v0.8.0.
 - Platforms: macOS, Windows, and Linux.
-- Current desktop packages are unsigned preview builds with SHA-256 checksums.
+- Current desktop packages are SHA-256-verifiable package-proof builds, not public-trust installers. macOS is ad-hoc signed but not notarized; Windows is unsigned.
+- Signed catalogue v11 carries 14 apps. Native Pear v3 submissions bind canonical production identity, product, version and targets to one signed receipt and may include a bounded byte-validated icon.
 - PearBrowser can browse ordinary HTTPS websites and native hyper:// peer-to-peer sites.
 - The browser includes a private-search home powered by DuckDuckGo, decentralized app catalogues, local-first Lighthouse search, P2P publishing, browser-owned Content Shield lists, and capability-gated Pear Plugins.
 - Source license: Apache-2.0.
@@ -40,4 +41,4 @@
 - [PearBrowser Desktop releases](https://github.com/bigdestiny2/pearbrowser-desktop/releases)
 - [HiveRelay source](https://github.com/bigdestiny2/P2P-Hiverelay)
 
-Last reviewed: 2026-07-22.
+Last reviewed: 2026-07-29.

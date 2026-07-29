@@ -1,31 +1,31 @@
 {
-  "version": "v0.7.1",
-  "updated": "2026-07-16",
-  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.7.1",
-  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.7.1/",
-  "note": "Desktop builds are unsigned preview packages today. v0.7.1 fixes renderer RPC reconnects across reload and live-update handoffs while retaining the v0.7.0 Content Shield and Pear Plugins features. Signed/notarized installers land as signing credentials are wired in; this file is regenerated from verified release assets.",
+  "version": "v0.8.0",
+  "updated": "2026-07-29",
+  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0",
+  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.8.0/",
+  "note": "v0.8.0 package-proof artifacts were built on GitHub Actions and independently verified against their SHA-256 sidecars. macOS is ad-hoc signed but not Developer ID signed or notarized, Windows is unsigned, and Linux is checksum-verified. These are not public-trust installers.",
   "platforms": [
     {
       "os": "macos",
       "label": "macOS",
-      "signing": "unsigned",
-      "status": "preview",
-      "statusLabel": "Unsigned preview",
-      "openNote": "Not yet notarized. After downloading: right-click the app -> Open -> Open to get past Gatekeeper the first time (or run xattr -dr com.apple.quarantine on the .app).",
+      "signing": "ad-hoc",
+      "status": "package-proof",
+      "statusLabel": "Ad-hoc signed package proof",
+      "openNote": "Not Developer ID signed or notarized. Verify SHA-256 first, then right-click the app -> Open -> Open to get past Gatekeeper the first time (or run xattr -dr com.apple.quarantine on the .app).",
       "builds": [
         {
           "arch": "arm64",
           "archLabel": "Apple Silicon (arm64)",
-          "file": "PearBrowser-0.7.1-macos-arm64.app.zip",
-          "sha256": "ab801c201bf828c435bfb309a3475c086a984bd0f06e3684bfd533a353fe9aa0",
-          "bytes": 22608285
+          "file": "PearBrowser-0.8.0-macos-arm64.app.zip",
+          "sha256": "293077f80d249bbd71fce3676a79db725be709c615ddf51e2f8346800be7d254",
+          "bytes": 22608248
         },
         {
           "arch": "x64",
           "archLabel": "Intel (x64)",
-          "file": "PearBrowser-0.7.1-macos-x64.app.zip",
-          "sha256": "bd8328b0adf248b2d0ad68ba831fc0bbe59884ff645939f7ae0b3a2d1d92a828",
-          "bytes": 23694229
+          "file": "PearBrowser-0.8.0-macos-x64.app.zip",
+          "sha256": "a7aadb987761db5e4f5a6437b51cedc3bf48df40279843be854987309f474c65",
+          "bytes": 23694273
         }
       ]
     },
@@ -33,16 +33,16 @@
       "os": "windows",
       "label": "Windows",
       "signing": "unsigned",
-      "status": "preview",
-      "statusLabel": "Unsigned sideload preview",
-      "openNote": "The MSIX is currently unsigned, so Windows rejects a normal double-click install. Download it only if you understand sideloading (Developer Mode + Add-AppxPackage). The former Pear link is not an alternative launch path.",
+      "status": "package-proof",
+      "statusLabel": "Unsigned package proof",
+      "openNote": "The MSIX is unsigned, so Windows rejects a normal double-click install. Verify SHA-256 and download it only if you understand sideloading (Developer Mode + Add-AppxPackage). The former Pear identifier is not an alternative launch path.",
       "builds": [
         {
           "arch": "x64",
           "archLabel": "x64",
-          "file": "PearBrowser-0.7.1-windows-x64.msix",
-          "sha256": "ea356d52152a3bf7e8fd6c828242f5422cbcf8a556b18f742fa728e8dab09a15",
-          "bytes": 19223083
+          "file": "PearBrowser-0.8.0-windows-x64.msix",
+          "sha256": "12ec4fa68a47ebfac901f5d1d55db3d8916b0f689d8136507394299f3da97000",
+          "bytes": 19223200
         }
       ]
     },
@@ -50,15 +50,15 @@
       "os": "linux",
       "label": "Linux",
       "signing": "none-required",
-      "status": "preview",
-      "statusLabel": "Preview AppImage",
+      "status": "package-proof",
+      "statusLabel": "Checksum-verified package proof",
       "openNote": "After downloading: chmod +x the file and run it. The AppImage bundles the GTK4/libadwaita runtime pieces needed by the native shell on standard desktop distributions.",
       "builds": [
         {
           "arch": "x64",
           "archLabel": "x86_64",
-          "file": "PearBrowser-0.7.1-linux-x64.AppImage",
-          "sha256": "a72b33bce30d7944ba46feebacacb68958ffeed2b765dde6c14b97f62f84a815",
+          "file": "PearBrowser-0.8.0-linux-x64.AppImage",
+          "sha256": "8a675c0c521deb5449cd3d9ff2c09c854d8c9e199a955873bd1e932cf7ff09ec",
           "bytes": 52578808
         }
       ]
@@ -72,13 +72,13 @@
   "mobile": {
     "android": {
       "status": "pending",
-      "statusLabel": "Coming soon",
-      "note": "A signed .apk for direct download (and a Google Play listing) are in progress."
+      "statusLabel": "Source ready · store pending",
+      "note": "The v0.8.0 catalogue contract is merged and CI-verified. A production-signed APK and Google Play listing remain pending."
     },
     "ios": {
       "status": "pending",
       "statusLabel": "App Store / TestFlight",
-      "note": "iOS cannot be installed from a download; it will ship via the App Store and TestFlight once review is complete."
+      "note": "The v0.8.0 catalogue contract is merged and CI-verified. iOS delivery still requires a production-signed App Store or TestFlight build and review."
     }
   }
 }
