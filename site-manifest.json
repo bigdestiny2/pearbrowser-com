@@ -1,7 +1,7 @@
 {
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
-  "description": "Static public and Hyperdrive-ready website for PearBrowser, the desktop browser for the regular and peer-to-peer web with native hyper:// browsing, verified apps, publishing, and local-first data.",
+  "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser for the regular and peer-to-peer web with native hyper:// browsing, verified apps, publishing, and local-first data.",
   "version": "0.8.0",
   "updated": "2026-08-06",
   "privacy": {
@@ -31,7 +31,8 @@
   "hyperdrive": {
     "driveKey": "03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f",
     "url": "hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/",
-    "status": "pinned-on-hiverelay"
+    "status": "pinned-on-hiverelay",
+    "availabilityBoundary": "reachable only while at least one peer or accepted relay carrying the bytes is online"
   },
   "desktopRelease": {
     "version": "v0.8.0",

@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PearBrowser — The P2P web, in a real desktop browser</title>
-  <meta name="description" content="Open hyper:// sites, discover verified apps, publish, search, and connect directly to peers from a private desktop browser for macOS, Windows, and Linux." />
+  <title>PearBrowser — Browse the P2P web. Keep your browser private.</title>
+  <meta name="description" content="Browse the regular and peer-to-peer web, discover verified apps, and publish hyper:// sites from a private desktop browser for macOS, Windows, and Linux." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/" />
-  <meta property="og:title" content="PearBrowser — The P2P web, in a real desktop browser" />
-  <meta property="og:description" content="Browse hyper:// sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local." />
+  <meta property="og:title" content="PearBrowser — Browse the P2P web. Keep your browser private." />
+  <meta property="og:description" content="A familiar desktop browser for the regular and P2P web, with local-first data and no PearBrowser telemetry or central account." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pearbrowser.com/" />
   <meta property="og:site_name" content="PearBrowser" />
   <meta property="og:image" content="https://pearbrowser.com/assets/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="PearBrowser — the P2P web in a real desktop browser" />
+  <meta property="og:image:alt" content="PearBrowser — browse the P2P web and keep your browser private" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PearBrowser — The P2P web, in a real desktop browser" />
-  <meta name="twitter:description" content="Browse hyper:// sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local." />
+  <meta name="twitter:title" content="PearBrowser — Browse the P2P web. Keep your browser private." />
+  <meta name="twitter:description" content="A familiar desktop browser for the regular and P2P web, with local-first data and no PearBrowser telemetry or central account." />
   <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
-  <meta name="twitter:image:alt" content="PearBrowser — the P2P web in a real desktop browser" />
+  <meta name="twitter:image:alt" content="PearBrowser — browse the P2P web and keep your browser private" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260722-private-search" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260806-composed-home" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,8 +41,9 @@
         "@id": "https://pearbrowser.com/#app",
         "name": "PearBrowser",
         "url": "https://pearbrowser.com/",
-        "downloadUrl": "https://pearbrowser.com/download",
+        "downloadUrl": "https://pearbrowser.com/download.html",
         "softwareVersion": "0.8.0",
+        "releaseNotes": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0",
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "macOS, Windows, Linux",
         "isAccessibleForFree": true,
@@ -53,7 +54,7 @@
         },
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
         "codeRepository": "https://github.com/bigdestiny2/pearbrowser-desktop",
-        "description": "PearBrowser is a desktop browser for the regular and peer-to-peer web. It opens hyper:// sites directly, discovers verified apps, publishes P2P content, and keeps identity and history local-first.",
+        "description": "PearBrowser is a private desktop browser for the regular and peer-to-peer web. It opens hyper:// sites directly, discovers verified apps, publishes P2P content, and keeps identity and optional history local-first.",
         "featureList": [
           "Native hyper:// peer-to-peer browsing",
           "Verified Pear v3 app discovery and installation",
@@ -118,18 +119,17 @@
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
-        <span class="grad">the P2P web, in a real desktop browser</span>.
+        <span class="grad">browse the P2P web. Keep your browser private.</span>
       </h1>
       <p class="hero-sub">
-        Open <code>hyper://</code> sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local.
-        <strong>It feels like a familiar desktop browser</strong>, but the network underneath does not require a central host or account.
+        Browse the regular web and open <code>hyper://</code> sites in one familiar desktop app. Discover verified Pear apps, publish your own P2P site, and connect directly to peers while identity and optional history stay local-first.
         <span class="hl">No telemetry. No analytics. No ads. No tracking SDKs. No central account. Private by default, open source, and built for macOS, Windows, and Linux.</span>
       </p>
 
-      <div class="privacy-proof" aria-label="PearBrowser at a glance">
-        <span><strong>P2P</strong> direct connections</span>
-        <span><strong>Local</strong> identity and data</span>
-        <span><strong>No</strong> central account</span>
+      <div class="privacy-proof" aria-label="PearBrowser privacy proof">
+        <span><strong>0</strong> telemetry events</span>
+        <span><strong>0</strong> advertising profiles</span>
+        <span><strong>0</strong> tracking SDKs</span>
       </div>
 
       <div class="hero-actions">
@@ -146,27 +146,20 @@
       <div class="trust-strip">
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/></svg>
-          Direct P2P browsing over Hypercore
+          Regular web + native <code>hyper://</code>
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
-          Identity and app data stay local-first
+          Identity and optional history stay local-first
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          Verified Pear v3 app installs
+          Verified Pear v3 catalogue and installs
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
-          No telemetry or central account
+          No telemetry, ads, or central account
         </span>
-      </div>
-
-      <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
-        <div class="proof-card"><strong>Browse the P2P web</strong><span>Open multiple <code>hyper://</code> tabs, follow links, bookmark sites, and stream content directly from peers.</span></div>
-        <div class="proof-card"><strong>Find apps you can verify</strong><span>Search a signed catalogue, inspect provenance, and review Pear v3 identity and target proofs before local installation.</span></div>
-        <div class="proof-card"><strong>Publish from the browser</strong><span>Create a Hyperdrive, update it locally, and share one stable key without setting up a server or DNS.</span></div>
-        <div class="proof-card"><strong>Keep control on your device</strong><span>Local-first identity, private search, explicit permissions, Content Shield, and no PearBrowser telemetry.</span></div>
       </div>
     </div>
   </header>
@@ -175,67 +168,40 @@
   <section id="how-it-works" class="block browser-how" aria-labelledby="how-h">
     <div class="wrap">
       <span class="eyebrow reveal">How it works</span>
-      <h2 class="section reveal" id="how-h">A familiar browser on top. A peer-to-peer engine underneath.</h2>
-      <p class="lede reveal">The desktop interface handles tabs, addresses, identity, and permissions. A local Bare backend handles storage, verification, and peer connections. The result is normal browser ergonomics without making a central server the source of truth.</p>
+      <h2 class="section reveal" id="how-h">A familiar browser. A local P2P engine. Peers when you need them.</h2>
+      <p class="lede reveal">PearBrowser keeps the interface ordinary and the network model visible: the browser owns tabs and permissions, a local engine verifies content and app identity, and peers or optional relays deliver bytes.</p>
 
       <div class="browser-stack reveal" aria-label="PearBrowser architecture">
-        <article><span>What you use</span><strong>Desktop browser</strong><p>Tabs, address bar, search, app catalogue, publishing, identity, and permission prompts.</p></article>
+        <article><span>1 · What you use</span><strong>Desktop browser</strong><p>Tabs, address bar, search, app catalogue, publishing, identity, and explicit permission prompts.</p></article>
         <div class="browser-stack-arrow" aria-hidden="true">↓</div>
-        <article><span>What runs locally</span><strong>Bare backend</strong><p>Hyperdrive stores files, Hyperbee indexes data, and signatures verify what you receive.</p></article>
+        <article><span>2 · What runs locally</span><strong>Bare + Pear v3</strong><p>Hyperdrive stores files, Hyperbee indexes local data, and signatures verify content and app targets.</p></article>
         <div class="browser-stack-arrow" aria-hidden="true">↓</div>
-        <article><span>Who carries the data</span><strong>Peers &amp; optional relays</strong><p>Hyperswarm finds direct peers. HiveRelay can add availability and alternate routes without becoming authority.</p></article>
+        <article><span>3 · Who carries the bytes</span><strong>Peers + optional relays</strong><p>Hyperswarm finds direct peers. Accepted relays can add reach and availability without becoming the source of trust.</p></article>
       </div>
 
-      <div class="browser-journey">
-        <article class="browser-step reveal"><span>01</span><h3>Enter or discover</h3><p>Paste a <code>hyper://</code> key, open a friendly link, or find an app in the signed catalogue.</p></article>
-        <article class="browser-step reveal d1"><span>02</span><h3>Resolve &amp; verify</h3><p>The browser resolves the app key and shows the provenance, signature, and release information it can prove.</p></article>
-        <article class="browser-step reveal d2"><span>03</span><h3>Fetch the best route</h3><p>It connects directly to peers when possible and can use an optional relay route when the network requires one.</p></article>
-        <article class="browser-step reveal"><span>04</span><h3>Run in isolation</h3><p>Each site or app runs inside a controlled tab rather than receiving unrestricted access to your machine.</p></article>
-        <article class="browser-step reveal d1"><span>05</span><h3>Grant capabilities</h3><p>Identity, publishing, profiles, native installs, and swarm access require explicit browser-owned permission.</p></article>
-        <article class="browser-step reveal d2"><span>06</span><h3>Keep or publish</h3><p>Bookmark the site, keep its data locally, or publish your own Hyperdrive and share its stable key.</p></article>
-      </div>
-
-      <p class="browser-boundary reveal"><strong>The useful boundary:</strong> a relay may improve reach or availability, but the browser still checks signed content and app identity. Delivery is not the same thing as trust.</p>
-    </div>
-  </section>
-
-  <!-- PRIVATE SEARCH HOME -->
-  <section id="private-search" class="block private-search-block" aria-labelledby="private-search-h">
-    <div class="wrap private-search-layout">
-      <div>
-        <span class="eyebrow reveal">Private search, loaded</span>
-        <h2 class="section reveal" id="private-search-h">Open the browser. Search without a profile.</h2>
-        <p class="lede reveal">PearBrowser now opens on a browser-owned home page with DuckDuckGo search. PearBrowser sends no search analytics, adds no submitted query to its optional persistent visit log, and keeps Content Shield on for the results page.</p>
-        <p class="private-search-limit reveal"><strong>The honest boundary:</strong> DuckDuckGo receives the query and your network address to return results. <a href="https://duckduckgo.com/privacy">Its published policy says it does not save or share search history</a>. Private search improves privacy; it is not anonymity.</p>
-      </div>
-      <div class="private-search-window reveal d1" aria-label="PearBrowser private search home preview">
-        <div class="private-search-window-head"><span>Private web search</span><b>DuckDuckGo</b></div>
-        <div class="private-search-window-form"><span>Search the web</span><strong>Search</strong></div>
-        <p>Content Shield stays on. DuckDuckGo receives your query and network address. Private search is not anonymity.</p>
-        <div class="private-search-window-meta"><span>No PearBrowser search analytics</span><span>No persistent visit-log entry</span></div>
-      </div>
+      <p class="browser-boundary reveal"><strong>Delivery is not trust.</strong> Direct peers and accepted relays can carry content, but PearBrowser still checks signed content, catalogue provenance, and app identity locally.</p>
     </div>
   </section>
 
   <!-- PRIVACY PROMISE -->
   <section id="privacy-promise" class="block privacy-block" aria-labelledby="privacy-h">
     <div class="wrap">
-      <span class="eyebrow reveal">The privacy promise</span>
+      <span class="eyebrow reveal">Privacy, with the boundary visible</span>
       <div class="privacy-heading">
         <h2 class="section reveal" id="privacy-h">PearBrowser doesn't track you.</h2>
-        <p class="lede reveal">That means something specific: the browser has no telemetry collector, no remote analytics, no ad network, and no tracking SDK. It never uploads your browsing history to an analytics, advertising, or profiling service.</p>
+        <p class="lede reveal">That means something specific: the browser has no telemetry collector, no remote analytics, no ad network, and no tracking SDK. Open the browser. Search without a profile. Submitted queries are not added to PearBrowser's optional persistent visit log.</p>
       </div>
 
       <div class="privacy-grid">
         <article class="privacy-card reveal">
           <span class="privacy-mark" aria-hidden="true">01</span>
-          <h3>No telemetry. Ever.</h3>
-          <p>Telemetry is hard-disabled in the browser. There is no collector endpoint, and the setting cannot be switched on.</p>
+          <h3>No PearBrowser telemetry.</h3>
+          <p>Telemetry is hard-disabled. There is no collector endpoint, and the browser does not upload history to an analytics, advertising, or profiling service.</p>
         </article>
         <article class="privacy-card reveal d1">
           <span class="privacy-mark" aria-hidden="true">02</span>
           <h3>Your history starts off.</h3>
-          <p>Browsing history and local page indexing are opt-in. If you enable them, they are stored locally rather than sent to PearBrowser.</p>
+          <p>Browsing history and local page indexing are opt-in. If enabled, they are stored locally rather than sent to PearBrowser.</p>
         </article>
         <article class="privacy-card reveal d2">
           <span class="privacy-mark" aria-hidden="true">03</span>
@@ -252,225 +218,118 @@
       <aside class="privacy-boundary reveal" aria-label="Privacy limits">
         <div>
           <strong>Private, not anonymous.</strong>
-          <p>Websites, relay operators, and P2P peers can still receive the network information needed to serve content, which may include your IP address and what you request. Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
+          <p>DuckDuckGo receives the query and your network address to return web results. Websites, relay operators, and P2P peers can also receive network information needed to serve content, which may include your IP address and what you request. Some relay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
         </div>
         <a class="btn subtle" href="privacy.html">See exactly what is—and isn't—protected →</a>
       </aside>
     </div>
   </section>
 
-  <!-- DEMO FLOW -->
-  <section id="demo" class="block" aria-labelledby="demo-h">
+  <!-- FOUR PRODUCT LOOPS -->
+  <section id="product-loops" class="block" aria-labelledby="loops-h">
     <div class="wrap">
-      <span class="eyebrow reveal">What to demo</span>
-      <h2 class="section reveal" id="demo-h">Show the loop, not the protocol.</h2>
-      <p class="lede reveal">PearBrowser is easiest to understand when people see a complete path: open a live P2P site, search it with proof, publish something new, then inspect what the browser knows about trust.</p>
+      <span class="eyebrow reveal">One desktop, four complete loops</span>
+      <h2 class="section reveal" id="loops-h">Use the browser. See the proof when it matters.</h2>
+      <p class="lede reveal">Each loop starts with an ordinary action and ends with a visible boundary: where a result came from, what was installed, who can keep a site available, or which capability an app received.</p>
 
       <div class="product-demo-grid">
-        <article class="demo-card demo-browser reveal">
-          <div class="demo-kicker">1 · Fresh launch</div>
-          <h3>Start with private search.</h3>
-          <p>Open the app and the active PearBrowser Home tab is ready to search, with the product site, P2P Builders, and peerit beside it.</p>
+        <article class="demo-card demo-browser compact-loop reveal">
+          <div class="demo-kicker">1 · Browse + search</div>
+          <h3>Open the regular web or go direct to <code>hyper://</code>.</h3>
+          <p>Use familiar tabs and an address bar. Search the web from the browser-owned home page, paste a drive key, follow a P2P link, or revisit a bookmark.</p>
           <div class="browser-frame" aria-hidden="true">
             <div class="demo-tabs">
-              <span class="active">PearBrowser Home</span><span>PearBrowser</span><span>P2P Builders</span><span>peerit</span>
+              <span class="active">PearBrowser Home</span><span>hyper:// site</span><span>regular web</span>
             </div>
-            <div class="demo-address">Search the web</div>
+            <div class="demo-address">Search or enter a web / hyper:// address</div>
             <div class="demo-page">
-              <strong>Search without a profile</strong>
-              <span>DuckDuckGo · Content Shield on</span>
-              <div class="demo-feed-row"><b>No PearBrowser search analytics</b><small>submitted queries skip the optional persistent visit log</small></div>
-              <div class="demo-feed-row"><b>Private, not anonymous</b><small>provider and network boundary shown before you search</small></div>
+              <strong>One browser, two networks</strong>
+              <span>Content Shield on · optional history stays local</span>
+              <div class="demo-feed-row"><b>Web search</b><small>DuckDuckGo receives the query and network address</small></div>
+              <div class="demo-feed-row"><b>P2P address</b><small>content needs a reachable peer or accepted relay</small></div>
             </div>
           </div>
+          <p class="loop-proof"><strong>Boundary:</strong> private search reduces browser tracking; it does not make network requests anonymous.</p>
         </article>
 
-        <article class="demo-card reveal d1">
-          <div class="demo-kicker">2 · Search</div>
-          <h3>Search with provenance on every result.</h3>
-          <p>Run a query against Library or P2P Sites. The important part is not just that results appear; it is that the UI explains where each one came from and how it was verified.</p>
+        <article class="demo-card compact-loop reveal d1">
+          <div class="demo-kicker">2 · Discover + install</div>
+          <h3>Find an app, inspect its source, install it locally.</h3>
+          <p>Search the signed catalogue, compare provenance and target identity, then choose whether to install or launch. The remote catalogue supplies metadata; it cannot silently execute an install.</p>
           <div class="search-panel" aria-hidden="true">
-            <div class="search-box">lighthouse peerit</div>
-            <div class="result-row"><strong>Lighthouse outbox discovery</strong><span><em>peerit / post</em><i>app-signed</i><i>you</i></span></div>
-            <div class="result-row"><strong>P2PBuilders app data search</strong><span><em>p2pbuilders / comment</em><i>trusted hop 1</i><i>relay-confirmed</i></span></div>
-            <div class="run-summary">planned 2 peers · pulled 1 · digest matched · partial-proof capped</div>
+            <div class="search-box">Search 14 catalogue apps</div>
+            <div class="result-row"><strong>App identity</strong><span><em>publisher + target</em><i>verified</i></span></div>
+            <div class="result-row"><strong>Release provenance</strong><span><em>catalogue v11</em><i>inspect</i></span></div>
+            <div class="run-summary">review proof → choose install → keep local control</div>
           </div>
+          <p class="loop-proof"><strong>Boundary:</strong> catalogue verification proves the accepted metadata and target; it is not public OS-signing trust.</p>
         </article>
 
-        <article class="demo-card reveal d2">
-          <div class="demo-kicker">3 · Publish</div>
-          <h3>Publish a page that survives your laptop closing.</h3>
-          <p>Create a tiny site in the block editor, click Publish &amp; Pin, then show the replication row. This is the clearest aha moment in the whole app.</p>
+        <article class="demo-card compact-loop reveal d2">
+          <div class="demo-kicker">3 · Publish + availability</div>
+          <h3>Publish a stable P2P address, then choose who keeps serving it.</h3>
+          <p>Create or update a Hyperdrive locally, share its public key, and optionally ask an accepted relay to pin it. The address stays stable while the content can evolve.</p>
           <div class="publish-flow" aria-hidden="true">
-            <span>Block editor</span><b>→</b><span>Publish &amp; Pin</span><b>→</b><span class="ok">3 HiveRelay peers replicated</span>
+            <span>Edit locally</span><b>→</b><span>Publish key</span><b>→</b><span class="ok">peer or relay confirms availability</span>
           </div>
-          <code class="demo-url">hyper://1868916a…02709e25d/</code>
+          <code class="demo-url">hyper://public-key/</code>
+          <p class="loop-proof"><strong>Boundary:</strong> a site remains reachable only while at least one peer or accepted relay carrying it is online.</p>
         </article>
 
-        <article class="demo-card reveal d3">
-          <div class="demo-kicker">4 · Apps & trust</div>
-          <h3>Run apps, then inspect why they are trustworthy.</h3>
-          <p>Show the app catalog as a decentralized app store: source chips, launch mode, release history, permissions, relay availability, and the path for builders to publish their own pinned apps into a catalogue.</p>
+        <article class="demo-card compact-loop reveal d3">
+          <div class="demo-kicker">4 · Inspect + control</div>
+          <h3>Use an app normally, then open the trust details.</h3>
+          <p>Review catalogue source, signatures, release history, relay availability, identity scope, and granted capabilities. Revoke app permissions from the browser when they are no longer needed.</p>
           <div class="catalog-mini" aria-hidden="true">
-            <div><b>peerit</b><span>hypersite · relay-listed · pinned</span></div>
-            <div><b>Peercord</b><span>window app · third-party trust prompt</span></div>
-            <div><b>Paste</b><span>standalone · release history · My Catalog</span></div>
+            <div><b>Provenance</b><span>catalogue source · publisher · app target</span></div>
+            <div><b>Availability</b><span>live peers · accepted relays · pin state</span></div>
+            <div><b>Capabilities</b><span>identity · profile · swarm topics · revoke</span></div>
           </div>
+          <p class="loop-proof"><strong>Boundary:</strong> local verification explains what PearBrowser proved; independent public trust remains separate.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT IS / THREE APPS -->
-  <section id="how" class="block" aria-labelledby="how-h">
+  <!-- TRUST, MATURITY, AND AVAILABILITY -->
+  <section id="trust" class="block" aria-labelledby="trust-h">
     <div class="wrap">
-      <span class="eyebrow reveal">What it is</span>
-      <h2 class="section reveal" id="how-h">One desktop, <em>four P2P product loops</em>.</h2>
-      <p class="lede reveal">No P2P module bolted onto Chromium. PearBrowser is built bottom-up on the Holepunch / Pear stack: Hyperswarm for discovery, Hyperdrive for storage, Hyperbee for local data, Autobase for shared logs, and Ed25519 identities for user-owned trust.</p>
-      <div class="tiles">
-
-        <div class="tile reveal">
-          <div class="tile-icon t1" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          </div>
-          <h3>Browse <code>hyper://</code></h3>
-          <p>Paste a drive key, a z-base-32 key, a friendly name, or a clearnet address. PearBrowser streams P2P content directly from peers, routes clearnet tabs through its privacy proxy by default, applies Content Shield before requests leave, and shows site keys plus catalog provenance when you inspect what you opened.</p>
-        </div>
-
-        <div class="tile reveal d1">
-          <div class="tile-icon t2" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
-          </div>
-          <h3>Run Pear apps</h3>
-          <p>The Apps tab is a decentralized app store: curated, community, personal, Hyperbee, schema-sheets, and relay-index catalogues merge into one view. Publishers can seed an app to HiveRelay, pin it for availability, and publish the entry to a catalogue; users inspect provenance before launching.</p>
-        </div>
-
-        <div class="tile reveal d2">
-          <div class="tile-icon t3" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
-          </div>
-          <h3>Publish and pin</h3>
-          <p>The site editor publishes Hyperdrives and auto-pins them to HiveRelay. App publishers use the same loop: package the app, seed it to a relay, pin it, then publish the catalogue entry so it can be discovered from the Apps tab.</p>
-        </div>
-
-        <div class="tile reveal d3">
-          <div class="tile-icon t5" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-5"/></svg>
-          </div>
-          <h3>Inspect trust</h3>
-          <p>Apps, sites, search results, and permissions carry calm proof surfaces: catalogue source chips, signed/unsigned status, relay pins, live peers, release history, profile grants, and swarm-topic grants.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- IDENTITY & TRUST FEATURES -->
-  <section class="block" aria-labelledby="id-h">
-    <div class="wrap">
-      <span class="eyebrow reveal">Trust surfaces</span>
-      <h2 class="section reveal" id="id-h">Proof without protocol homework.</h2>
-      <p class="lede reveal">The product keeps trust visible but calm. You can use the app normally, then open details when you want to know what is signed, pinned, local, federated, or permissioned.</p>
+      <span class="eyebrow reveal">Proof, maturity, and honest limits</span>
+      <h2 class="section reveal" id="trust-h">Trust the evidence PearBrowser can show—not a bigger promise.</h2>
+      <p class="lede reveal">The browser keeps verification calm and available on demand. Stable product paths, local identity controls, and experimental features are labelled separately so package proof, runtime trust, and network availability are not blurred together.</p>
       <div class="tiles">
 
         <div class="tile reveal">
           <div class="tile-icon t1" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2 13 10"/><circle cx="8.5" cy="15.5" r="5.5"/><path d="m14 6 3 3M18 2l4 4-3 3"/></svg>
           </div>
-          <h3>BIP-39 identity + per-app keys</h3>
-          <p>A 12-word backup phrase restores your identity on a new device. Each site receives a different <code>appPubkey</code>, and Settings groups sign-in, profile, contact, and arbitrary swarm-topic grants by app for revocation.</p>
+          <h3>Verified release + catalogue</h3>
+          <p>Desktop v0.8.0 has checksum-verified package-proof builds for macOS, Windows, and Linux. Catalogue v11 contains 14 accepted entries, with source and target provenance shown before local installation.</p>
         </div>
 
         <div class="tile reveal d1">
           <div class="tile-icon t6" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
           </div>
-          <h3>Trusted-contact Nostr bridge <span class="pill phase"><span class="ld"></span>Phase 3</span></h3>
-          <p>Settings shows your <strong>npub</strong>, lets you link or revoke a cross-curve attestation, and can post NIP-01 notes signed with that key. The feed is trust-graph scoped: contact notes must match the contact's attested Nostr key. No public <code>wss://</code> relay client by default.</p>
+          <h3>Local identity + capability control</h3>
+          <p>A 12-word backup phrase restores your identity. Each site receives a different <code>appPubkey</code>, and Settings groups sign-in, profile, contact, and swarm-topic grants by app for review and revocation.</p>
         </div>
 
         <div class="tile reveal d2">
           <div class="tile-icon t2" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
           </div>
-          <h3>Search, names, and feeds from verified contacts</h3>
-          <p>Signed contact invites build the trusted frontier. Those contacts can enrich search, assert names, and contribute Nostr notes, but each surface preserves provenance so a local petname, contact claim, and curated default never look equivalent.</p>
+          <h3>Experimental stays labelled <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
+          <p>P2P names and petnames, encrypted device sync, trusted-contact feeds, and advanced network diagnostics remain opt-in or development-line surfaces. Their UI keeps provenance and recovery boundaries visible.</p>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <!-- EXPERIMENTAL / OPT-IN FEATURES -->
-  <section class="block" aria-labelledby="exp-h">
-    <div class="wrap">
-      <span class="eyebrow reveal">On the dev line</span>
-      <h2 class="section reveal" id="exp-h">Experimental features, <em>honestly labeled</em>.</h2>
-      <p class="lede reveal">The early surfaces stay opt-in and explicit. They are useful today, but the UI tells you where the edges are.</p>
-      <div class="tiles">
-
-        <div class="tile reveal">
-          <div class="tile-icon t4" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 9h8M8 13h5"/></svg>
-          </div>
-          <h3>P2P names &amp; petnames <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
-          <p>Type <code>pearname://name</code> or a bare word in the URL bar. Resolution checks your private petnames, your own registry records, trusted-contact claims, and curated defaults, while Unicode guardrails block confusable look-alikes.</p>
-        </div>
-
-        <div class="tile reveal d1">
-          <div class="tile-icon t5" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m9 8 3 3 3-3"/></svg>
-          </div>
-          <h3>Encrypted device sync <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
-          <p>Pair your own devices with a <code>sync://&lt;key&gt;:&lt;encKey&gt;</code> invite. The current sync surface covers bookmarks, open-tab snapshots, allowlisted settings, profile fields, recent history, contacts, and app grants, with rotate/forget recovery controls.</p>
-        </div>
-
-        <div class="tile reveal d2">
-          <div class="tile-icon t2" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/><circle cx="12" cy="12" r="9"/></svg>
-          </div>
-          <h3>Diagnostics that explain the network</h3>
-          <p>Settings exposes boot timing, proxy fetch mix, cache hit rate, P2P/relay split, storage usage, and live relay capability pills. It is product UX for a network that should be inspectable.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- KILLER PROPERTY -->
-  <section class="block" aria-labelledby="kill-h">
-    <div class="wrap killer-grid">
-      <div class="reveal">
-        <span class="eyebrow">The promise</span>
-        <h2 class="section" id="kill-h">Every site you visit, <em>stays visitable</em>.</h2>
-        <p style="color:var(--fg-soft); margin-bottom:14px">
-          Today's web is rented. The site you bookmarked five years ago is probably a 404 by now — the domain expired, the company pivoted, the host shut down, and your link died with it.
-        </p>
-        <p style="color:var(--fg-soft); margin-bottom:14px">
-          PearBrowser sites are <strong style="color:var(--fg)">Hyperdrives addressed by public key</strong> — no central account or DNS dependency — replicated peer-to-peer and pinned 24/7 on the <a href="https://github.com/bigdestiny2/P2P-Hiverelay">HiveRelay backbone</a>. The publisher being offline doesn't take the site down, because peers and relays can carry the bytes.
-        </p>
-        <p style="color:var(--fg-soft)">
-          When you bookmark a <code>hyper://</code> URL, you bookmark <strong style="color:var(--fg)">a thing that exists</strong> — not a thing that resolves to a thing if a company keeps paying for it.
-        </p>
-      </div>
-      <div class="killer-vis reveal d1">
-        <div class="killer-vis-row">
-          <span class="icon icon-up" aria-hidden="true">↑</span>
-          <span><b>You publish</b> — block editor, signed seed-request, <code>hyper://key/</code> in hand.</span>
-        </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-relay" aria-hidden="true">⟳</span>
-          <span><b>HiveRelay pins it</b> automatically and only reports “published” once a relay confirms replication.</span>
-        </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-off" aria-hidden="true">⏻</span>
-          <span><b>You close your laptop.</b> The site stays reachable.</span>
-        </div>
-        <div class="killer-vis-row">
-          <span class="icon icon-up" aria-hidden="true">✓</span>
-          <span><b>Anyone with the key</b> opens it in PearBrowser — or any web browser via <a href="https://github.com/bigdestiny2/hyper-fetch">hyper-fetch</a>.</span>
-        </div>
-      </div>
+      <ul class="boundary-list reveal" aria-label="PearBrowser trust boundaries">
+        <li><strong>Availability:</strong> a bookmarked or published <code>hyper://</code> site remains reachable only while a peer or accepted relay carrying its bytes is online.</li>
+        <li><strong>Distribution:</strong> checksum and package proof are verified for v0.8.0; macOS notarization and Windows public-trust signing remain pending.</li>
+        <li><strong>Privacy:</strong> PearBrowser adds no telemetry profile, but websites, search providers, peers, and relay operators can receive network metadata needed to answer a request.</li>
+      </ul>
     </div>
   </section>
 
@@ -485,7 +344,7 @@
         <a class="eco-card big reveal" href="https://github.com/bigdestiny2/P2P-Hiverelay">
           <div class="eco-icon hr" aria-hidden="true">H</div>
           <div class="eco-name">HiveRelay <span class="eco-tag">Backbone</span></div>
-          <div class="eco-desc">The always-on relay backbone behind every pinned site. Blind-encrypted seeding (the relay can't read your data), HTTP gateway for non-P2P browsers, and the network PearBrowser publishes to. Apache-2.0 — run your own node.</div>
+          <div class="eco-desc">An optional relay backbone for pinned sites. Blind-encrypted seeding (the relay can't read your data), an HTTP gateway for non-P2P browsers, and an availability route PearBrowser can publish to. Apache-2.0 — run your own node.</div>
           <div class="eco-link"><strong>github</strong>/bigdestiny2/P2P-Hiverelay →</div>
         </a>
 
@@ -595,7 +454,7 @@
           <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — package-proof builds on the <a href="download.html">download page</a>; Android and iOS source is merged and store delivery remains pending</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
           <tr><th scope="row">Legacy migration identifier</th><td><span class="key-block">tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
-          <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</span> — the same page, pinned 24/7 on HiveRelay</td></tr>
+          <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</span> — the same page, currently pinned on an accepted HiveRelay route</td></tr>
           </tbody>
         </table>
       </div>
@@ -709,7 +568,7 @@
           <ul>
             <li><a href="#install">Install</a></li>
             <li><a href="privacy.html">Privacy promise</a></li>
-            <li><a href="#demo">Product demo</a></li>
+            <li><a href="#product-loops">Product loops</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop">Source</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases">Releases</a></li>
             <li><a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">window.pear.swarm.v1</a></li>
@@ -736,7 +595,7 @@
         </div>
       </div>
       <div class="footer-meta">
-        <span>This site is itself a Hyperdrive — pinned 24/7, served by peers, addressed by key.</span>
+        <span>This site is itself a Hyperdrive — currently pinned, served by available peers, addressed by key.</span>
         <span class="badges">
           <span class="pill live"><span class="ld"></span>Lighthouse live</span>
           <span class="pill smoke"><span class="ld"></span>Search provenance live</span>
