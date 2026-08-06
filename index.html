@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PearBrowser — The Browser That Doesn't Track You</title>
-  <meta name="description" content="PearBrowser is a private desktop browser with built-in DuckDuckGo search, no telemetry, analytics, ads, tracking SDKs, or central account." />
+  <title>PearBrowser — The P2P web, in a real desktop browser</title>
+  <meta name="description" content="Open hyper:// sites, discover verified apps, publish, search, and connect directly to peers from a private desktop browser for macOS, Windows, and Linux." />
   <meta name="theme-color" content="#f6f8f7" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://pearbrowser.com/" />
-  <meta property="og:title" content="PearBrowser — The Browser That Doesn't Track You" />
-  <meta property="og:description" content="Open to private DuckDuckGo search with no PearBrowser search analytics, telemetry, ads, tracking SDKs, or central account." />
+  <meta property="og:title" content="PearBrowser — The P2P web, in a real desktop browser" />
+  <meta property="og:description" content="Browse hyper:// sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pearbrowser.com/" />
   <meta property="og:site_name" content="PearBrowser" />
   <meta property="og:image" content="https://pearbrowser.com/assets/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="PearBrowser — the browser that doesn't track you" />
+  <meta property="og:image:alt" content="PearBrowser — the P2P web in a real desktop browser" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PearBrowser — The Browser That Doesn't Track You" />
-  <meta name="twitter:description" content="Open to private DuckDuckGo search with no PearBrowser search analytics, telemetry, ads, tracking SDKs, or central account." />
+  <meta name="twitter:title" content="PearBrowser — The P2P web, in a real desktop browser" />
+  <meta name="twitter:description" content="Browse hyper:// sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local." />
   <meta name="twitter:image" content="https://pearbrowser.com/assets/og.png" />
-  <meta name="twitter:image:alt" content="PearBrowser — the browser that doesn't track you" />
+  <meta name="twitter:image:alt" content="PearBrowser — the P2P web in a real desktop browser" />
   <link rel="alternate" type="application/json" href="site-manifest.json" title="PearBrowser site manifest" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="PearBrowser facts for AI systems" />
   <link rel="stylesheet" href="assets/styles.css?v=20260722-private-search" />
@@ -34,7 +34,7 @@
         "@id": "https://pearbrowser.com/#website",
         "url": "https://pearbrowser.com/",
         "name": "PearBrowser",
-        "description": "A private desktop browser with built-in DuckDuckGo search and no telemetry, analytics, ads, tracking SDKs, or central account."
+        "description": "A private desktop browser for the regular and peer-to-peer web, with native hyper:// browsing, verified apps, publishing, and local-first data."
       },
       {
         "@type": "SoftwareApplication",
@@ -42,7 +42,7 @@
         "name": "PearBrowser",
         "url": "https://pearbrowser.com/",
         "downloadUrl": "https://pearbrowser.com/download",
-        "softwareVersion": "0.7.1",
+        "softwareVersion": "0.8.0",
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "macOS, Windows, Linux",
         "isAccessibleForFree": true,
@@ -53,12 +53,14 @@
         },
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
         "codeRepository": "https://github.com/bigdestiny2/pearbrowser-desktop",
-        "description": "PearBrowser is a privacy-first desktop browser for the regular and peer-to-peer web. Its first tab offers DuckDuckGo search without PearBrowser search analytics, while Content Shield is enabled and persistent visit history stays off by default.",
+        "description": "PearBrowser is a desktop browser for the regular and peer-to-peer web. It opens hyper:// sites directly, discovers verified apps, publishes P2P content, and keeps identity and history local-first.",
         "featureList": [
+          "Native hyper:// peer-to-peer browsing",
+          "Verified Pear v3 app discovery and installation",
+          "Local-first identity, history, and search",
           "Browser-owned private-search home powered by DuckDuckGo",
           "No PearBrowser usage telemetry or remote analytics",
-          "Content Shield enabled by default",
-          "Native hyper:// peer-to-peer browsing"
+          "Content Shield enabled by default"
         ]
       }
     ]
@@ -94,6 +96,7 @@
       </button>
       <div class="links" id="navLinks">
         <a href="index.html" class="active">Home</a>
+        <a href="#how-it-works">How it works</a>
         <a href="privacy.html">Privacy</a>
         <a href="features.html">Features</a>
         <a href="apps.html">Apps</a>
@@ -115,24 +118,24 @@
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
-        <span class="grad">the browser that doesn't track you</span>.
+        <span class="grad">the P2P web, in a real desktop browser</span>.
       </h1>
       <p class="hero-sub">
-        No telemetry. No analytics. No ads. No tracking SDKs. No central account.
-        <strong>Open the browser and search without a PearBrowser profile</strong>, while privacy protections block common tracking across the regular web.
-        <span class="hl">Private by default, open source, and built for people—not profiles.</span>
+        Open <code>hyper://</code> sites, discover verified apps, publish, search, and connect directly to peers — with your data kept local.
+        <strong>It feels like a familiar desktop browser</strong>, but the network underneath does not require a central host or account.
+        <span class="hl">No telemetry. No analytics. No ads. No tracking SDKs. No central account. Private by default, open source, and built for macOS, Windows, and Linux.</span>
       </p>
 
-      <div class="privacy-proof" aria-label="PearBrowser privacy promise">
-        <span><strong>0</strong> telemetry events</span>
-        <span><strong>0</strong> advertising profiles</span>
-        <span><strong>0</strong> tracking SDKs</span>
+      <div class="privacy-proof" aria-label="PearBrowser at a glance">
+        <span><strong>P2P</strong> direct connections</span>
+        <span><strong>Local</strong> identity and data</span>
+        <span><strong>No</strong> central account</span>
       </div>
 
       <div class="hero-actions">
         <a class="btn primary" href="download.html">Download for desktop →</a>
-        <a class="btn subtle" href="privacy.html">Read the privacy promise</a>
-        <a class="btn subtle" href="features.html">See every feature</a>
+        <a class="btn subtle" href="#how-it-works">See how it works</a>
+        <a class="btn subtle" href="privacy.html">Privacy promise</a>
       </div>
 
       <div class="hero-mini">
@@ -143,30 +146,58 @@
       <div class="trust-strip">
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/></svg>
-          No PearBrowser telemetry or analytics
+          Direct P2P browsing over Hypercore
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
-          History and local search are off by default
+          Identity and app data stay local-first
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          Content Shield is on by default
+          Verified Pear v3 app installs
         </span>
         <span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="2" aria-hidden="true"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
-          Open-source code you can inspect
+          No telemetry or central account
         </span>
       </div>
 
       <div class="hero-proof-grid" aria-label="PearBrowser product highlights">
-        <div class="proof-card"><strong>No surveillance business model</strong><span>PearBrowser does not collect usage telemetry or build a profile to sell ads.</span></div>
-        <div class="proof-card"><strong>Private search on launch</strong><span>The first tab opens to DuckDuckGo search. PearBrowser sends no search analytics and skips its optional persistent visit log.</span></div>
-        <div class="proof-card"><strong>Everyday web protection</strong><span>HTTPS-only navigation, tracking-link cleanup, third-party cookie blocking, fingerprint farbling, and Content Shield.</span></div>
-        <div class="proof-card"><strong>App store</strong><span>Submit browser content or a signed native release so other peers can open it or review and install it locally.</span></div>
+        <div class="proof-card"><strong>Browse the P2P web</strong><span>Open multiple <code>hyper://</code> tabs, follow links, bookmark sites, and stream content directly from peers.</span></div>
+        <div class="proof-card"><strong>Find apps you can verify</strong><span>Search a signed catalogue, inspect provenance, and review Pear v3 identity and target proofs before local installation.</span></div>
+        <div class="proof-card"><strong>Publish from the browser</strong><span>Create a Hyperdrive, update it locally, and share one stable key without setting up a server or DNS.</span></div>
+        <div class="proof-card"><strong>Keep control on your device</strong><span>Local-first identity, private search, explicit permissions, Content Shield, and no PearBrowser telemetry.</span></div>
       </div>
     </div>
   </header>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="block browser-how" aria-labelledby="how-h">
+    <div class="wrap">
+      <span class="eyebrow reveal">How it works</span>
+      <h2 class="section reveal" id="how-h">A familiar browser on top. A peer-to-peer engine underneath.</h2>
+      <p class="lede reveal">The desktop interface handles tabs, addresses, identity, and permissions. A local Bare backend handles storage, verification, and peer connections. The result is normal browser ergonomics without making a central server the source of truth.</p>
+
+      <div class="browser-stack reveal" aria-label="PearBrowser architecture">
+        <article><span>What you use</span><strong>Desktop browser</strong><p>Tabs, address bar, search, app catalogue, publishing, identity, and permission prompts.</p></article>
+        <div class="browser-stack-arrow" aria-hidden="true">↓</div>
+        <article><span>What runs locally</span><strong>Bare backend</strong><p>Hyperdrive stores files, Hyperbee indexes data, and signatures verify what you receive.</p></article>
+        <div class="browser-stack-arrow" aria-hidden="true">↓</div>
+        <article><span>Who carries the data</span><strong>Peers &amp; optional relays</strong><p>Hyperswarm finds direct peers. HiveRelay can add availability and alternate routes without becoming authority.</p></article>
+      </div>
+
+      <div class="browser-journey">
+        <article class="browser-step reveal"><span>01</span><h3>Enter or discover</h3><p>Paste a <code>hyper://</code> key, open a friendly link, or find an app in the signed catalogue.</p></article>
+        <article class="browser-step reveal d1"><span>02</span><h3>Resolve &amp; verify</h3><p>The browser resolves the app key and shows the provenance, signature, and release information it can prove.</p></article>
+        <article class="browser-step reveal d2"><span>03</span><h3>Fetch the best route</h3><p>It connects directly to peers when possible and can use an optional relay route when the network requires one.</p></article>
+        <article class="browser-step reveal"><span>04</span><h3>Run in isolation</h3><p>Each site or app runs inside a controlled tab rather than receiving unrestricted access to your machine.</p></article>
+        <article class="browser-step reveal d1"><span>05</span><h3>Grant capabilities</h3><p>Identity, publishing, profiles, native installs, and swarm access require explicit browser-owned permission.</p></article>
+        <article class="browser-step reveal d2"><span>06</span><h3>Keep or publish</h3><p>Bookmark the site, keep its data locally, or publish your own Hyperdrive and share its stable key.</p></article>
+      </div>
+
+      <p class="browser-boundary reveal"><strong>The useful boundary:</strong> a relay may improve reach or availability, but the browser still checks signed content and app identity. Delivery is not the same thing as trust.</p>
+    </div>
+  </section>
 
   <!-- PRIVATE SEARCH HOME -->
   <section id="private-search" class="block private-search-block" aria-labelledby="private-search-h">

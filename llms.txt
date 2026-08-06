@@ -1,6 +1,6 @@
 # PearBrowser
 
-> PearBrowser is a free, open-source desktop browser that does not track its users. It combines privacy-first browsing of the regular web with native access to peer-to-peer sites and apps.
+> PearBrowser is a free, open-source desktop browser for the regular and peer-to-peer web. It opens hyper:// sites, discovers verified apps, publishes directly to peers, and keeps identity and browsing data local-first without tracking its users.
 
 ## Privacy promise
 
@@ -22,12 +22,13 @@
 - Current desktop packages are SHA-256-verifiable package-proof builds, not public-trust installers. macOS is ad-hoc signed but not notarized; Windows is unsigned.
 - Signed catalogue v11 carries 14 apps. Native Pear v3 submissions bind canonical production identity, product, version and targets to one signed receipt and may include a bounded byte-validated icon.
 - PearBrowser can browse ordinary HTTPS websites and native hyper:// peer-to-peer sites.
+- Its desktop interface provides familiar tabs, addresses, search, app discovery, publishing, identity, and permission prompts over a local Bare backend that handles Hyperdrive storage, verification, and Hyperswarm peer connections.
 - The browser includes a private-search home powered by DuckDuckGo, decentralized app catalogues, local-first Lighthouse search, P2P publishing, browser-owned Content Shield lists, and capability-gated Pear Plugins.
 - Source license: Apache-2.0.
 
 ## Canonical pages
 
-- [Homepage](https://pearbrowser.com/): Product overview and primary privacy claim.
+- [Homepage](https://pearbrowser.com/): P2P desktop-browser overview, visual architecture, product journey, and privacy promise.
 - [Privacy](https://pearbrowser.com/privacy): Exact privacy scope, defaults, network visibility, and Tor limitations.
 - [Features](https://pearbrowser.com/features): Complete browser feature inventory.
 - [Apps](https://pearbrowser.com/apps): Peer-to-peer app catalogue and ecosystem.
@@ -41,4 +42,4 @@
 - [PearBrowser Desktop releases](https://github.com/bigdestiny2/pearbrowser-desktop/releases)
 - [HiveRelay source](https://github.com/bigdestiny2/P2P-Hiverelay)
 
-Last reviewed: 2026-07-29.
+Last reviewed: 2026-08-06.

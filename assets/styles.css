@@ -473,6 +473,19 @@
     }
     .proof-card strong { display: block; color: var(--fg); margin-bottom: 5px; }
     .proof-card span { color: var(--fg-soft); font-size: 12.5px; line-height: 1.45; }
+    .browser-how { background: linear-gradient(180deg, transparent, rgba(22,131,79,0.035), transparent); }
+    .browser-stack { display: grid; grid-template-columns: minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr); align-items: stretch; gap: 10px; margin-top: 40px; }
+    .browser-stack article { padding: 24px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-md); }
+    .browser-stack article span { display: block; margin-bottom: 8px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .browser-stack article strong { display: block; margin-bottom: 8px; color: var(--fg); font-size: 18px; }
+    .browser-stack article p { color: var(--fg-soft); font-size: 13.5px; line-height: 1.6; }
+    .browser-stack-arrow { display: grid; place-items: center; color: var(--dim); font-size: 20px; transform: rotate(-90deg); }
+    .browser-journey { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+    .browser-step { min-width: 0; padding: 20px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-md); }
+    .browser-step > span { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 18px; border: 1px solid rgba(22,131,79,.22); border-radius: 8px; background: var(--bg-elev-2); color: var(--green); font-family: "SF Mono", ui-monospace, monospace; font-size: 11px; font-weight: 700; }
+    .browser-step h3 { margin-bottom: 7px; font-size: 16px; }
+    .browser-step p { color: var(--fg-soft); font-size: 13.5px; line-height: 1.55; }
+    .browser-boundary { margin-top: 18px; padding: 14px 16px; border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; background: rgba(22,131,79,.055); color: var(--fg-soft); font-size: 13.5px; }
     .product-demo-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -610,9 +623,13 @@
     .catalog-mini span { color: var(--muted); font-size: 11.5px; }
     @media (max-width: 920px) {
       .hero-proof-grid, .product-demo-grid { grid-template-columns: 1fr 1fr; }
+      .browser-stack { grid-template-columns: 1fr; }
+      .browser-stack-arrow { height: 20px; transform: none; }
+      .browser-journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
       .hero-proof-grid, .product-demo-grid { grid-template-columns: 1fr; }
+      .browser-journey { grid-template-columns: 1fr; }
       .demo-card { min-height: auto; }
     }
 

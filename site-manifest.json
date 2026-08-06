@@ -1,9 +1,9 @@
 {
   "id": "pearbrowser-com",
   "name": "PearBrowser public site",
-  "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser with built-in DuckDuckGo search and no telemetry or remote analytics.",
+  "description": "Static public and Hyperdrive-ready website for PearBrowser, the desktop browser for the regular and peer-to-peer web with native hyper:// browsing, verified apps, publishing, and local-first data.",
   "version": "0.8.0",
-  "updated": "2026-07-29",
+  "updated": "2026-08-06",
   "privacy": {
     "claim": "PearBrowser doesn't track you.",
     "telemetry": false,
