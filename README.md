@@ -29,7 +29,7 @@ npm run preview
 npm run build:sites
 ```
 
-- `npm run check` validates the public release/download record, legacy migration record, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, metadata, JSON-LD, sitemap, crawler directives, AI facts files, privacy boundaries, and mobile/browser ecosystem anchors.
+- `npm run check` validates the public release/download record, independently tracked source/runtime record, legacy migration record, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, metadata, JSON-LD, sitemap, crawler directives, AI facts files, privacy boundaries, and mobile/browser ecosystem anchors.
 - `npm run preview` serves the static site at `http://127.0.0.1:4173`.
 - `npm run build:sites` packages the same static source into the Cloudflare Workers-compatible entrypoint used for private Sites deployment.
 
@@ -40,7 +40,7 @@ No bundler, no framework, no install step beyond having Node and Python availabl
 When PearBrowser Desktop ships a new version:
 
 1. Confirm the approved native release artifacts and their SHA-256 values.
-2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed.
+2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the source version/runtime contract, downloadable version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed. Source and download versions are independent until new artifacts pass verification.
 3. Re-run `npm run check`.
 4. Preview locally and confirm the public site still reads cleanly on desktop and mobile.
 

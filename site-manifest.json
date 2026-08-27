@@ -3,7 +3,7 @@
   "name": "PearBrowser public site",
   "description": "Static public and Hyperdrive-ready website for PearBrowser, the private desktop browser for the regular and peer-to-peer web with native hyper:// browsing, verified apps, publishing, and local-first data.",
   "version": "0.8.0",
-  "updated": "2026-08-06",
+  "updated": "2026-08-27",
   "privacy": {
     "claim": "PearBrowser doesn't track you.",
     "telemetry": false,
@@ -52,6 +52,21 @@
     },
     "legacyMigrationId": "tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "source": "https://github.com/bigdestiny2/pearbrowser-desktop/releases"
+  },
+  "desktopSource": {
+    "version": "v0.9.1",
+    "status": "verified-source-preview",
+    "versionCommit": "b5c26981f856d87a60feb7f4243635c3538393de",
+    "v3VerificationCommit": "32109b08f87794b28e447e1e66ebde79923e4ebd",
+    "releaseAssetsAvailable": false,
+    "downloadBoundary": "v0.8.0 remains the latest checksum-verified public download until v0.9.1 receives signed release assets.",
+    "runtime": {
+      "entrypoint": "local-resolved-worker-only",
+      "pearRuntime": "1.3.1",
+      "pearRuntimeUpdater": "3.4.0",
+      "pearInstall": "1.2.2",
+      "removedLauncherSupported": false
+    }
   },
   "ecosystemAnchors": {
     "desktop": "../../01-browser/pearbrowser-desktop",
@@ -120,7 +135,7 @@
   "checks": [
     "release metadata matches the approved public native-release record",
     "local page, asset, and anchor links resolve",
-    "manifest release, installer URL, legacy migration record, and Hyperdrive keys match the public HTML",
+    "manifest release, source/runtime status, installer URL, legacy migration record, and Hyperdrive keys match the public HTML",
     "privacy copy, structured data, social metadata, sitemap, robots, and AI discovery files stay consistent"
   ]
 }

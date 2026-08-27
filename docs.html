@@ -70,7 +70,7 @@
     <div class="wrap">
       <span class="eyebrow reveal">Documentation</span>
       <h1 class="reveal">Get up and running.</h1>
-      <p class="lede reveal">Everything you need to install PearBrowser, understand its address schemes, and use search, names, Nostr, and publishing. Native desktop packages are the target distribution path, but the stable Pear key remains the temporary legacy fallback until installer artifacts are attached.</p>
+      <p class="lede reveal">Everything you need to install PearBrowser, understand its address schemes, and use search, names, Nostr, and publishing. Use a verified native desktop package: an older Pear identifier is migration metadata only and is never a launch fallback.</p>
     </div>
   </header>
 
@@ -97,6 +97,7 @@
 
           <div class="doc-section reveal" id="install">
             <h2>Install &amp; launch</h2>
+            <p><strong>Source status:</strong> development is verified at v0.9.1 with <code>pear-runtime@1.3.1</code>, <code>pear-runtime-updater@3.4.0</code>, and <code>pear-install@1.2.2</code>. The latest checksum-verified public downloads remain v0.8.0 until v0.9.1 package assets pass the release gate.</p>
             <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0">v0.8.0 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. These are package-proof artifacts, not public-trust installers: verify them with SHA-256; Developer ID/notarization and Windows signing remain in progress.</p>
             <pre><code># Download &amp; verify (example)
 shasum -a 256 PearBrowser-0.8.0-macos-arm64.app.zip
