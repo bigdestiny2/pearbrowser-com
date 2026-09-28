@@ -233,7 +233,7 @@
           </details>
           <details>
             <summary>Are cookies isolated between P2P apps?</summary>
-            <p>No. In desktop v0.9.0, P2P apps use different loopback ports on the same host, and Electron cookies are shared across those ports. This is a known limitation being tracked in the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft desktop update</a>.</p>
+            <p>No. In desktop v0.9.0, P2P apps use different loopback ports on the same host, and Electron cookies are shared across those ports. The <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft desktop update</a> separates drive hosts, but ordinary default/Lax cookies still fail inside its embedded Hyper tabs. It remains unreleased.</p>
           </details>
           <details>
             <summary>Does PearBrowser block ads and trackers?</summary>
