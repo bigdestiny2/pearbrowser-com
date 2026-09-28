@@ -221,8 +221,9 @@ try {
 
   requireEqual(downloads.version, version, 'downloads release version')
   requireEqual(downloads.sourceStatus && downloads.sourceStatus.version, sourceVersion, 'downloads source version')
-  requireEqual(downloads.sourceStatus && downloads.sourceStatus.candidateCommit, manifest.desktopSource && manifest.desktopSource.candidateCommit, 'desktop draft commit')
-  if (!/^[0-9a-f]{40}$/.test(manifest.desktopSource && manifest.desktopSource.candidateCommit || '')) fail('desktop draft commit must be a full Git SHA')
+  if ('candidateCommit' in (downloads.sourceStatus || {}) || 'candidateCommit' in (manifest.desktopSource || {})) {
+    fail('moving draft PR heads must not be pinned in public release metadata')
+  }
   requireEqual(downloads.sourceStatus && downloads.sourceStatus.status, 'draft-candidate', 'downloads source status')
   requireEqual(downloads.sourceStatus && downloads.sourceStatus.pullRequest, 'https://github.com/bigdestiny2/pearbrowser-desktop/pull/84', 'downloads desktop draft PR')
   requireEqual(downloads.mobile && downloads.mobile.android && downloads.mobile.android.pullRequest, 'https://github.com/bigdestiny2/PearBrowser/pull/6', 'Android draft PR')
@@ -256,6 +257,7 @@ try {
   for (const entry of manifest.files || []) {
     if (!entry.path || !fileExists(entry.path)) fail(`manifest references missing file "${entry.path}"`)
   }
+  if (!(manifest.files || []).some((entry) => entry.path === 'site-manifest.json')) fail('P2P publication manifest must include itself')
   for (const page of htmlPages) {
     if (!manifest.files.some((entry) => entry.path === page)) fail(`manifest files missing ${page}`)
   }

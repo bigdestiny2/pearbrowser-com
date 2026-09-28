@@ -8,7 +8,6 @@
     "version": "v0.9.1",
     "status": "draft-candidate",
     "pullRequest": "https://github.com/bigdestiny2/pearbrowser-desktop/pull/84",
-    "candidateCommit": "4b2f43cc0c61098484427e70a5c6b6dd23829c0a",
     "releaseAssetsAvailable": false,
     "pearRuntime": "1.3.1",
     "pearRuntimeUpdater": "3.4.0",
