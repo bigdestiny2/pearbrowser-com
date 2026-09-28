@@ -31,9 +31,9 @@
   "hyperdrive": {
     "driveKey": "03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f",
     "url": "hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/",
-    "status": "published-key-current-contents-unverified",
+    "status": "published-key-older-edition",
     "availabilityBoundary": "reachable only while at least one peer or accepted relay carrying the bytes is online",
-    "contentBoundary": "The advertised Hyperdrive key is an earlier website edition; this HTTPS candidate has not been published or checked at that key."
+    "contentBoundary": "A fresh-peer read on 2026-09-28 found website v0.7.1 at the advertised key. The current HTTPS v0.9.0 source is not published there."
   },
   "desktopRelease": {
     "version": "v0.9.0",
@@ -61,7 +61,6 @@
     "version": "v0.9.1",
     "status": "draft-candidate",
     "pullRequest": "https://github.com/bigdestiny2/pearbrowser-desktop/pull/84",
-    "candidateCommit": "4b2f43cc0c61098484427e70a5c6b6dd23829c0a",
     "releaseAssetsAvailable": false,
     "downloadBoundary": "v0.9.0 is the latest published desktop download. v0.9.1 is a draft Pear 3.4/Autobee compatibility candidate blocked on P2P app cookie isolation and public-trust signing.",
     "runtime": {
@@ -84,6 +83,10 @@
     "publishersCatalog": "../pearbrowser-publishers"
   },
   "files": [
+    {
+      "path": "site-manifest.json",
+      "role": "publish-manifest"
+    },
     {
       "path": "index.html",
       "role": "landing"
