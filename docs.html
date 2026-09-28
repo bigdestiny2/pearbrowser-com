@@ -100,7 +100,7 @@
             <p><strong>Source status:</strong> <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">v0.9.1 is an unmerged draft candidate</a> with Pear 3.4, <code>pear-runtime@1.3.1</code>, <code>pear-runtime-updater@3.4.0</code>, <code>pear-install@1.3.0</code>, and an Autobee 2.12.1 compatibility test only. No user data has migrated to Autobee. P2P app cookie isolation and public-trust signing block release. The latest published desktop downloads are v0.9.0.</p>
             <p>Get desktop builds from the <a href="download.html">download page</a> (or the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0">v0.9.0 release page</a>): macOS <code>.app.zip</code>, Windows <code>.msix</code>, Linux <code>.AppImage</code>. These are package-proof artifacts, not public-trust installers: verify them with SHA-256; Developer ID/notarization and Windows signing remain in progress.</p>
             <pre><code># Download &amp; verify (example)
-shasum -a 256 PearBrowser-0.8.0-macos-arm64.app.zip
+shasum -a 256 PearBrowser-0.9.0-macos-arm64.app.zip
 
 Legacy migration identifier: tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</code></pre>
             <p><strong>Current P2P cookie limit:</strong> v0.9.0 separates P2P drives by loopback port, but Electron cookies are shared by the <code>127.0.0.1</code> host. Avoid storing secrets in P2P page cookies.</p>

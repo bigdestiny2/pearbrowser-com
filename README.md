@@ -17,7 +17,7 @@ This repo stays intentionally small:
 - Latest published desktop download: [v0.9.0](https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0), with checksum-verifiable package-proof assets for macOS, Windows, and Linux. Developer ID notarization and Windows public-trust signing are pending.
 - [Desktop PR #84](https://github.com/bigdestiny2/pearbrowser-desktop/pull/84) is an unmerged v0.9.1 Pear 3.4/Autobee compatibility candidate. Autobee is not a production data migration. P2P app cookies remain shared across drive ports on the loopback host; do not claim cookie isolation.
 - [Mobile PR #6](https://github.com/bigdestiny2/PearBrowser/pull/6) is an unmerged draft. Signed distribution, store validation, and device smoke are pending.
-- This website branch is a local candidate. HTTPS deployment and the advertised Hyperdrive mirror have not been updated by this branch.
+- A source commit and passing local checks do not establish deployment. Check the public HTTPS site and advertised Hyperdrive mirror separately; the latter was last verified as an older v0.7.1 edition on 2026-09-28.
 
 ## Anchor inputs
 

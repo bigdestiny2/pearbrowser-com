@@ -176,6 +176,14 @@ try {
   const expectedLegacyMigration = `Legacy migration identifier: ${legacyMigrationId}`
   const expectedSourceStatus = `${sourceVersion} is an unmerged`
 
+  const artifactVersion = version.slice(1)
+  if (!site.includes(`"softwareVersion": "${artifactVersion}"`)) fail('SoftwareApplication JSON-LD version is out of sync with the published release')
+  for (const page of ['index.html', 'docs.html', 'download.html']) {
+    for (const match of read(path.join(root, page)).matchAll(/PearBrowser-(\d+\.\d+\.\d+)-(?:macos|windows|linux)-/g)) {
+      if (match[1] !== artifactVersion) fail(`${page} contains a stale desktop asset version: ${match[1]}`)
+    }
+  }
+
   if (!site.includes(expectedHero)) fail(`hero release line is out of sync; expected "${expectedHero}"`)
   if (!site.includes(expectedSpec)) fail(`spec table release line is out of sync; expected "${expectedSpec}"`)
   if (!site.includes(releaseUrl)) fail(`installer URL is missing from the public HTML; expected "${releaseUrl}"`)
