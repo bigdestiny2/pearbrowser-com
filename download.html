@@ -115,7 +115,7 @@
           Desktop packages are <strong>package-proof builds</strong>: macOS is ad-hoc signed but not notarized, Windows is unsigned,
           and Linux is checksum-verified. They are not public-trust installers. Every build below is SHA-256-verifiable.
         </p>
-        <p class="dl-note"><strong>v0.9.1 is an unmerged <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft candidate</a>.</strong> Its Pear 3.4 and Autobee compatibility work has no published installer. P2P cookie isolation and public-trust signing remain open; v0.9.0 is the latest published download.</p>
+        <p class="dl-note"><strong>v0.9.1 is an unmerged <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft candidate</a>.</strong> Its Pear 3.4 and Autobee compatibility work has no published installer. A local macOS Electron probe passed the draft’s distinct-host cookie check; integrated package proof and public-trust signing remain open. v0.9.0 is the latest published download.</p>
 
         <p class="dl-note"><strong>Known v0.9.0 privacy limit:</strong> P2P apps on different <code>127.0.0.1</code> ports share Electron host cookies. Do not store secrets in P2P page cookies. Read the <a href="privacy.html">privacy details</a> before using untrusted apps.</p>
 
