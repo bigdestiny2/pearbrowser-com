@@ -13,7 +13,7 @@
     "pearRuntimeUpdater": "3.4.0",
     "pearInstall": "1.3.0",
     "autobee": "2.12.1 development compatibility test only; no user-data migration",
-    "note": "v0.9.1 Pear 3.4 and Autobee work is an unmerged draft candidate. The draft distinct-host fix passed a local macOS Electron cookie probe; real P2P app cookie-isolation capture in the packaged app, clean-install validation, and public-trust signing remain release blockers. The latest published desktop download is v0.9.0."
+    "note": "v0.9.1 Pear 3.4 and Autobee work is an unmerged draft candidate. The draft distinct-host fix passed a local macOS Electron probe, but ordinary default/Lax cookies failed in embedded Hyper tabs. First-party tab work, trusted packaged-app proof, clean-install validation, and public-trust signing remain release blockers. The latest published desktop download is v0.9.0."
   },
   "platforms": [
     {
