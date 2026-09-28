@@ -62,7 +62,7 @@
     "status": "draft-candidate",
     "pullRequest": "https://github.com/bigdestiny2/pearbrowser-desktop/pull/84",
     "releaseAssetsAvailable": false,
-    "downloadBoundary": "v0.9.0 is the latest published desktop download. v0.9.1 is a draft Pear 3.4/Autobee compatibility candidate blocked on P2P app cookie isolation and public-trust signing.",
+    "downloadBoundary": "v0.9.0 is the latest published desktop download. v0.9.1 is a draft Pear 3.4/Autobee compatibility candidate. Its distinct-host fix passed a local macOS Electron cookie probe; integrated packaged-app origin proof and public-trust signing remain open.",
     "runtime": {
       "entrypoint": "local-resolved-worker-only",
       "pearRuntime": "1.3.1",
