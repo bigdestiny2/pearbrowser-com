@@ -4,7 +4,7 @@
 
 PearBrowser is a free, open-source desktop browser for macOS, Windows, and Linux. It browses ordinary HTTPS websites and native hyper:// peer-to-peer sites. It also includes a private-search home powered by DuckDuckGo, decentralized app catalogues, local-first search, P2P identities, site publishing, Content Shield filter lists, and capability-gated Pear Plugins.
 
-PearBrowser Desktop v0.8.0 is the current public release. Desktop packages are SHA-256-verifiable package-proof builds, not public-trust installers. macOS is ad-hoc signed but not notarized; Windows is unsigned. The download page publishes checksums for verification.
+PearBrowser Desktop v0.9.0 is the latest published public download, with GitHub SHA-256 sidecars and release manifests. It is a package-proof release, not a public-trust installer: macOS is ad-hoc signed but not notarized, and Windows is unsigned. Desktop PR #84 is an unmerged v0.9.1 Pear 3.4 draft candidate with pear-runtime 1.3.1, pear-runtime-updater 3.4.0, and pear-install 1.3.0. Autobee 2.12.1 is a development compatibility test only; existing browser data has not migrated. P2P app cookie isolation and public-trust signing remain release blockers; no v0.9.1 installer is published.
 
 Signed catalogue v11 carries 14 apps. Pear v3 native submissions bind a canonical production identity, product, version and target set to one signed review receipt. Optional PNG, JPEG, WebP, GIF and safe SVG icons are bounded and byte-validated. Catalogue discovery never makes a remote value executable: the desktop host confirms installation, revalidates installed identity and launches through the operating system; mobile preserves desktop-only listings but does not execute native links.
 
@@ -29,12 +29,14 @@ PearBrowser enables these protections by default:
 - Content Shield request and cosmetic filtering for common ads and trackers.
 - HTTPS-only navigation.
 - Removal of common tracking and click identifiers from clearnet URLs.
-- Third-party cookie blocking.
+- Third-party cookie blocking for regular web navigation; P2P app cookies remain shared across loopback drive ports.
 - Fingerprint farbling.
 - Strict cross-origin referrer policy.
 - Privacy-proxied clearnet navigation inside the browser.
 
 Users can change some privacy controls. Telemetry cannot be enabled.
+
+Known published v0.9.0 limit: P2P drives run on separate ports of 127.0.0.1 in a shared Electron session. Cookies are scoped to the host rather than the port, so non-HttpOnly P2P page cookies may be visible across drives. Do not store secrets in P2P page cookies. Per-drive cookie isolation is not yet proven.
 
 ## Is PearBrowser anonymous?
 
@@ -42,7 +44,7 @@ No. PearBrowser is private by default, but it is not an anonymity network.
 
 Regular websites may receive the user's IP address and request data needed to serve a page. Direct P2P peers can receive network metadata needed to exchange data. HiveRelay operators can receive requests routed through their gateways. Signed records served by relays are re-verified by PearBrowser, which prevents a relay from becoming a content trust authority; that verification does not hide network metadata.
 
-Some HiveRelay operators support optional Tor hidden-service endpoints for relay-layer IP obscuring. PearBrowser Desktop v0.8.0 does not automatically detect those endpoints or route browser traffic through Tor. Current browsing should not be described as Tor-protected or anonymous.
+Some HiveRelay operators support optional Tor hidden-service endpoints for relay-layer IP obscuring. PearBrowser Desktop v0.9.0 does not automatically detect those endpoints or route browser traffic through Tor. Current browsing should not be described as Tor-protected or anonymous.
 
 ## How does PearBrowser differ from a conventional browser?
 
@@ -57,7 +59,7 @@ PearBrowser adds native peer-to-peer capabilities to normal browsing:
 
 ## What should not be claimed?
 
-Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not say a web-search query never leaves the device: DuckDuckGo receives it to return results. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
+Do not claim P2P app cookies are isolated between drives in published v0.9.0. Mobile PR #6 remains an unmerged draft with signing, store validation, and device smoke open. Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not say a web-search query never leaves the device: DuckDuckGo receives it to return results. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
 
 ## Canonical links
 
@@ -71,4 +73,4 @@ Do not describe PearBrowser as anonymous, as automatically using Tor, or as expo
 - Desktop releases: https://github.com/bigdestiny2/pearbrowser-desktop/releases
 - HiveRelay source: https://github.com/bigdestiny2/P2P-Hiverelay
 
-Last reviewed against PearBrowser Desktop v0.8.0 on 2026-07-29.
+Last reviewed against published PearBrowser Desktop v0.9.0 and draft desktop PR #84/mobile PR #6 on 2026-09-28.

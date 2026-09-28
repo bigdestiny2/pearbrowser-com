@@ -1,9 +1,21 @@
 {
-  "version": "v0.8.0",
-  "updated": "2026-07-29",
-  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0",
-  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.8.0/",
-  "note": "v0.8.0 package-proof artifacts were built on GitHub Actions and independently verified against their SHA-256 sidecars. macOS is ad-hoc signed but not Developer ID signed or notarized, Windows is unsigned, and Linux is checksum-verified. These are not public-trust installers.",
+  "version": "v0.9.0",
+  "updated": "2026-09-28",
+  "releaseUrl": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0",
+  "assetBase": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/download/v0.9.0/",
+  "note": "v0.9.0 package-proof artifacts are published on GitHub with SHA-256 sidecars and manifests. macOS is ad-hoc signed but not Developer ID signed or notarized, Windows is unsigned, and Linux is checksum-verified. These are not public-trust installers.",
+  "sourceStatus": {
+    "version": "v0.9.1",
+    "status": "draft-candidate",
+    "pullRequest": "https://github.com/bigdestiny2/pearbrowser-desktop/pull/84",
+    "candidateCommit": "4b2f43cc0c61098484427e70a5c6b6dd23829c0a",
+    "releaseAssetsAvailable": false,
+    "pearRuntime": "1.3.1",
+    "pearRuntimeUpdater": "3.4.0",
+    "pearInstall": "1.3.0",
+    "autobee": "2.12.1 development compatibility test only; no user-data migration",
+    "note": "v0.9.1 Pear 3.4 and Autobee work is an unmerged draft candidate. P2P app cookie isolation and public-trust signing remain release blockers. The latest published desktop download is v0.9.0."
+  },
   "platforms": [
     {
       "os": "macos",
@@ -16,16 +28,16 @@
         {
           "arch": "arm64",
           "archLabel": "Apple Silicon (arm64)",
-          "file": "PearBrowser-0.8.0-macos-arm64.app.zip",
-          "sha256": "293077f80d249bbd71fce3676a79db725be709c615ddf51e2f8346800be7d254",
-          "bytes": 22608248
+          "file": "PearBrowser-0.9.0-macos-arm64.app.zip",
+          "sha256": "98e4ca705ea69dafdb751f33a151a01a5758e4684025f3323b9f986b936975b4",
+          "bytes": 22608144
         },
         {
           "arch": "x64",
           "archLabel": "Intel (x64)",
-          "file": "PearBrowser-0.8.0-macos-x64.app.zip",
-          "sha256": "a7aadb987761db5e4f5a6437b51cedc3bf48df40279843be854987309f474c65",
-          "bytes": 23694273
+          "file": "PearBrowser-0.9.0-macos-x64.app.zip",
+          "sha256": "bc1c972b636be4f1d45928bc90c0cde6c955fab098fe9b7eb7797758393ab11c",
+          "bytes": 23694347
         }
       ]
     },
@@ -40,9 +52,9 @@
         {
           "arch": "x64",
           "archLabel": "x64",
-          "file": "PearBrowser-0.8.0-windows-x64.msix",
-          "sha256": "12ec4fa68a47ebfac901f5d1d55db3d8916b0f689d8136507394299f3da97000",
-          "bytes": 19223200
+          "file": "PearBrowser-0.9.0-windows-x64.msix",
+          "sha256": "6a9cd982ee5cf18644a7e8fb974c836cfad9159bdfb502ba62029f7428c0732e",
+          "bytes": 19223171
         }
       ]
     },
@@ -57,9 +69,9 @@
         {
           "arch": "x64",
           "archLabel": "x86_64",
-          "file": "PearBrowser-0.8.0-linux-x64.AppImage",
-          "sha256": "8a675c0c521deb5449cd3d9ff2c09c854d8c9e199a955873bd1e932cf7ff09ec",
-          "bytes": 52578808
+          "file": "PearBrowser-0.9.0-linux-x64.AppImage",
+          "sha256": "12ebac6e74959af3c2d72c1c7a0922b9c60d374d61e2bfe428b194229cac777b",
+          "bytes": 52595192
         }
       ]
     }
@@ -67,18 +79,24 @@
   "p2p": {
     "legacyMigrationId": "tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty",
     "hyper": "hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/",
-    "note": "Legacy migration record only. It is not a Pear v3 launch or install path; use the native package for this device."
+    "note": "Legacy migration record only. It is not a Pear v3 launch or install path. The linked website Hyperdrive is an earlier published edition; its current bytes have not been verified against this HTTPS candidate."
   },
   "mobile": {
     "android": {
-      "status": "pending",
-      "statusLabel": "Source ready · store pending",
-      "note": "The v0.8.0 catalogue contract is merged and CI-verified. A production-signed APK and Google Play listing remain pending."
+      "status": "draft-candidate",
+      "statusLabel": "Draft source · store pending",
+      "pullRequest": "https://github.com/bigdestiny2/PearBrowser/pull/6",
+      "note": "Mobile PR #6 is an unmerged draft. Android signing, Play validation, native compilation, device smoke, and P2P app origin isolation remain open; no signed APK or store listing is published."
     },
     "ios": {
-      "status": "pending",
-      "statusLabel": "App Store / TestFlight",
-      "note": "The v0.8.0 catalogue contract is merged and CI-verified. iOS delivery still requires a production-signed App Store or TestFlight build and review."
+      "status": "draft-candidate",
+      "statusLabel": "Draft source · store pending",
+      "pullRequest": "https://github.com/bigdestiny2/PearBrowser/pull/6",
+      "note": "Mobile PR #6 is an unmerged draft. Apple team signing, TestFlight/App Store validation, device smoke, and P2P app origin isolation remain open; no iOS store build is published."
     }
+  },
+  "knownLimitations": {
+    "p2pAppCookies": "In published v0.9.0, P2P drives use separate ports on 127.0.0.1, but Electron cookies are shared by host. A P2P page cookie can be visible to another drive; avoid putting secrets in P2P page cookies.",
+    "publicTrustSigning": "macOS Developer ID notarization and Windows signing are not complete."
   }
 }

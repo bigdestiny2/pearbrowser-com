@@ -12,6 +12,13 @@ This repo stays intentionally small:
 - `scripts/check-sync.js` is a no-deps guardrail that verifies the site still matches the current desktop release metadata, manifest, local page links, local assets, and anchor links.
 - `package.json` exists only to make preview and validation repeatable.
 
+## Release state for this candidate
+
+- Latest published desktop download: [v0.9.0](https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0), with checksum-verifiable package-proof assets for macOS, Windows, and Linux. Developer ID notarization and Windows public-trust signing are pending.
+- [Desktop PR #84](https://github.com/bigdestiny2/pearbrowser-desktop/pull/84) is an unmerged v0.9.1 Pear 3.4/Autobee compatibility candidate. Autobee is not a production data migration. P2P app cookies remain shared across drive ports on the loopback host; do not claim cookie isolation.
+- [Mobile PR #6](https://github.com/bigdestiny2/PearBrowser/pull/6) is an unmerged draft. Signed distribution, store validation, and device smoke are pending.
+- A source commit and passing local checks do not establish deployment. Check the public HTTPS site and advertised Hyperdrive mirror separately; the latter was last verified as an older v0.7.1 edition on 2026-09-28.
+
 ## Anchor inputs
 
 Update this site against these sources first:
@@ -29,7 +36,7 @@ npm run preview
 npm run build:sites
 ```
 
-- `npm run check` validates the public release/download record, legacy migration record, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, metadata, JSON-LD, sitemap, crawler directives, AI facts files, privacy boundaries, and mobile/browser ecosystem anchors.
+- `npm run check` validates the public release/download record, independently tracked source/runtime record, legacy migration record, production length, SWARM docs link, site manifest, native download filenames/checksums/sizes, local page links, metadata, JSON-LD, sitemap, crawler directives, AI facts files, privacy boundaries, and mobile/browser ecosystem anchors.
 - `npm run preview` serves the static site at `http://127.0.0.1:4173`.
 - `npm run build:sites` packages the same static source into the Cloudflare Workers-compatible entrypoint used for private Sites deployment.
 
@@ -40,7 +47,7 @@ No bundler, no framework, no install step beyond having Node and Python availabl
 When PearBrowser Desktop ships a new version:
 
 1. Confirm the approved native release artifacts and their SHA-256 values.
-2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed.
+2. Update `index.html`, `site-manifest.json`, and `downloads.json` if the source version/runtime contract, downloadable version, production length, site drive key, installer artifact URL/status, exact file size, checksum, or surrounding product copy changed. Source and download versions are independent until new artifacts pass verification.
 3. Re-run `npm run check`.
 4. Preview locally and confirm the public site still reads cleanly on desktop and mobile.
 

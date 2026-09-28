@@ -82,11 +82,11 @@
     if (!box) return
     box.hidden = false
     if (detected.os === 'ios') {
-      text.innerHTML = '<strong>iPhone / iPad</strong> detected — PearBrowser for iOS ships via the App Store / TestFlight (coming soon).'
+      text.innerHTML = '<strong>iPhone / iPad</strong> detected — the draft mobile candidate still needs signing and App Store / TestFlight validation.'
       return
     }
     if (detected.os === 'android') {
-      text.innerHTML = '<strong>Android</strong> detected — a signed APK and Play listing are coming soon.'
+      text.innerHTML = '<strong>Android</strong> detected — the draft mobile candidate still needs a signed APK and Play validation.'
       return
     }
     var p = data.platforms.find(function (x) { return x.os === detected.os })
@@ -108,7 +108,7 @@
         '<div class="dl-cmd" style="margin:0;"><code>' + esc(data.p2p.legacyMigrationId) + '</code></div>' +
         '<p class="dl-note">This identifies an older installation; it is not a v3 launch or install command.</p>' +
         '<div class="dl-build-row" style="border-top:1px solid var(--line);padding-top:10px;">' +
-        '<a class="btn subtle" href="' + esc(data.p2p.hyper) + '">Open the P2P edition of this site ↗</a></div>'
+        '<a class="btn subtle" href="' + esc(data.p2p.hyper) + '">Open an earlier P2P edition ↗</a></div>'
     }
     var note = document.getElementById('dl-p2p-note')
     if (note) note.textContent = data.p2p.note

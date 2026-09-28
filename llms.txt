@@ -8,18 +8,21 @@
 - PearBrowser does not upload browsing history to an analytics, advertising, or profiling service.
 - Browsing history and local full-text page indexing are disabled by default.
 - If the user enables history or local search indexing, that data is stored locally unless the user explicitly enables encrypted device sync.
-- Content Shield, HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are enabled by default.
+- Content Shield, HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking for regular web navigation, and fingerprint farbling are enabled by default. P2P app cookie sharing remains a separate limitation.
 - PearBrowser does not require a central account.
 - PearBrowser Home opens as the active first tab with DuckDuckGo web search. PearBrowser sends no search analytics and excludes submitted searches from its optional persistent visit log.
 - DuckDuckGo receives the query and network address to return results. Its published policy says it does not save or share search history. This is private search, not anonymity.
 - PearBrowser is private, not anonymous. Websites, relay operators, and P2P peers may receive network metadata needed to serve content.
+- Known v0.9.0 limit: P2P drives on separate 127.0.0.1 ports share Electron host cookies. Do not store secrets in P2P page cookies; per-drive cookie isolation remains open.
 - Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.
 
 ## Product facts
 
-- Current desktop release: v0.8.0.
+- Latest published desktop download: v0.9.0, with GitHub SHA-256 sidecars and release manifests.
+- Desktop PR #84 is an unmerged v0.9.1 draft candidate for Pear 3.4: pear-runtime 1.3.1, pear-runtime-updater 3.4.0, pear-install 1.3.0, and Autobee 2.12.1 as a development compatibility test only. No user data has migrated to Autobee. P2P app cookie isolation and public-trust signing remain release blockers; no v0.9.1 installer is published.
 - Platforms: macOS, Windows, and Linux.
 - Current desktop packages are SHA-256-verifiable package-proof builds, not public-trust installers. macOS is ad-hoc signed but not notarized; Windows is unsigned.
+- Mobile PR #6 is an unmerged draft; Android and iOS signing, store validation, and device smoke remain open. No mobile release is published.
 - Signed catalogue v11 carries 14 apps. Native Pear v3 submissions bind canonical production identity, product, version and targets to one signed receipt and may include a bounded byte-validated icon.
 - PearBrowser can browse ordinary HTTPS websites and native hyper:// peer-to-peer sites.
 - A hyper:// site remains reachable only while at least one peer or accepted relay carrying its bytes is online; a stable content address is not a promise of permanent availability.
@@ -43,4 +46,4 @@
 - [PearBrowser Desktop releases](https://github.com/bigdestiny2/pearbrowser-desktop/releases)
 - [HiveRelay source](https://github.com/bigdestiny2/P2P-Hiverelay)
 
-Last reviewed: 2026-08-06.
+Last reviewed: 2026-09-28.
