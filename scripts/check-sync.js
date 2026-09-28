@@ -257,6 +257,8 @@ try {
   for (const route of Object.values(publicRoutes)) {
     if (!sitemap.includes(`<loc>${route}</loc>`)) fail(`sitemap is missing ${route}`)
   }
+  if ((sitemap.match(new RegExp(`<lastmod>${manifest.updated}</lastmod>`, 'g')) || []).length !== htmlPages.length) fail('sitemap lastmod dates are out of sync with the site manifest')
+  if (!read(path.join(root, 'privacy.html')).includes(`\"dateModified\": \"${manifest.updated}\"`)) fail('privacy structured dateModified is out of sync')
   if (!robots.includes('User-agent: OAI-SearchBot')) fail('robots.txt must explicitly allow OAI-SearchBot')
   if (!robots.includes('Sitemap: https://pearbrowser.com/sitemap.xml')) fail('robots.txt is missing the canonical sitemap URL')
   if (!llms.includes("PearBrowser is private, not anonymous.")) fail('llms.txt is missing the anonymity boundary')
