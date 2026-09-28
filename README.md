@@ -12,6 +12,13 @@ This repo stays intentionally small:
 - `scripts/check-sync.js` is a no-deps guardrail that verifies the site still matches the current desktop release metadata, manifest, local page links, local assets, and anchor links.
 - `package.json` exists only to make preview and validation repeatable.
 
+## Release state for this candidate
+
+- Latest published desktop download: [v0.9.0](https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0), with checksum-verifiable package-proof assets for macOS, Windows, and Linux. Developer ID notarization and Windows public-trust signing are pending.
+- [Desktop PR #84](https://github.com/bigdestiny2/pearbrowser-desktop/pull/84) is an unmerged v0.9.1 Pear 3.4/Autobee compatibility candidate. Autobee is not a production data migration. P2P app cookies remain shared across drive ports on the loopback host; do not claim cookie isolation.
+- [Mobile PR #6](https://github.com/bigdestiny2/PearBrowser/pull/6) is an unmerged draft. Signed distribution, store validation, and device smoke are pending.
+- This website branch is a local candidate. HTTPS deployment and the advertised Hyperdrive mirror have not been updated by this branch.
+
 ## Anchor inputs
 
 Update this site against these sources first:

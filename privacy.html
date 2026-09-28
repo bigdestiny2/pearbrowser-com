@@ -77,7 +77,7 @@
             "name": "Does PearBrowser block ads and trackers?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default."
+              "text": "PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking for regular web navigation, and fingerprint farbling are also enabled by default. The P2P app cookie limitation above still applies."
             }
           },
           {
@@ -195,8 +195,8 @@
             <p>A website may receive your IP address and the request data required to load its content. PearBrowser's protections reduce tracking; they do not make a website blind to your connection.</p>
           </div>
           <div>
-            <strong>P2P peers</strong>
-            <p>Direct peer-to-peer connections can expose network metadata to the peers exchanging data with you.</p>
+            <strong>P2P peers and app cookies</strong>
+            <p>Direct peer-to-peer connections can expose network metadata to peers. In desktop v0.9.0, P2P drives use different local ports but share Electron cookies on <code>127.0.0.1</code>; one app may see another app’s non-HttpOnly cookies. Do not put secrets in P2P page cookies. Per-drive cookie isolation remains open.</p>
           </div>
           <div>
             <strong>HiveRelay operators</strong>
@@ -232,8 +232,12 @@
             <p>Some HiveRelay operators support optional Tor endpoints, but PearBrowser Desktop does not yet route browser traffic through Tor automatically.</p>
           </details>
           <details>
+            <summary>Are cookies isolated between P2P apps?</summary>
+            <p>No. In desktop v0.9.0, P2P apps use different loopback ports on the same host, and Electron cookies are shared across those ports. This is a known limitation being tracked in the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft desktop update</a>.</p>
+          </details>
+          <details>
             <summary>Does PearBrowser block ads and trackers?</summary>
-            <p>PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking, and fingerprint farbling are also enabled by default.</p>
+            <p>PearBrowser enables Content Shield by default to block common advertising and tracking requests. HTTPS-only navigation, tracking-parameter stripping, third-party cookie blocking for regular web navigation, and fingerprint farbling are also enabled by default. The P2P app cookie limitation above still applies.</p>
           </details>
           <details>
             <summary>Does PearBrowser include private web search?</summary>
@@ -246,7 +250,7 @@
     <section class="final" aria-labelledby="cta-h">
       <div class="wrap reveal">
         <h2 id="cta-h">Browse without becoming the product.</h2>
-        <p>PearBrowser is free, open source, and available as an unsigned desktop preview for macOS, Windows, and Linux.</p>
+        <p>PearBrowser is free, open source, and available as checksum-verifiable package-proof desktop builds for macOS, Windows, and Linux.</p>
         <div class="hero-actions">
           <a class="btn primary" href="download.html">Go to downloads →</a>
           <a class="btn subtle" href="features.html">Explore the browser</a>
@@ -292,7 +296,7 @@
         </div>
       </div>
       <div class="footer-meta">
-        <span>Privacy claim last reviewed against PearBrowser Desktop v0.8.0 on 29 July 2026.</span>
+        <span>Privacy claim last reviewed against published PearBrowser Desktop v0.9.0 and its documented cookie limitation on 28 September 2026.</span>
         <span class="badges"><span class="pill live"><span class="ld"></span>No telemetry</span><span class="pill live"><span class="ld"></span>Local-first data</span></span>
       </div>
     </div>

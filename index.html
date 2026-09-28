@@ -43,7 +43,7 @@
         "url": "https://pearbrowser.com/",
         "downloadUrl": "https://pearbrowser.com/download.html",
         "softwareVersion": "0.8.0",
-        "releaseNotes": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0",
+        "releaseNotes": "https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0",
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "macOS, Windows, Linux",
         "isAccessibleForFree": true,
@@ -115,7 +115,7 @@
     <div class="wrap">
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>Desktop v0.8.0 · signed catalogue v11 live · package-proof builds · macOS · Windows · Linux</span>
+        <span>Desktop v0.9.0 · signed catalogue v11 live · package-proof builds · macOS · Windows · Linux</span>
       </div>
       <h1>
         <span class="brandline">PearBrowser</span>
@@ -140,8 +140,8 @@
 
       <div class="hero-mini">
         Free and open source for macOS, Windows, and Linux. Current downloads are checksum-verified package-proof builds; public-trust signing remains pending.<br />
-        Source v0.9.1 · Pear v3 runtime verified · verified downloads remain v0.8.0 until new release assets pass the package gate.<br />
-        This website is also served peer-to-peer at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>.
+        Source v0.9.1 is an unmerged <a href="https://github.com/bigdestiny2/pearbrowser-desktop/pull/84">draft candidate</a> for Pear 3.4 and Autobee compatibility; v0.9.0 remains the latest published download.<br />
+        An earlier edition of this website has a P2P address at <code>hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</code>; its current bytes have not been verified against this candidate.
       </div>
 
       <div class="trust-strip">
@@ -305,7 +305,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2 13 10"/><circle cx="8.5" cy="15.5" r="5.5"/><path d="m14 6 3 3M18 2l4 4-3 3"/></svg>
           </div>
           <h3>Verified release + catalogue</h3>
-          <p>Desktop v0.8.0 has checksum-verified package-proof builds for macOS, Windows, and Linux. Catalogue v11 contains 14 accepted entries, with source and target provenance shown before local installation.</p>
+          <p>Desktop v0.9.0 has checksum-verified package-proof builds for macOS, Windows, and Linux. Catalogue v11 contains 14 accepted entries, with source and target provenance shown before local installation.</p>
         </div>
 
         <div class="tile reveal d1">
@@ -321,15 +321,16 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
           </div>
           <h3>Experimental stays labelled <span class="pill exp"><span class="ld"></span>Experimental</span></h3>
-          <p>P2P names and petnames, encrypted device sync, trusted-contact feeds, and advanced network diagnostics remain opt-in or development-line surfaces. Their UI keeps provenance and recovery boundaries visible.</p>
+          <p>P2P names and petnames, encrypted device sync, trusted-contact feeds, advanced network diagnostics, and the v0.9.0 Stable Testnet wallet preview remain opt-in or development-line surfaces. Their UI keeps provenance and recovery boundaries visible.</p>
         </div>
 
       </div>
 
       <ul class="boundary-list reveal" aria-label="PearBrowser trust boundaries">
         <li><strong>Availability:</strong> a bookmarked or published <code>hyper://</code> site remains reachable only while a peer or accepted relay carrying its bytes is online.</li>
-        <li><strong>Distribution:</strong> checksum and package proof are verified for v0.8.0; macOS notarization and Windows public-trust signing remain pending.</li>
+        <li><strong>Distribution:</strong> checksum and package proof are verified for v0.9.0; macOS notarization and Windows public-trust signing remain pending.</li>
         <li><strong>Privacy:</strong> PearBrowser adds no telemetry profile, but websites, search providers, peers, and relay operators can receive network metadata needed to answer a request.</li>
+        <li><strong>P2P app cookies:</strong> v0.9.0 uses separate <code>127.0.0.1</code> loopback ports for drives, but Electron shares cookies across those ports. Do not put secrets in P2P page cookies; per-drive cookie isolation is still open.</li>
       </ul>
     </div>
   </section>
@@ -398,14 +399,14 @@
     <div class="wrap">
       <span class="eyebrow reveal">Quickstart</span>
       <h2 class="section reveal" id="inst-h">Get PearBrowser.</h2>
-      <p class="lede reveal"><code>v0.8.0</code> moves native apps behind an explicit Pear v3 install boundary: catalogue submissions bind canonical production identity, product, version and targets to one signed receipt; optional icons are byte-validated and bounded; the host verifies identity before OS launch. Signed catalogue v11 is live, and the <a href="download.html">download page</a> lists checksum-verified package-proof builds for macOS, Windows and Linux.</p>
+      <p class="lede reveal"><code>v0.9.0</code> retains the Pear v3 native-app install boundary: catalogue submissions bind canonical production identity, product, version and targets to one signed receipt; optional icons are byte-validated and bounded; the host verifies identity before OS launch. Signed catalogue v11 is live, and the <a href="download.html">download page</a> lists checksum-verified package-proof builds for macOS, Windows and Linux.</p>
 
       <div class="install-grid">
         <div class="reveal">
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
-              <span class="terminal-title">PearBrowser v0.8.0 downloads</span>
+              <span class="terminal-title">PearBrowser v0.9.0 downloads</span>
             </div>
             <div class="terminal-body">
               <span class="comment"># Package-proof builds: macOS .app.zip · Windows .msix · Linux .AppImage</span><br>
@@ -444,18 +445,18 @@
       <div class="spec reveal">
         <table>
           <tbody>
-          <tr><th scope="row">Desktop version</th><td>v0.8.0 · signed catalogue v11 · package-proof release</td></tr>
-          <tr><th scope="row">Distribution</th><td>Checksum-verified package-proof builds attached to <code>v0.8.0</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; public-trust signing/notarization remains pending; the legacy migration identifier is migration-only</td></tr>
+          <tr><th scope="row">Desktop version</th><td>v0.9.0 · signed catalogue v11 · package-proof release</td></tr>
+          <tr><th scope="row">Distribution</th><td>Checksum-verified package-proof builds attached to <code>v0.9.0</code>: macOS <code>.app.zip</code> (arm64 + x64), Windows <code>.msix</code>, Linux <code>.AppImage</code>; public-trust signing/notarization remains pending; the legacy migration identifier is migration-only</td></tr>
           <tr><th scope="row">Runtime</th><td>Native desktop shell with a local bundled worker; remote deployment links are never runtime entrypoints</td></tr>
           <tr><th scope="row">Core libraries</th><td><code>hyperswarm</code>, <code>hyperdrive</code>, <code>hyperbee</code>, <code>corestore</code>, <code>hypercore</code>, <code>autobase</code>, <code>p2p-hiverelay</code></td></tr>
           <tr><th scope="row">Search</th><td>Lighthouse — local Hyperbee full-text index, signed by a per-app <code>search</code> subkey; opt-in federation over Hyperswarm (smoke-validated)</td></tr>
           <tr><th scope="row">Identity</th><td>BIP-39 → Ed25519 root with per-app sub-keys; opt-in Nostr (secp256k1/BIP-340) — Phase 3: attested binding, post notes, federated feed over your trust graph (no public relays yet)</td></tr>
           <tr><th scope="row">Bridge surface</th><td><code>window.pear.swarm.v1</code> — three trust tiers, per-app rate limits, 1&nbsp;MB/s/peer cap (<a href="https://github.com/bigdestiny2/pearbrowser-desktop/blob/main/docs/SWARM-V1.md">SWARM-V1.md</a>)</td></tr>
           <tr><th scope="row">Sync</th><td>Experimental, opt-in: <code>sync://</code> Autobase device pairing for bookmarks, tabs, settings, profile, history, contacts, and app grants</td></tr>
-          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — package-proof builds on the <a href="download.html">download page</a>; Android and iOS source is merged and store delivery remains pending</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux — package-proof builds on the <a href="download.html">download page</a>; Android and iOS have an <a href="https://github.com/bigdestiny2/PearBrowser/pull/6">unmerged draft candidate</a>; signed builds and store validation remain pending</td></tr>
           <tr><th scope="row">License</th><td>Apache-2.0</td></tr>
           <tr><th scope="row">Legacy migration identifier</th><td><span class="key-block">tco5k7h38uoxatedp1wongdbhjxow1x7jiwm3t1i9cujbebhsbty</span></td></tr>
-          <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</span> — the same page, currently pinned on an accepted HiveRelay route</td></tr>
+          <tr><th scope="row">This site (P2P)</th><td><span class="key-block">hyper://03f0060a35451cfb6b68ad1dda1b8474ebb43fd9100071ccf7d67679a83ebb4f/</span> — an earlier P2P edition; current bytes and availability have not been verified for this candidate</td></tr>
           </tbody>
         </table>
       </div>
@@ -527,7 +528,7 @@
 
         <details>
           <summary>How do I install it?</summary>
-          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.8.0">v0.8.0 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>package-proof artifacts</strong>, not public-trust installers; verify the published checksum before opening them. The old migration identifier is for local support only, not an install command.</p>
+          <p>Desktop builds are attached to the <a href="https://github.com/bigdestiny2/pearbrowser-desktop/releases/tag/v0.9.0">v0.9.0 release</a> and listed on the <a href="download.html">download page</a>: macOS <code>.app.zip</code>, Windows <code>.msix</code>, and Linux <code>.AppImage</code>. They are <strong>package-proof artifacts</strong>, not public-trust installers; verify the published checksum before opening them. The old migration identifier is for local support only, not an install command.</p>
         </details>
 
         <details>
@@ -596,7 +597,7 @@
         </div>
       </div>
       <div class="footer-meta">
-        <span>This site is itself a Hyperdrive — currently pinned, served by available peers, addressed by key.</span>
+        <span>An earlier P2P edition has a Hyperdrive key; current content and availability need verification.</span>
         <span class="badges">
           <span class="pill live"><span class="ld"></span>Lighthouse live</span>
           <span class="pill smoke"><span class="ld"></span>Search provenance live</span>
