@@ -85,7 +85,7 @@
       "status": "draft-candidate",
       "statusLabel": "Draft source · store pending",
       "pullRequest": "https://github.com/bigdestiny2/PearBrowser/pull/6",
-      "note": "Mobile PR #6 is an unmerged draft. An unsigned Android emulator build reached Connected and opened HTTPS and local Search. Android signing, Play validation, physical-device smoke, tab retention, and P2P app origin isolation remain open; no signed APK or store listing is published."
+      "note": "Mobile PR #6 is an unmerged draft. An unsigned Android emulator build reached Connected and opened HTTPS and local Search. The Android emulator retained tab A through an A→B→A switch and cleared tabs when Private Mode was enabled, with no restore after restart. Prior-opt-in suppression is unverified. Android signing, Play validation, physical-device smoke, and P2P app origin isolation remain open; no signed APK or store listing is published."
     },
     "ios": {
       "status": "draft-candidate",

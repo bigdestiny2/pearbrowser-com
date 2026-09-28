@@ -59,7 +59,7 @@ PearBrowser adds native peer-to-peer capabilities to normal browsing:
 
 ## What should not be claimed?
 
-Do not claim P2P app cookies are isolated between drives in published v0.9.0. Mobile PR #6 remains an unmerged draft. Android and iOS simulator builds reached Connected; per-app origin isolation, physical-device smoke, signing, and store validation remain open. Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not say a web-search query never leaves the device: DuckDuckGo receives it to return results. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
+Do not claim P2P app cookies are isolated between drives in published v0.9.0. Mobile PR #6 remains an unmerged draft. Android and iOS simulator builds reached Connected; an Android emulator passed A→B→A tab retention and Private Mode tab clearing on activation, with no restore after restart. Prior-opt-in suppression, per-app origin isolation, physical-device smoke, signing, and store validation remain open. Do not describe PearBrowser as anonymous, as automatically using Tor, or as exposing no network metadata. Do not say a web-search query never leaves the device: DuckDuckGo receives it to return results. Do not claim the wider P2P ecosystem contains no servers: HiveRelay nodes provide optional gateway and replication services. The accurate product claim is that PearBrowser itself does not track users or operate a central analytics, advertising, or profiling service.
 
 ## Canonical links
 
